@@ -19,10 +19,10 @@ public class Model extends Observable implements IModel {
 	private String message;
 
 	/** Width */
-	private int height;
+	private int height = 15;
 	
 	/** Height */
-	private int width;
+	private int width = 20;
 	
 	/**
 	 * Instantiates a new model.
@@ -89,7 +89,7 @@ public class Model extends Observable implements IModel {
 	{
 		try
 		{
-		    File f = new File ("C:/Users/Hugoo/Desktop/CESI/Prosit 34/NettleWorld/src/jpu2016/nettleWorld.txt");
+		    File f = new File (fileName);
 		    FileReader fr = new FileReader (f);
 		 
 		    int c = fr.read();
@@ -102,7 +102,6 @@ public class Model extends Observable implements IModel {
 				{		
 					if((char) c != '\r')
 					{						
-					
 						switch((char) c)
 						{
 						
