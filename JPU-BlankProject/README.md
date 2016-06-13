@@ -1,11 +1,2 @@
-<<<<<<< HEAD
 # JPU-BlankProject
 Base de démarrage pour le projet Jave/POO/UML des 1ières années Exia-Cesi
-=======
-# PRJjava
-
-
-
-
-
->>>>>>> 43b30c2dff498a887ddc5ecb48f0e279ab7e7932
