@@ -1,5 +1,8 @@
 package model;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Observable;
 
@@ -15,6 +18,12 @@ public class Model extends Observable implements IModel {
 	/** The message. */
 	private String message;
 
+	/** Width */
+	private int height;
+	
+	/** Height */
+	private int width;
+	
 	/**
 	 * Instantiates a new model.
 	 */
@@ -64,5 +73,95 @@ public class Model extends Observable implements IModel {
 	 */
 	public Observable getObservable() {
 		return this;
+	}
+	
+	public int getWidth()
+	{
+		return this.width;
+	}
+	
+	public int getHeight()
+	{
+		return this.height;
+	}
+	
+	public void loadFile(final String fileName)
+	{
+		try
+		{
+		    File f = new File ("C:/Users/Hugoo/Desktop/CESI/Prosit 34/NettleWorld/src/jpu2016/nettleWorld.txt");
+		    FileReader fr = new FileReader (f);
+		 
+		    int c = fr.read();
+		    int x = 0;
+		    int y = 0;
+		    
+			while (c != -1)
+			{				
+				if(y < this.getHeight()+1)
+				{		
+					if((char) c != '\r')
+					{						
+					
+						switch((char) c)
+						{
+						
+							/*case 'S':
+								this.addElement(new Stone(), x, y);	
+								//System.out.print('S');
+							break;
+							
+							case ' ':							
+								this.addElement(new Land(), x, y);	
+								//System.out.print('_');
+							break;
+							
+							case 'W':
+								this.addElement(new Water(), x, y);	
+								//System.out.print('W');
+							break;
+							
+							case 'C':							
+								this.addElement(new Camp(), x, y);
+								//System.out.print('C');
+							break;
+							
+							case 'T':							
+								this.addElement(new Town(), x, y);		
+								//System.out.print('T');
+							break;
+							
+							case 'M':							
+								this.addElement(new Monastery(), x, y);		
+								//System.out.print('M');
+							break;
+							
+							case 'F':						
+								this.addElement(new Forest(), x, y);	
+								//System.out.print('F');
+							break;*/
+							
+						}
+						
+						x++;
+						
+						if(x == this.getWidth()+1)
+						{
+							y++;
+							x = 0;
+						}
+					}
+				}
+				
+				c = fr.read();
+				
+			}
+			fr.close();
+		
+		}
+		catch (IOException exception)
+		{
+		    System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
+		}
 	}
 }
