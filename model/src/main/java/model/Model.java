@@ -1,12 +1,16 @@
 package model;
 
+import java.awt.Image;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Observable;
 
+import javax.imageio.ImageIO;
+
 import contract.IModel;
+import element.*;
 
 /**
  * The Class Model.
@@ -105,12 +109,15 @@ public class Model extends Observable implements IModel {
 						switch((char) c)
 						{
 						
-							/*case 'S':
-								this.addElement(new Stone(), x, y);	
-								//System.out.print('S');
+							case 'h':
+								try {
+									Image image = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/horizontal_bone.png"));
+								} catch (final IOException e) {
+									e.printStackTrace();
+								}			
 							break;
 							
-							case ' ':							
+							/*case ' ':							
 								this.addElement(new Land(), x, y);	
 								//System.out.print('_');
 							break;
