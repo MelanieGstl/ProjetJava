@@ -1,9 +1,17 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -28,7 +36,21 @@ class ViewPanel extends JPanel implements Observer {
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	private BufferedImage image;
+	private BufferedImage img;
+	
+	public ViewPanel () {
+		try {
+			//image = ImageIO.read(getClass().getResourceAsStream("/bone.png"));
+			this.img = ImageIO.read(new File("bone.png"));
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		repaint();
+	}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * Gets the view frame.
 	 *
@@ -62,10 +84,13 @@ class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
+	
+	
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		graphics.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
-	//	graphics.drawImage(img, x, y, "black", paintingChild);
+		graphics.drawImage(this.img, 10, 10, null);
 	}
+
 }

@@ -124,7 +124,7 @@ public class Model extends Observable implements IModel {
 						
 							case 'h':
 								try {
-									Image imageH = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/horizontal_bone.png"));
+									Image imageH = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/horizontal_bone.png"));
 								} catch (final IOException e) {
 									e.printStackTrace();
 								}			
@@ -132,7 +132,7 @@ public class Model extends Observable implements IModel {
 							
 							case 'b':							
 								try {
-									Image imageB = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/bone.png"));
+									Image imageB = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/bone.png"));
 								} catch (final IOException e) {
 									e.printStackTrace();
 								}
@@ -140,7 +140,7 @@ public class Model extends Observable implements IModel {
 							
 							case 'v':
 								try {
-									Image imageV = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/vertical_bone.png"));
+									Image imageV = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/vertical_bone.png"));
 								} catch (final IOException e) {
 									e.printStackTrace();
 								}
@@ -148,7 +148,7 @@ public class Model extends Observable implements IModel {
 							
 							case 'p':							
 								try {
-									Image imageP = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/purse.png"));
+									Image imageP = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/purse.png"));
 								} catch (final IOException e) {
 									e.printStackTrace();
 								}
@@ -156,7 +156,7 @@ public class Model extends Observable implements IModel {
 							
 							case 'e':							
 								try {
-									Image imageE = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/crystal_ball.png"));
+									Image imageE = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/crystal_ball.png"));
 								} catch (final IOException e) {
 									e.printStackTrace();
 								}
@@ -164,7 +164,7 @@ public class Model extends Observable implements IModel {
 							
 							case 'c':							
 								try {
-									Image imageC = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/gate_closed.png"));
+									Image imageC = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/gate_closed.png"));
 								} catch (final IOException e) {
 									e.printStackTrace();
 								}
@@ -198,11 +198,11 @@ public class Model extends Observable implements IModel {
 		    System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
 		}
 		
-		/* pour afficher le tableau
+		// pour afficher le tableau
 		for(int y = 0; y < this.getHeight()+1; y++){
 			for(int x = 0; x < this.getWidth()+1; x++){
 				System.out.print(tableau[x][y]);
 			}
-		}*/
+		}
 	}
 }
