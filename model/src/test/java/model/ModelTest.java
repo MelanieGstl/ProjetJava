@@ -72,13 +72,13 @@ public class ModelTest {
 	 */
 	@Test
 	public void testGetMessageString() {
-		this.model.loadMessage("GB");
+		this.model.loadMessage("ONE");
 		Assert.assertEquals("Hello world", this.model.getMessage());
-		this.model.loadMessage("FR");
+		this.model.loadMessage("TWO");
 		Assert.assertEquals("Bonjour le monde", this.model.getMessage());
-		this.model.loadMessage("DE");
+		this.model.loadMessage("THREE");
 		Assert.assertEquals("Hallo Welt", this.model.getMessage());
-		this.model.loadMessage("ID");
+		this.model.loadMessage("FOUR");
 		Assert.assertEquals("Salamat pagi dunia", this.model.getMessage());
 	}
 

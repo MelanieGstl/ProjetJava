@@ -3,22 +3,13 @@ package element;
 import java.awt.Image;
 
 public class Element {
-	private Sprite sprite;
 	private Permeability permeability;
 	//private INettleWorld	nettleWorld;
 	
-	public Element(final Sprite sprite, final Permeability permeability) {
-		this.setSprite(sprite);
+	public Element( final Permeability permeability) {
 		this.setPermeability(permeability);
 	}
 	
-	public Sprite getSprite() {
-		return this.sprite;
-	}
-	
-	private void setSprite(final Sprite sprite) {
-		this.sprite = sprite;
-	}
 	
 	public Permeability getPermeability() {
 		return this.permeability;
@@ -35,9 +26,5 @@ public class Element {
 	public void setNettleWorld(final INettleWorld nettleWorld) {
 		this.nettleWorld = nettleWorld;
 	}*/
-	
-	public Image getImage() {
-		return this.getSprite().getImage();
-	}	
 	
 }

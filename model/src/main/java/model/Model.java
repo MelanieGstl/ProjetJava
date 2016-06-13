@@ -28,13 +28,25 @@ public class Model extends Observable implements IModel {
 	/** Height */
 	private int width = 20;
 	
+	private char[][] tableau = new char[40][40];
+	
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
 		this.message = "";
 	}
-
+	
+	/*/**
+	 * Instantiates a new level with the file given
+	 * @param fileName
+	 * @throws IOException
+	 */
+	/*public Model(final String fileName) throws IOException {
+		this();
+		this.loadFile(fileName);
+	*/
+	
 	/*
 	 * (non-Javadoc)
 	 *
@@ -105,44 +117,60 @@ public class Model extends Observable implements IModel {
 				if(y < this.getHeight()+1)
 				{		
 					if((char) c != '\r')
-					{						
+					{		
+						this.tableau[x][y] = (char) c;
 						switch((char) c)
 						{
 						
 							case 'h':
 								try {
-									Image image = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/horizontal_bone.png"));
+									Image imageH = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/horizontal_bone.png"));
 								} catch (final IOException e) {
 									e.printStackTrace();
 								}			
 							break;
 							
-							/*case ' ':							
-								this.addElement(new Land(), x, y);	
-								//System.out.print('_');
+							case 'b':							
+								try {
+									Image imageB = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/bone.png"));
+								} catch (final IOException e) {
+									e.printStackTrace();
+								}
 							break;
 							
-							case 'W':
-								this.addElement(new Water(), x, y);	
-								//System.out.print('W');
+							case 'v':
+								try {
+									Image imageV = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/vertical_bone.png"));
+								} catch (final IOException e) {
+									e.printStackTrace();
+								}
 							break;
 							
-							case 'C':							
-								this.addElement(new Camp(), x, y);
-								//System.out.print('C');
+							case 'p':							
+								try {
+									Image imageP = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/purse.png"));
+								} catch (final IOException e) {
+									e.printStackTrace();
+								}
 							break;
 							
-							case 'T':							
-								this.addElement(new Town(), x, y);		
-								//System.out.print('T');
+							case 'e':							
+								try {
+									Image imageE = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/crystal_ball.png"));
+								} catch (final IOException e) {
+									e.printStackTrace();
+								}
 							break;
 							
-							case 'M':							
-								this.addElement(new Monastery(), x, y);		
-								//System.out.print('M');
+							case 'c':							
+								try {
+									Image imageC = ImageIO.read(new File("C:/Users/Julie/git/ProjetJava/sprite/gate_closed.png"));
+								} catch (final IOException e) {
+									e.printStackTrace();
+								}
 							break;
 							
-							case 'F':						
+							/*case '':						
 								this.addElement(new Forest(), x, y);	
 								//System.out.print('F');
 							break;*/
@@ -169,5 +197,12 @@ public class Model extends Observable implements IModel {
 		{
 		    System.out.println ("Erreur lors de la lecture : " + exception.getMessage());
 		}
+		
+		/* pour afficher le tableau
+		for(int y = 0; y < this.getHeight()+1; y++){
+			for(int x = 0; x < this.getWidth()+1; x++){
+				System.out.print(tableau[x][y]);
+			}
+		}*/
 	}
 }

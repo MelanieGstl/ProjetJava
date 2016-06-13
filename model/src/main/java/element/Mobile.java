@@ -5,8 +5,8 @@ import java.awt.Point;
 public class Mobile extends Element {
 	private final Point position;
 
-	public Mobile(final Sprite sprite) {
-		super(sprite, Permeability.BLOCKING);
+	public Mobile() {
+		super(Permeability.BLOCKING);
 		this.position = new Point();
 	}
 	
