@@ -39,16 +39,16 @@ public class View implements IView, Runnable {
 	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
+			case KeyEvent.VK_1:
+				return ControllerOrder.ONE;
+			case KeyEvent.VK_2:
+				return ControllerOrder.TWO;
+			case KeyEvent.VK_3:
+				return ControllerOrder.THREE;
+			case KeyEvent.VK_4:
+				return ControllerOrder.FOUR;
 			default:
-				return ControllerOrder.English;
+				return ControllerOrder.ONE;
 		}
 	}
 
