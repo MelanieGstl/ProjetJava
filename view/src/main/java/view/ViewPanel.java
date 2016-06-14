@@ -105,121 +105,12 @@ class ViewPanel extends JPanel implements Observer {
 		      graphics.drawImage(img, 0, 0, this);
 		      graphics.drawImage(img2, 32, 0, this);
 		    		  
-		    } catch (IOException e) {
+		} catch (IOException e) {
 
-		      e.printStackTrace();
+			e.printStackTrace();
 
-		    } 
-		
+		} 
 			
-			char[][] map = new char[30][30];
-				//map = this.viewFrame.getModel().getMap();
-			
-		for(int y = 0; y < this.getHeight()+1; y++){
-			for(int x = 0; x < this.getWidth()+1; x++){
-				
-				//Arrays.deepToString(a)
-						/*switch(map[x][y])
-						{
-						
-							case 'h':
-								try {
-								      Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/horizontal_bone.png"));
-								      graphics.drawImage(img, 0, 0, this);
-
-								    } catch (IOException e) {
-
-								      e.printStackTrace();
-
-								    } 
-											
-							break;
-							
-							case 'b':
-								try {
-								      Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/bone.png"));
-								      graphics.drawImage(img, 0, 0, this);
-
-								    } catch (IOException e) {
-
-								      e.printStackTrace();
-
-								    } 
-								
-							break;
-							
-							case 'v':
-								try {
-								      Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/vertical_bone.png"));
-								      graphics.drawImage(img, 0, 0, this);
-
-								    } catch (IOException e) {
-
-								      e.printStackTrace();
-
-								    } 
-							
-								
-							break;
-							
-							case 'p':
-								try {
-								      Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/purse.png"));
-								      graphics.drawImage(img, 0, 0, this);
-
-								    } catch (IOException e) {
-
-								      e.printStackTrace();
-
-								    } 
-							
-								
-							break;
-							
-							case 'e':
-								try {
-								      Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/crystal_bone.png"));
-								      graphics.drawImage(img, 0, 0, this);
-
-								    } catch (IOException e) {
-
-								      e.printStackTrace();
-
-								    } 
-							
-								
-							break;
-							
-							case 'c':	
-								try {
-								      Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/gate_closed.png"));
-								      graphics.drawImage(img, 0, 0, this);
-
-								    } catch (IOException e) {
-
-								      e.printStackTrace();
-
-								    } 
-							
-						
-							break;
-							
-								}*/
-						}
-			}
-		}
-						
-			
-		/*try {
-		      Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/bone.png"));
-		      graphics.drawImage(img, 0, 0, this);
-
-		    } catch (IOException e) {
-
-		      e.printStackTrace();
-
-		    } */
-
-
+	}
 }
 
