@@ -103,7 +103,7 @@ class ViewPanel extends JPanel implements Observer {
 		      Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/horizontal_bone.png"));
 		      Image img2 = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/bone.png"));
 		      graphics.drawImage(img, 0, 0, this);
-		      graphics.drawImage(img2, 32, 0, this);
+		      graphics.drawImage(img2, 33, 0, this);
 		    		  
 		} catch (IOException e) {
 
