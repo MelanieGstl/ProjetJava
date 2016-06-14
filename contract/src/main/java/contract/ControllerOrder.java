@@ -11,5 +11,11 @@ public enum ControllerOrder {
 	TWO,
 	THREE,
 	FOUR,
-	FIVE
+	FIVE,
+	NOTHING,
+	UP,
+	RIGHT,
+	DOWN,
+	LEFT,
+	SHOOT
 }

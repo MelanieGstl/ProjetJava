@@ -36,7 +36,7 @@ public class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMap("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		this.view.printMap("Press 1, 2, 3, 4 or 5 to choose the level that you want.");
 	}
 
 	/**
@@ -85,27 +85,28 @@ public class Controller implements IController {
 			case FIVE:
 				this.model.loadMap2("FIVE");
 			break;
+			
+			case UP:
+				
+			break;
+			
+			case LEFT:
+				
+			break;
+			
+			case DOWN:
+				
+			break;
+			
+			case RIGHT:
+				
+			break;
 
 			default:
-				break;
+				
+			break;
 		}
 	}
 	//fffffff
-	
-	public char[][] displayMap() {
-		char[][] map = model.getMap();
-
-		for (int i = 0; i < model.getHeight(); i++)
-		{
-			for (int j = 0; j < model.getWidth(); j++)
-			{
-				System.out.print(map[i][j]);
-			}
-
-			System.out.println();
-		}
-
-		return map;
-	}
 
 }
