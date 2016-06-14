@@ -45,4 +45,6 @@ public interface IModel {
 	
 	void setMobileHasChanged();
 
+	Object getHero();
+
 }

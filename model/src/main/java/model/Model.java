@@ -32,6 +32,9 @@ public class Model extends Observable implements IModel {
 	/** Height */
 	private int width = 20;
 	
+	/** Hero */
+	private Hero hero;
+	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 	
 	private IView view;
@@ -197,5 +200,9 @@ public class Model extends Observable implements IModel {
             e.printStackTrace();
         }
     }
+    
+    public Hero getHero() {
+		return this.hero;
+	}
 
 }
