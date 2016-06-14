@@ -14,23 +14,23 @@ public class Mobile extends Element {
 		return this.position.x;
 	}
 
-	/*protected void setX(final int x) {
-		if ((x >= 0) && (x < this.getNettleWorld().getWidth())) {
+	protected void setX(final int x) {
+		if ((x >= 0) && (x < this.getModel().getWidth())) {
 			this.position.x = x;
-			this.getNettleWorld().setMobileHasChanged();
+			this.getModel().setMobileHasChanged();
 		}
-	}*/
+	}
 	
 	public int getY() {
 		return this.position.y;
 	}
 
-	/*protected void setY(final int y) {
-		if ((y >= 0) && (y < this.getNettleWorld().getHeight())) {
+	protected void setY(final int y) {
+		if ((y >= 0) && (y < this.getModel().getHeight())) {
 			this.position.y = y;
-			this.getNettleWorld().setMobileHasChanged();
+			this.getModel().setMobileHasChanged();
 		}
-	}*/
+	}
 
 	public Point getPosition() {
 		return this.position;
@@ -42,17 +42,24 @@ public class Mobile extends Element {
 		this.setY(y);
 	}*/
 
-	/*private boolean isMovePossible(final int x, final int y) {
-		return (this.getNettleWorld().getElements(x, y).getPermeability() != Permeability.BLOCKING);
-	}*/
+	private boolean isMovePossible(final int x, final int y) {
+		if(this.getModel().getElement(x, y) == 'h' || this.getModel().getElement(x, y) == 'v' || this.getModel().getElement(x, y) == 'b'){
+			return false;
+		}else{
+			return true;
+		}
+		
+		
+		//return (this.getNettleWorld().getElements(x, y).getPermeability() != Permeability.BLOCKING);
+	}
 
-	/*public void moveUp() {
+	public void moveUp() {
 		if (this.isMovePossible(this.getX(), this.getY() - 1)) {
 			this.setY(this.getY() - 1);
 		}
-	}*/
+	}
 
-	/*public void moveLeft() {
+	public void moveLeft() {
 		if (this.isMovePossible(this.getX() - 1, this.getY())) {
 			this.setX(this.getX() - 1);
 		}
@@ -68,6 +75,6 @@ public class Mobile extends Element {
 		if (this.isMovePossible(this.getX() + 1, this.getY())) {
 			this.setX(this.getX() + 1);
 		}
-	}*/
+	}
 	
 }

@@ -2,9 +2,11 @@ package element;
 
 import java.awt.Image;
 
+import contract.IModel;
+
 public class Element {
 	private Permeability permeability;
-	//private INettleWorld	nettleWorld;
+	private IModel	model;
 	
 	public Element( final Permeability permeability) {
 		this.setPermeability(permeability);
@@ -26,5 +28,9 @@ public class Element {
 	public void setNettleWorld(final INettleWorld nettleWorld) {
 		this.nettleWorld = nettleWorld;
 	}*/
+	
+	public IModel getModel(){
+		return this.model;
+	}
 	
 }

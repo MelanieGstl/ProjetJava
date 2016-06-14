@@ -160,11 +160,23 @@ public class Model extends Observable implements IModel {
 	public char[][] getMap() {
         return this.tableau;
     }
+	
+	public char getElement(int x, int y){
+		if ((x < 0) || (y < 0) || (x >= this.getWidth()) || (y >= this.getHeight())) {
+			return (Character) null;
+		}
+		return this.tableau[x][y];
+	}
 
     private void setMap(final String map) {
         this.map = map;
         this.setChanged();
         this.notifyObservers();
+    }
+    
+    public void setMobileHasChanged(){
+    	this.setChanged();
+    	this.notifyObservers();
     }
     
     public void loadMap2(String key) {

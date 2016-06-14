@@ -41,4 +41,8 @@ public interface IModel {
 
 	void loadMap2(String key);
 
+	char getElement(int x, int y);
+	
+	void setMobileHasChanged();
+
 }
