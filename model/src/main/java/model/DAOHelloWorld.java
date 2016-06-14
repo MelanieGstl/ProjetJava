@@ -16,10 +16,10 @@ import java.sql.SQLException;
 class DAOHelloWorld extends DAOEntity<HelloWorld> {
 
 	/** Width */
-	private int height = 1000;
+	private int height = 20;
 	
 	/** Height */
-	private int width = 1000;
+	private int width = 20;
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 
@@ -116,52 +116,44 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
                 switch (tabmap[i].charAt(j)){
                 
                     case 'h':                       
-                    	this.tableau[i][j] = 'h';
-                        System.out.print(this.tableau[i][j]);
+                    	this.tableau[i][j] = 'h'; 
+                    	//System.out.print(this.tableau[i][j]);
                    break;
                         
                     case 'b':                                           
-                    	this.tableau[i][j] = 'b';
-                        System.out.print(this.tableau[i][j]);
+                    	this.tableau[i][j] = 'b';    
+                    	//System.out.print(this.tableau[i][j]);
                     break;
                         
                     case 'v':                       
-                    	this.tableau[i][j] = 'v';
-                        System.out.print(this.tableau[i][j]);                  
+                    	this.tableau[i][j] = 'v';  
+                    	//System.out.print(this.tableau[i][j]);
                     break;
                     	
                     case 'p':                       
-                    	this.tableau[i][j] = 'p';
-                        System.out.print(this.tableau[i][j]);
-                    break;
-                        
-                    case 'L':                       
-                        //System.out.print(this.pngArray[i][j]);
-                    break;
-                    
-                    case 'C':                       
-                       // System.out.print(this.pngArray[i][j]);
-                    break;
-                    
-                    case 'K':                       
-                       // System.out.print(this.pngArray[i][j]);
+                    	this.tableau[i][j] = 'p'; 
+                    	//System.out.print(this.tableau[i][j]);
                     break;
                     
                     default:
-                    	this.tableau[i][j] = ' ';
-                        System.out.print(this.tableau[i][j]);
+                    	this.tableau[i][j] = ' ';   
+                    	//System.out.print(this.tableau[i][j]);
                     break;
-                }
+                }     
             }
+            
             System.out.println();
         }
 		
-		/* To show table
-		for(y = 0; y < this.getHeight()+1; y++){
-			for(x = 0; x < this.getWidth()+1; x++){				
-				System.out.print(tableau[x][y]);
-			}
-		}*/
+        for (int i =0; i < tabmap.length; i++)
+        {
+            for (int j = 0; j < tabmap[i].length(); j++)
+            {
+            	System.out.print(this.tableau[i][j]);
+            }
+            
+            System.out.println();
+        }
 	}
 
 }
