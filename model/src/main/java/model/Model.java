@@ -127,6 +127,16 @@ public class Model extends Observable implements IModel {
                     	//System.out.print(this.tableau[i][j]);
                     break;
                     
+                    case 'e':                       
+                    	this.tableau[i][j] = 'e'; 
+                    	//System.out.print(this.tableau[i][j]);
+                    break;
+                    
+                    case 'l':                       
+                    	this.tableau[i][j] = 'l'; 
+                    	//System.out.print(this.tableau[i][j]);
+                    break;
+                    
                     default:
                     	this.tableau[i][j] = ' ';   
                     	//System.out.print(this.tableau[i][j]);

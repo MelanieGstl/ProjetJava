@@ -1,5 +1,5 @@
-hhhhhhhhhhhhhhhhhhhh
-v                  v
+bhhhhhhhhhhhhhhhhhhb
+vl                 v
 v  bhhhhb   bhhhb  v
 v  v            v  v
 v  v            v  v
@@ -12,4 +12,4 @@ v  v            v  v
 v  v            v  v
 v  bhhhhhhhhhhhhb  v
 v                  v
-hhhhhhhhhhhhhhhhhhhh
+bhhhhhhhhhhhhhhhhhhb

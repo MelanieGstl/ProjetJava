@@ -1,4 +1,4 @@
-hhhhhhhhhhhhhhhhhhhh
+bhhhhhhhhhhhhhhhhhhb
 v                  v
 v           e      v
 v                  v
@@ -7,9 +7,9 @@ v      p           v
 v      v           v
 v      v           v
 vhhhhhhb           v
-v                  v
+v           l      v
 v                  v
 vhhhhhhhhhhhb      v
 v c                v
 v                  v
-hhhhhhhhhhhhhhhhhhhh
+bhhhhhhhhhhhhhhhhhhb
