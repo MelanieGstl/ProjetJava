@@ -82,4 +82,9 @@ public class Model extends Observable implements IModel {
 	public Observable getObservable() {
 		return this;
 	}
+
+	public char[][] getMap() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
