@@ -13,15 +13,7 @@ import java.sql.SQLException;
  *
  * @author Jean-Aymeric Diet
  */
-class DAOHelloWorld extends DAOEntity<HelloWorld> {
-
-	/** Width */
-	private int height = 20;
-	
-	/** Height */
-	private int width = 20;
-	
-	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
+public class DAOHelloWorld extends DAOEntity<HelloWorld> {
 
 	/**
 	 * Instantiates a new DAO hello world.
@@ -86,7 +78,8 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 			if (resultSet.first()) {
 				helloWorld = new HelloWorld(resultSet.getInt("id"), key, "Chargement de la map ...");	
 				String map = resultSet.getString("message");	
-				this.readFile(map);
+				Model model = new Model();
+				model.loadMap(map);
 			}
 			
 			return helloWorld;
@@ -94,66 +87,6 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	public int getWidth()
-	{
-		return this.width;
-	}
-	
-	public int getHeight()
-	{
-		return this.height;
-	}
-	
-	public void readFile(String map)
-	{		
-		String[] tabmap = map.split("\n"); 
-        for (int i =0; i < tabmap.length; i++)
-        {
-            for (int j = 0; j < tabmap[i].length(); j++)
-            {
-                switch (tabmap[i].charAt(j)){
-                
-                    case 'h':                       
-                    	this.tableau[i][j] = 'h'; 
-                    	//System.out.print(this.tableau[i][j]);
-                   break;
-                        
-                    case 'b':                                           
-                    	this.tableau[i][j] = 'b';    
-                    	//System.out.print(this.tableau[i][j]);
-                    break;
-                        
-                    case 'v':                       
-                    	this.tableau[i][j] = 'v';  
-                    	//System.out.print(this.tableau[i][j]);
-                    break;
-                    	
-                    case 'p':                       
-                    	this.tableau[i][j] = 'p'; 
-                    	//System.out.print(this.tableau[i][j]);
-                    break;
-                    
-                    default:
-                    	this.tableau[i][j] = ' ';   
-                    	//System.out.print(this.tableau[i][j]);
-                    break;
-                }     
-            }
-            
-            System.out.println();
-        }
-		
-        for (int i =0; i < tabmap.length; i++)
-        {
-            for (int j = 0; j < tabmap[i].length(); j++)
-            {
-            	System.out.print(this.tableau[i][j]);
-            }
-            
-            System.out.println();
-        }
 	}
 
 }

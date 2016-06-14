@@ -31,4 +31,10 @@ public interface IModel {
 	 */
 	Observable getObservable();
 
+	char[][] getMap();
+
+	int getHeight();
+
+	int getWidth();
+
 }

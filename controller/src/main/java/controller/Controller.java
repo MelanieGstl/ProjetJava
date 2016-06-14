@@ -91,5 +91,20 @@ public class Controller implements IController {
 		}
 	}
 	//fffffff
+	
+	public void displayMap()
+	{
+		char[][] map = model.getMap();
+		
+		for (int i =0; i < model.getHeight(); i++)
+        {
+            for (int j = 0; j < model.getWidth(); j++)
+            {
+            	System.out.print(map[i][j]);
+            }
+            
+            System.out.println();
+        }
+	}
 
 }
