@@ -76,10 +76,10 @@ public class DAOHelloWorld extends DAOEntity<HelloWorld> {
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			if (resultSet.first()) {
-				helloWorld = new HelloWorld(resultSet.getInt("id"), key, "Chargement de la map ...");	
-				String map = resultSet.getString("message");	
+				helloWorld = new HelloWorld(resultSet.getInt("id"), key, resultSet.getString("message"));	
+				/*String map = resultSet.getString("message");	
 				Model model = new Model();
-				model.loadMap(map);
+				model.loadMap(map);*/
 			}
 			
 			return helloWorld;

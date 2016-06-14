@@ -10,6 +10,7 @@ import java.util.Observable;
 import javax.imageio.ImageIO;
 
 import contract.IModel;
+import contract.IView;
 import element.*;
 
 /**
@@ -22,6 +23,9 @@ public class Model extends Observable implements IModel {
 	/** The message. */
 	private String message;
 	
+	/** The map. */
+	private String map;
+	
 	/** Width */
 	private int height = 20;
 	
@@ -29,13 +33,15 @@ public class Model extends Observable implements IModel {
 	private int width = 20;
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
+	
+	private IView view;
 
 	
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
-		this.message = "";
+		this.map = "";
 	}
 	
 	/*/**
@@ -92,10 +98,10 @@ public class Model extends Observable implements IModel {
 		return this;
 	}
 	
-	public void loadMap(String map)
+	public void loadMap()
 	{		
-		String[] tabmap = map.split("\n"); 
-        for (int i =0; i < tabmap.length; i++)
+		String[] tabmap = this.map.split("\n"); 
+        for (int i = 0; i < tabmap.length; i++)
         {
             for (int j = 0; j < tabmap[i].length(); j++)
             {
@@ -128,7 +134,7 @@ public class Model extends Observable implements IModel {
                 }     
             }
         }
-		
+
         /*for (int i =0; i < tabmap.length; i++)
         {
             for (int j = 0; j < tabmap[i].length(); j++)
@@ -138,6 +144,7 @@ public class Model extends Observable implements IModel {
             
             System.out.println();
         }*/
+
 	}
 	
 	public int getWidth()
@@ -150,9 +157,23 @@ public class Model extends Observable implements IModel {
 		return this.height;
 	}
 	
-	public char[][] getMap()
-	{
-		return this.tableau;
-	}
+	public char[][] getMap() {
+        return this.tableau;
+    }
+
+    private void setMap(final String map) {
+        this.map = map;
+        this.setChanged();
+        this.notifyObservers();
+    }
+    
+    public void loadMap2(String key) {
+        try {
+            final DAOLoadMap daoLoadMap = new DAOLoadMap(DBConnection.getInstance().getConnection());
+            this.setMap(daoLoadMap.find(key).getMap());
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

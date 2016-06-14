@@ -37,4 +37,8 @@ public interface IModel {
 
 	int getWidth();
 
+	void loadMap();
+
+	void loadMap2(String key);
+
 }
