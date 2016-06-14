@@ -113,7 +113,7 @@ class ViewPanel extends JPanel implements Observer {
 		
 			
 			char[][] map = new char[30][30];
-				map = this.viewFrame.getModel().getMap();
+				//map = this.viewFrame.getModel().getMap();
 			
 		for(int y = 0; y < this.getHeight()+1; y++){
 			for(int x = 0; x < this.getWidth()+1; x++){
