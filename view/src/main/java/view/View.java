@@ -56,7 +56,7 @@ public class View implements IView, Runnable {
 			case KeyEvent.VK_5:
 				return ControllerOrder.FIVE;
 			default:
-				return ControllerOrder.ONE;
+				return ControllerOrder.NOTHING;
 		}
 	}
 
