@@ -28,7 +28,7 @@ public class Model extends Observable implements IModel {
 	/** Height */
 	private int width = 20;
 	
-	private char[][] tableau = new char[40][40];
+	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 	
 	/**
 	 * Instantiates a new model.
@@ -115,59 +115,35 @@ public class Model extends Observable implements IModel {
 			while (c != -1)
 			{				
 				if(y < this.getHeight()+1)
-				{		
+				{	
 					if((char) c != '\r')
-					{		
+					{
 						this.tableau[x][y] = (char) c;
-						switch((char) c)
-						{
 						
+						switch((char) c)
+						{						
 							case 'h':
-								try {
-									Image imageH = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/horizontal_bone.png"));
-								} catch (final IOException e) {
-									e.printStackTrace();
-								}			
+									
 							break;
 							
 							case 'b':							
-								try {
-									Image imageB = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/bone.png"));
-								} catch (final IOException e) {
-									e.printStackTrace();
-								}
+								
 							break;
 							
 							case 'v':
-								try {
-									Image imageV = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/vertical_bone.png"));
-								} catch (final IOException e) {
-									e.printStackTrace();
-								}
+								
 							break;
 							
 							case 'p':							
-								try {
-									Image imageP = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/purse.png"));
-								} catch (final IOException e) {
-									e.printStackTrace();
-								}
+								
 							break;
 							
 							case 'e':							
-								try {
-									Image imageE = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/crystal_ball.png"));
-								} catch (final IOException e) {
-									e.printStackTrace();
-								}
+								
 							break;
 							
 							case 'c':							
-								try {
-									Image imageC = ImageIO.read(new File("C:/Users/gstl/git/ProjetJava/sprite/gate_closed.png"));
-								} catch (final IOException e) {
-									e.printStackTrace();
-								}
+								
 							break;
 							
 							/*case '':						
@@ -199,7 +175,7 @@ public class Model extends Observable implements IModel {
 		}
 		
 		// pour afficher le tableau
-		for(int y = 0; y < this.getHeight()+1; y++){
+		for(int y = 0; y < this.getHeight(); y++){
 			for(int x = 0; x < this.getWidth()+1; x++){
 				System.out.print(tableau[x][y]);
 			}
