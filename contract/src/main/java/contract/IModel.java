@@ -8,7 +8,7 @@ import java.util.Observable;
  * @author Jean-Aymeric Diet
  * @param <Hero>
  */
-public interface IModel<T> {
+public interface IModel<Hero> {
 
 	/**
 	 * Gets the message.
@@ -46,7 +46,13 @@ public interface IModel<T> {
 	
 	void setMobileHasChanged();
 
-	T getHero();
+	Hero getHero();
 
 	void moveUp();
+
+	void moveLeft();
+	
+	void moveRight();
+	
+	void moveDown();
 }

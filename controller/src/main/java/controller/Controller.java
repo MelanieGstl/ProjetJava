@@ -87,19 +87,19 @@ public class Controller implements IController {
 			break;
 			
 			case UP:				
-				// this.model.getHero().moveUp();
+				this.model.moveUp();
 			break;
 			
 			case LEFT:
-				
+				this.model.moveLeft();
 			break;
 			
 			case DOWN:
-				
+				this.model.moveDown();
 			break;
 			
 			case RIGHT:
-				
+				this.model.moveRight();
 			break;
 
 			default:

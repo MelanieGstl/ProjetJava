@@ -43,7 +43,7 @@ public class Hero{
 	}*/
 	
 	public void moveUp() {
-		this.setY(this.getY() - 1);
+		this.setY(this.getY() - 1);	
 	}
 
 	public void moveLeft() {

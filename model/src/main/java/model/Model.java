@@ -172,9 +172,27 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 
 	public void moveUp() {
-		this.getHero().setY(this.getHero().getY() - 1);	
-		System.out.println("X : "+this.getHero().getX());
-		System.out.println("Y : "+this.getHero().getY());
+		this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+		this.getHero().moveUp();		
+		this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+	}
+	
+	public void moveLeft() {
+		this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+		this.getHero().moveLeft();		
+		this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+	}
+	
+	public void moveRight() {
+		this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+		this.getHero().moveRight();		
+		this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+	}
+	
+	public void moveDown() {
+		this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+		this.getHero().moveDown();		
+		this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
 	}
 	
 	public int getWidth()
