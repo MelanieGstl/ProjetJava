@@ -18,7 +18,7 @@ import element.*;
  *
  * @author Jean-Aymeric Diet
  */
-public class Model extends Observable implements IModel {
+public class Model extends Observable implements IModel<Hero> {
 
 	/** The message. */
 	private String message;
@@ -33,7 +33,13 @@ public class Model extends Observable implements IModel {
 	private int width = 20;
 	
 	/** Hero */
-	private Hero hero;
+	public Hero hero;
+	
+	private int herox;
+	private int heroy;
+	
+	private int monsterx;
+	private int monstery;
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 	
@@ -45,6 +51,7 @@ public class Model extends Observable implements IModel {
 	 */
 	public Model() {
 		this.map = "";
+		this.hero = new Hero(0, 0);
 	}
 	
 	/*/**
@@ -101,6 +108,10 @@ public class Model extends Observable implements IModel {
 		return this;
 	}
 	
+    public Hero getHero() {
+		return this.hero;
+	}
+	
 	public void loadMap()
 	{		
 		String[] tabmap = this.map.split("\n"); 
@@ -136,8 +147,9 @@ public class Model extends Observable implements IModel {
                     break;
                     
                     case 'l':                       
-                    	this.tableau[i][j] = 'l'; 
-                    	//System.out.print(this.tableau[i][j]);
+                    	this.tableau[i][j] = 'l';
+                    	this.hero.setX(j);
+                    	this.hero.setY(i);                    	
                     break;
                     
                     default:
@@ -157,7 +169,12 @@ public class Model extends Observable implements IModel {
             
             System.out.println();
         }*/
+	}
 
+	public void moveUp() {
+		this.getHero().setY(this.getHero().getY() - 1);	
+		System.out.println("X : "+this.getHero().getX());
+		System.out.println("Y : "+this.getHero().getY());
 	}
 	
 	public int getWidth()
@@ -168,6 +185,26 @@ public class Model extends Observable implements IModel {
 	public int getHeight()
 	{
 		return this.height;
+	}
+	
+	public int getMonsterX()
+	{
+		return this.monsterx;
+	}
+	
+	public int getMonsterY()
+	{
+		return this.monstery;
+	}
+	
+	public void setMonsterX(int x)
+	{
+		this.monsterx = x;
+	}
+	
+	public void setMonsterY(int y)
+	{
+		this.monstery = y;
 	}
 	
 	public char[][] getMap() {
@@ -200,9 +237,5 @@ public class Model extends Observable implements IModel {
             e.printStackTrace();
         }
     }
-    
-    public Hero getHero() {
-		return this.hero;
-	}
 
 }

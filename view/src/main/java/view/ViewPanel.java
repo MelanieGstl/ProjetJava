@@ -22,6 +22,8 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame					viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
+	
+	private char[][] map;
 
 	/**
 	 * Instantiates a new view panel.
@@ -61,7 +63,7 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(final Observable arg0, final Object arg1) {
-		//this.map = this.viewFrame.getModel().getMap();
+		this.viewFrame.getModel().loadMap();
 		this.repaint();
 	}
 
@@ -75,10 +77,8 @@ class ViewPanel extends JPanel implements Observer {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());		
 		graphics.setColor(Color.BLACK);
 		graphics.fillRect(0, 0, this.getWidth(), this.getHeight());
-		
-		this.viewFrame.getModel().loadMap();
 
-		char[][] map = this.viewFrame.getModel().getMap();
+		this.map = this.viewFrame.getModel().getMap();
 
 		for(int i = 0; i < map.length; i++)
 		{

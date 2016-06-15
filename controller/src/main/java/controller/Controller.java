@@ -86,7 +86,7 @@ public class Controller implements IController {
 				this.model.loadMap2("FIVE");
 			break;
 			
-			case UP:
+			case UP:				
 				// this.model.getHero().moveUp();
 			break;
 			

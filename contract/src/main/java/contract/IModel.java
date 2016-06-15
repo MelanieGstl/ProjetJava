@@ -6,8 +6,9 @@ import java.util.Observable;
  * The Interface IModel.
  *
  * @author Jean-Aymeric Diet
+ * @param <Hero>
  */
-public interface IModel {
+public interface IModel<T> {
 
 	/**
 	 * Gets the message.
@@ -45,6 +46,7 @@ public interface IModel {
 	
 	void setMobileHasChanged();
 
-	Object getHero();
+	T getHero();
 
+	void moveUp();
 }
