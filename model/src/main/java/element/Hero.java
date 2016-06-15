@@ -3,10 +3,14 @@ package element;
 
 import java.awt.Point;
 
+import model.Model;
+
 public class Hero{
 	
 	public int x;
 	public int y;
+	
+	private Model model;
 	
 	public Hero(int x, int y)
 	{
@@ -33,14 +37,6 @@ public class Hero{
 	{
 		this.y = y;
 	}
-	
-	/*private boolean isMovePossible(final int x, final int y) {
-		if(model.getElement(x, y) == 'h' || this.getModel().getElement(x, y) == 'v' || this.getModel().getElement(x, y) == 'b'){
-			return false;
-		}else{
-			return true;
-		}
-	}*/
 	
 	public void moveUp() {
 		this.setY(this.getY() - 1);	

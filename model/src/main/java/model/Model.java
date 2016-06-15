@@ -170,29 +170,58 @@ public class Model extends Observable implements IModel<Hero> {
             System.out.println();
         }*/
 	}
+	
+	private boolean isMovePossible(final int x, final int y) {
+		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b'){
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 	public void moveUp() {
-		this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
-		this.getHero().moveUp();		
-		this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		if(this.isMovePossible(this.getHero().getY()-1, this.getHero().getX()))
+		{
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+			this.getHero().moveUp();		
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		}
+		System.out.println("X : "+this.getHero().getX());
+		System.out.println("Y : "+this.getHero().getY());
 	}
 	
 	public void moveLeft() {
-		this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
-		this.getHero().moveLeft();		
-		this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		if(this.isMovePossible(this.getHero().getY(), this.getHero().getX()-1))
+		{
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+			this.getHero().moveLeft();		
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		}
+		System.out.println("X : "+this.getHero().getX());
+		System.out.println("Y : "+this.getHero().getY());
 	}
 	
 	public void moveRight() {
-		this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
-		this.getHero().moveRight();		
-		this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		if(this.isMovePossible(this.getHero().getY(), this.getHero().getX()+1))
+		{
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+			this.getHero().moveRight();		
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		}
+		System.out.println("X : "+this.getHero().getX());
+		System.out.println("Y : "+this.getHero().getY());
+		System.out.println("X + 1 : "+this.tableau[this.getHero().getY()][this.getHero().getX()+1]);
 	}
 	
 	public void moveDown() {
-		this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
-		this.getHero().moveDown();		
-		this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		if(this.isMovePossible(this.getHero().getY()+1, this.getHero().getX()))
+		{
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+			this.getHero().moveDown();		
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		}
+		System.out.println("X : "+this.getHero().getX());
+		System.out.println("Y : "+this.getHero().getY());
 	}
 	
 	public int getWidth()
