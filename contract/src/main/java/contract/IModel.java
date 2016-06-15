@@ -55,4 +55,6 @@ public interface IModel<Hero> {
 	void moveRight();
 	
 	void moveDown();
+
+	void moveMonster();
 }

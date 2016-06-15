@@ -1,15 +1,15 @@
 bhhhhhhhhhhhhhhhhhhb
-v                  v
+v  1               v
 vbb    b b    hhhhhv
 v     b    b       v
-v     b p  b       v
+v     b p  b     2 v
 v     b   b        v
 v     b   b        v
-v      bbb       e v
+v 3    bbb       e v
 v           hhhhhhhv
 v   b              v
 v   v    b         v
 v   v    v         v
 v   v    v         v
-v   v l  v       c v
+v   v l  v   4   c v
 bhhhhhhhhhhhhhhhhhhb

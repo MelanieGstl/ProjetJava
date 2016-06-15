@@ -114,6 +114,10 @@ public class Model extends Observable implements IModel<Hero> {
     public Hero getHero() {
 		return this.hero;
 	}
+    
+    public Monster getMonster(Monster monster) {
+		return monster;
+	}
 	
 	public void loadMap()
 	{		
@@ -191,16 +195,6 @@ public class Model extends Observable implements IModel<Hero> {
                 }     
             }
         }
-
-        /*for (int i =0; i < tabmap.length; i++)
-        {
-            for (int j = 0; j < tabmap[i].length(); j++)
-            {
-            	System.out.print(this.tableau[i][j]);
-            }
-            
-            System.out.println();
-        }*/
 	}
 	
 	private boolean isMovePossible(final int x, final int y) {
@@ -287,5 +281,49 @@ public class Model extends Observable implements IModel<Hero> {
             e.printStackTrace();
         }
     }
+
+	public void moveMonster() {
+		if(this.getMonster(this.monster).getX() > this.getHero().getX())
+		{
+			if(this.isMovePossible(this.getMonster(this.monster).getY(), this.getMonster(this.monster).getX()-1))
+			{
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
+				this.getMonster(this.monster).moveLeft();		
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+			}
+		}
+		
+		else if(this.getMonster(this.monster).getX() < this.getHero().getX())
+		{
+			if(this.isMovePossible(this.getMonster(this.monster).getY(), this.getMonster(this.monster).getX()+1))
+			{
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
+				this.getMonster(this.monster).moveRight();		
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+			}
+		}
+		
+		else if(this.getMonster(this.monster).getY() < this.getHero().getY())
+		{
+			if(this.isMovePossible(this.getMonster(this.monster).getY()+1, this.getMonster(this.monster).getX()))
+			{
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
+				this.getMonster(this.monster).moveDown();		
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+			}
+		}
+		
+		else if(this.getMonster(this.monster).getY() > this.getHero().getY())
+		{
+			if(this.isMovePossible(this.getMonster(this.monster).getY()-1, this.getMonster(this.monster).getX()))
+			{
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
+				this.getMonster(this.monster).moveUp();		
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+			}
+		}
+	}
+    
+    
 
 }

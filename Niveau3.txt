@@ -1,12 +1,12 @@
 bhhhhhhhhhhhhhhhhhhb
-v     p            v
+v 1   p            v
 vhhhhhhhhhhhhb     v
 v e v              v
 v   v     v        v
-v         v        v
+v 2       v        v
 vhhhhhhhhhhhhb     v
 v                  v
-v                  v
+v                3 v
 v   bhhhhhhhhhhhhhhv
 v                  v
 vhhhhhhhhhhhhb     v

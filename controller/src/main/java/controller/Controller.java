@@ -91,17 +91,17 @@ public class Controller implements IController {
 			break;
 			
 			case LEFT:
-				this.model.moveLeft();
+				this.model.moveLeft();		
 			break;
 			
 			case DOWN:
-				this.model.moveDown();
+				this.model.moveDown();	
 			break;
 			
 			case RIGHT:
 				this.model.moveRight();
 			break;
-
+			
 			default:
 				
 			break;
