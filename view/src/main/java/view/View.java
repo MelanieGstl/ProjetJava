@@ -13,7 +13,7 @@ import contract.IView;
 /**
  * The Class View.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 public class View implements IView, Runnable {
 
@@ -22,7 +22,11 @@ public class View implements IView, Runnable {
 
 	/**
 	 * Instantiates a new view.
-	 *
+	 * 
+	 *<p>
+	 * In this View we can instantiate a ViewFrame and a ViewPanel to post the game and play it.
+	 * <p>
+	 * 
 	 * @param model
 	 *          the model
 	 */
@@ -33,7 +37,12 @@ public class View implements IView, Runnable {
 
 	/**
 	 * Key code to controller order.
-	 *
+	 * 
+	 *<p>
+	 * This method take the key which is enter by the player and send the correct values to the controller.
+	 * This method use an enumeration and send the values corresponding to the touch to the controller.
+	 * <p>
+	 * 
 	 * @param keyCode
 	 *          the key code
 	 * @return the controller order
@@ -90,6 +99,10 @@ public class View implements IView, Runnable {
 
 	/**
 	 * Sets the controller.
+	 *
+	 *<p>
+	 *This method set a new controller
+	 *<p>
 	 *
 	 * @param controller
 	 *          the new controller
