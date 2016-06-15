@@ -14,7 +14,7 @@ import contract.IModel;
 /**
  * The Class ViewFrame.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 class ViewFrame extends JFrame implements KeyListener {
 
@@ -23,16 +23,21 @@ class ViewFrame extends JFrame implements KeyListener {
 
 	/** The controller. */
 	private IController				controller;
+	
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -697358409737458175L;
 
 	/**
 	 * Instantiates a new view frame.
-	 *
+	 *<p>
+	 * In this frame we can post a panel to see the graphic game.
+	 * <p>
+	 * 
 	 * @param model
 	 *          the model
 	 * @throws HeadlessException
-	 *           the headless exception
+	 *           the headless exception : Thrown when code that is dependent on a keyboard, display, or mouse 
+	 *           is called in an environment that does not support a keyboard, display, or mouse
 	 */
 	public ViewFrame(final IModel model) throws HeadlessException {
 		this.buildViewFrame(model);
@@ -40,6 +45,10 @@ class ViewFrame extends JFrame implements KeyListener {
 
 	/**
 	 * Instantiates a new view frame.
+	 *
+	 * <p>
+	 * In this frame we can post a panel to see the graphic game.
+	 * <p>
 	 *
 	 * @param model
 	 *          the model
@@ -53,6 +62,10 @@ class ViewFrame extends JFrame implements KeyListener {
 
 	/**
 	 * Instantiates a new view frame.
+	 *
+	 * <p>
+	 * In this frame we can post a panel to see the graphic game.
+	 * <p>
 	 *
 	 * @param model
 	 *          the model
@@ -69,6 +82,10 @@ class ViewFrame extends JFrame implements KeyListener {
 	/**
 	 * Instantiates a new view frame.
 	 *
+	 * <p>
+	 * In this frame we can post a panel to see the graphic game.
+	 * <p>
+	 *
 	 * @param model
 	 *          the model
 	 * @param title
@@ -84,6 +101,9 @@ class ViewFrame extends JFrame implements KeyListener {
 	/**
 	 * Gets the controller.
 	 *
+	 * <p>
+	 * This method return the controller we used.
+	 * <p>
 	 * @return the controller
 	 */
 	private IController getController() {
@@ -93,6 +113,9 @@ class ViewFrame extends JFrame implements KeyListener {
 	/**
 	 * Sets the controller.
 	 *
+	 *<p>
+	 *This method set a new controller
+	 *<p>
 	 * @param controller
 	 *          the new controller
 	 */
@@ -102,6 +125,10 @@ class ViewFrame extends JFrame implements KeyListener {
 
 	/**
 	 * Gets the model.
+	 * 
+	 * <p>
+	 * This method return the controller we used.
+	 * <p>
 	 *
 	 * @return the model
 	 */
@@ -111,6 +138,10 @@ class ViewFrame extends JFrame implements KeyListener {
 
 	/**
 	 * Sets the model.
+	 * 
+	 *<p>
+	 *This method set a new model
+	 *<p>
 	 *
 	 * @param model
 	 *          the new model
@@ -121,6 +152,11 @@ class ViewFrame extends JFrame implements KeyListener {
 
 	/**
 	 * Builds the view frame.
+	 * 
+	 * <p>
+	 * This method is used to build the frame which will be used to play the game.
+	 * We can put the size, the panel and all information about the frame in which we are going to post the game and play it.
+	 * <p>
 	 *
 	 * @param model
 	 *          the model
@@ -136,8 +172,10 @@ class ViewFrame extends JFrame implements KeyListener {
 	}
 
 	/**
-	 * Prints the message.
-	 *
+	 * Prints the map.
+	 *<p>
+	 *This method is used to print the map.
+	 *<p>
 	 * @param map
 	 *          the message
 	 */

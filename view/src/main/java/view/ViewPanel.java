@@ -14,20 +14,33 @@ import javax.swing.JPanel;
 /**
  * The Class ViewPanel.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
 	private ViewFrame					viewFrame;
+	
+	
+	
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
 	
+	
+	
+	/** The Array map
+	 * <p>
+	 *  This array store the map. We get this map in the DataBase.
+	 */
 	private char[][] map;
 
+	
+	
 	/**
 	 * Instantiates a new view panel.
-	 *
+	 * <p>
+	 * In this panel we can post the graphic game.
+	 * <p>
 	 * @param viewFrame
 	 *          the view frame
 	 */
@@ -40,6 +53,9 @@ class ViewPanel extends JPanel implements Observer {
 
 	/**
 	 * Gets the view frame.
+	 *<p>
+	 *This method return us the View Frame.
+	 *<p>
 	 *
 	 * @return the view frame
 	 */
@@ -49,6 +65,9 @@ class ViewPanel extends JPanel implements Observer {
 
 	/**
 	 * Sets the view frame.
+	 *<p>
+	 *This method set a new View Frame.
+	 *<p>
 	 *
 	 * @param viewFrame
 	 *          the new view frame
