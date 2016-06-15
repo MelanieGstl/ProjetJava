@@ -291,6 +291,20 @@ public class Model extends Observable implements IModel<Hero> {
 				this.getMonster(this.monster).moveLeft();		
 				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
 			}
+			
+			else if(this.isMovePossible(this.getMonster(this.monster).getY()-1, this.getMonster(this.monster).getX()))
+			{
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
+				this.getMonster(this.monster).moveUp();		
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+			}
+			
+			else if(this.isMovePossible(this.getMonster(this.monster).getY(), this.getMonster(this.monster).getX()-1))
+			{
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
+				this.getMonster(this.monster).moveLeft();		
+				this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+			}
 		}
 		
 		else if(this.getMonster(this.monster).getX() < this.getHero().getX())
