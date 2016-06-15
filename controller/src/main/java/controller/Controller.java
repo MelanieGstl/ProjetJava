@@ -88,18 +88,26 @@ public class Controller implements IController {
 			
 			case UP:				
 				this.model.moveUp();
+				this.model.setLastMove("UP");
 			break;
 			
 			case LEFT:
-				this.model.moveLeft();		
+				this.model.moveLeft();	
+				this.model.setLastMove("LEFT");
 			break;
 			
 			case DOWN:
 				this.model.moveDown();	
+				this.model.setLastMove("DOWN");
 			break;
 			
 			case RIGHT:
 				this.model.moveRight();
+				this.model.setLastMove("RIGHT");
+			break;
+			
+			case SHOOT:
+				this.model.shoot();
 			break;
 			
 			default:
@@ -107,6 +115,5 @@ public class Controller implements IController {
 			break;
 		}
 	}
-	//fffffff
 
 }

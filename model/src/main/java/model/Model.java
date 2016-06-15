@@ -38,7 +38,9 @@ public class Model extends Observable implements IModel<Hero> {
 	public Monster monster2;
 	public Monster monster3;
 	public Monster monster4;
-	 
+	public Shoot shoot;
+	
+	private String lastKey = "right";	 
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 	
@@ -55,6 +57,7 @@ public class Model extends Observable implements IModel<Hero> {
 		this.monster2 = new Monster(0, 0);
 		this.monster3 = new Monster(0, 0);
 		this.monster4 = new Monster(0, 0);
+		this.shoot = new Shoot(0, 0);
 	}
 	
 	/*/**
@@ -118,6 +121,11 @@ public class Model extends Observable implements IModel<Hero> {
     public Monster getMonster(Monster monster) {
 		return monster;
 	}
+    
+    public Shoot getShoot()
+    {
+    	return this.shoot;
+    }
 	
 	public void loadMap()
 	{		
@@ -161,7 +169,9 @@ public class Model extends Observable implements IModel<Hero> {
                     case 'l':                       
                     	this.tableau[i][j] = 'l';
                     	this.hero.setX(j);
-                    	this.hero.setY(i);                    	
+                    	this.hero.setY(i);    
+                    	this.shoot.setX(j);
+                    	this.shoot.setY(i);
                     break;
                     
                     case '1':
@@ -337,7 +347,24 @@ public class Model extends Observable implements IModel<Hero> {
 			}
 		}
 	}
+	
+	public void setLastMove(String lastKey)
+	{
+		this.lastKey = lastKey;
+	}
     
-    
+    public String getLastMove()
+    {
+    	return this.lastKey;
+    }
+
+	public void shoot() {
+		if(getLastMove() == "LEFT" && this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()-1))
+		{
+			this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+			this.getShoot().moveLeft();
+			this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+		}
+	}
 
 }

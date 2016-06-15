@@ -57,4 +57,8 @@ public interface IModel<Hero> {
 	void moveDown();
 
 	void moveMonster();
+
+	void setLastMove(String string);
+
+	void shoot();
 }
