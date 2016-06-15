@@ -58,6 +58,7 @@ public class Model extends Observable implements IModel<Hero> {
 		this.monster3 = new Monster(0, 0);
 		this.monster4 = new Monster(0, 0);
 		this.shoot = new Shoot(0, 0);
+		this.message = "";
 	}
 	
 	/*/**
@@ -207,7 +208,7 @@ public class Model extends Observable implements IModel<Hero> {
         }
 	}
 	
-	private boolean isMovePossible(final int x, final int y) {
+	public boolean isMovePossible(final int x, final int y) {
 		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b'){
 			return false;
 		}else{
