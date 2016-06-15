@@ -5,12 +5,12 @@ import java.awt.Point;
 
 import model.Model;
 
-public class Hero{
+public class Monster{
 	
 	public int x;
 	public int y;
 	
-	public Hero(int x, int y)
+	public Monster(int x, int y)
 	{
 		this.setX(x);
 		this.setY(y);

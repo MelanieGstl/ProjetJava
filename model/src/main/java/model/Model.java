@@ -34,12 +34,11 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	/** Hero */
 	public Hero hero;
-	
-	private int herox;
-	private int heroy;
-	
-	private int monsterx;
-	private int monstery;
+	public Monster monster;
+	public Monster monster2;
+	public Monster monster3;
+	public Monster monster4;
+	 
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 	
@@ -52,6 +51,10 @@ public class Model extends Observable implements IModel<Hero> {
 	public Model() {
 		this.map = "";
 		this.hero = new Hero(0, 0);
+		this.monster = new Monster(0, 0);
+		this.monster2 = new Monster(0, 0);
+		this.monster3 = new Monster(0, 0);
+		this.monster4 = new Monster(0, 0);
 	}
 	
 	/*/**
@@ -152,6 +155,30 @@ public class Model extends Observable implements IModel<Hero> {
                     	this.hero.setY(i);                    	
                     break;
                     
+                    case '1':
+                    	this.tableau[i][j] = '1';
+                    	this.monster.setX(j);
+                    	this.monster.setY(i);
+                    break;
+                    
+                    case '2':
+                    	this.tableau[i][j] = '2';
+                    	this.monster2.setX(j);
+                    	this.monster2.setY(i);
+                    break;
+                    
+                    case '3':
+                    	this.tableau[i][j] = '3';
+                    	this.monster3.setX(j);
+                    	this.monster3.setY(i);
+                    break;
+                    
+                    case '4':
+                    	this.tableau[i][j] = '4';
+                    	this.monster4.setX(j);
+                    	this.monster4.setY(i);
+                    break;
+                    
                     default:
                     	this.tableau[i][j] = ' ';   
                     	//System.out.print(this.tableau[i][j]);
@@ -186,8 +213,6 @@ public class Model extends Observable implements IModel<Hero> {
 			this.getHero().moveUp();		
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
 		}
-		System.out.println("X : "+this.getHero().getX());
-		System.out.println("Y : "+this.getHero().getY());
 	}
 	
 	public void moveLeft() {
@@ -197,8 +222,6 @@ public class Model extends Observable implements IModel<Hero> {
 			this.getHero().moveLeft();		
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
 		}
-		System.out.println("X : "+this.getHero().getX());
-		System.out.println("Y : "+this.getHero().getY());
 	}
 	
 	public void moveRight() {
@@ -208,9 +231,6 @@ public class Model extends Observable implements IModel<Hero> {
 			this.getHero().moveRight();		
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
 		}
-		System.out.println("X : "+this.getHero().getX());
-		System.out.println("Y : "+this.getHero().getY());
-		System.out.println("X + 1 : "+this.tableau[this.getHero().getY()][this.getHero().getX()+1]);
 	}
 	
 	public void moveDown() {
@@ -220,8 +240,6 @@ public class Model extends Observable implements IModel<Hero> {
 			this.getHero().moveDown();		
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
 		}
-		System.out.println("X : "+this.getHero().getX());
-		System.out.println("Y : "+this.getHero().getY());
 	}
 	
 	public int getWidth()
@@ -232,26 +250,6 @@ public class Model extends Observable implements IModel<Hero> {
 	public int getHeight()
 	{
 		return this.height;
-	}
-	
-	public int getMonsterX()
-	{
-		return this.monsterx;
-	}
-	
-	public int getMonsterY()
-	{
-		return this.monstery;
-	}
-	
-	public void setMonsterX(int x)
-	{
-		this.monsterx = x;
-	}
-	
-	public void setMonsterY(int y)
-	{
-		this.monstery = y;
 	}
 	
 	public char[][] getMap() {
