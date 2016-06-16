@@ -224,6 +224,10 @@ class ViewFrame extends JFrame implements KeyListener {
 		JOptionPane jOptionPane = new JOptionPane(); 
 		JOptionPane jOptionPane2 = new JOptionPane();
 		this.name = jOptionPane.showInputDialog(null, "Enter your name please", JOptionPane.QUESTION_MESSAGE);
+		if(this.name == null)
+		{
+			this.name = "Unkown";
+		}
 		jOptionPane.showMessageDialog(null, "You score is saved", null, JOptionPane.INFORMATION_MESSAGE);
 	}
 

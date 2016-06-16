@@ -67,23 +67,38 @@ public class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 			case ONE:
-				this.model.loadMap2("ONE");				
+				if(this.model.getLoadMap() == 0)
+				{
+					this.model.loadMap2("ONE");	
+				}
 			break;
 				
 			case TWO:
-				this.model.loadMap2("TWO");
+				if(this.model.getLoadMap() == 0)
+				{
+					this.model.loadMap2("TWO");
+				}
 			break;
 				
 			case THREE:
-				this.model.loadMap2("THREE");
+				if(this.model.getLoadMap() == 0)
+				{
+					this.model.loadMap2("THREE");
+				}
 			break;
 				
 			case FOUR:
-				this.model.loadMap2("FOUR");
+				if(this.model.getLoadMap() == 0)
+				{
+					this.model.loadMap2("FOUR");
+				}
 			break;
 			
 			case FIVE:
-				this.model.loadMap2("FIVE");
+				if(this.model.getLoadMap() == 0)
+				{
+					this.model.loadMap2("FIVE");
+				}
 			break;
 			
 			case UP:	
