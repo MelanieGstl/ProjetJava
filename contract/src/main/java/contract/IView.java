@@ -3,15 +3,15 @@ package contract;
 /**
  * The Interface IView.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 public interface IView {
 
 	/**
-	 * Prints the message.
+	 * Prints the map.
 	 *
-	 * @param message
-	 *          the message
+	 * @param map
+	 *          the map
 	 */
 	void printMap(final String map);
 }

@@ -179,17 +179,31 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setLocationRelativeTo(null);
 	}
 	
-	  private JPanel container = new JPanel();
-	  private JTextField jtf = new JTextField("Valeur par défaut");
-	  private JLabel label = new JLabel("Un JTextField");
-	
-	  	private String name; 
+		/** The name of the player*/
+	  	private String name;
+	  	
+	  	/** The score of the player*/ 
 	  	private int score;
 	  	
+	  	/**
+		 * Gets the name of the player.
+		 * 
+		 * <p>
+		 * This method name of the player which is enter in the window.
+		 * <p>
+		 *
+		 * @return the name
+		 */
 	  	public String getName(){
 	  		return this.name;
 	  	}
-	  	
+		/**
+		 * Builds the window for the score.
+		 * 
+		 * <p>
+		 * This method is used to print a window to enter the name of the player. With this name we can save the score.
+		 * <p>
+		 */  	
 	public void FenetreScore() {
 		/*this.setTitle("Score");
 		this.setSize(300, 300);
@@ -219,7 +233,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *This method is used to print the map.
 	 *<p>
 	 * @param map
-	 *          the message
+	 *          the map
 	 */
 	public void printMap(final String map) {
 		JOptionPane.showMessageDialog(null, map);

@@ -86,10 +86,11 @@ public class View implements IView, Runnable {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IView#printMessage(java.lang.String)
+	/**
+	 * Prints the map.
+	 * 
+	 *  @param map
+	 *  		the map
 	 */
 	public void printMap(final String map) {
 		this.viewFrame.printMap(map);

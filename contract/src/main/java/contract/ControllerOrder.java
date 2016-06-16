@@ -3,7 +3,7 @@ package contract;
 /**
  * The Enum ControllerOrder.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 public enum ControllerOrder {
 

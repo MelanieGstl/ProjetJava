@@ -5,7 +5,7 @@ import java.util.Observable;
 /**
  * The Interface IModel.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  * @param <Hero>
  */
 public interface IModel<Hero> {
@@ -32,30 +32,93 @@ public interface IModel<Hero> {
 	 */
 	Observable getObservable();
 
+	/** 
+	 * Gets the map.
+	 *
+	 * @return the map 
+	 */
 	char[][] getMap();
 
+	/** 
+	 * Gets the height.
+	 *
+	 * @return the height 
+	 */
 	int getHeight();
 
+	/** 
+	 * Gets the width.
+	 *
+	 * @return the width 
+	 */
 	int getWidth();
 
+	/** 
+	 * Load the map.
+	 * 
+	 */
 	void loadMap();
 
+	/** 
+	 * Load the map.
+	 * 
+	 */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/** 
+	 * Load the map.
+	 * 
+	 * @param key
+	 * 		the key
+	 */
 	void loadMap2(String key);
 
+	/** 
+	 * Gets an element.
+	 *
+	 * @param x, y 
+	 */
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	char getElement(int x, int y);
 	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	void setMobileHasChanged();
 
+	/** 
+	 * Gets the hero.
+	 *
+	 * @return hero
+	 */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	Hero getHero();
 
+	/** 
+	 * Move up.
+	 *
+	 */
 	void moveUp();
 
+	/** 
+	 * Move left.
+	 *
+	 */
 	void moveLeft();
 	
+	/** 
+	 * Move right.
+	 *
+	 */
 	void moveRight();
 	
+	/** 
+	 * Move down.
+	 *
+	 */
 	void moveDown();
 
+	/** 
+	 * Move the monster.
+	 *
+	 */
 	void moveMonster();
 
 	void setLastMove(String string);
@@ -66,15 +129,42 @@ public interface IModel<Hero> {
 
 	boolean checkPosition();
 
+	/** 
+	 * Insert a score.
+	 *
+	 *@param name, score
+	 */
 	void InsertScore(String name, int score);
 
+	/** 
+	 * Get the score.
+	 *
+	 *@return score
+	 *			the score
+	 */
 	int getScore();
 
+	/** 
+	 * Move diagonal Up Right.
+	 *
+	 */
 	void moveDiagoHD();
 	
+	/** 
+	 * Move diagonal Up Left.
+	 *
+	 */
 	void moveDiagoHG();
 	
+	/** 
+	 * Move diagonal Down Right.
+	 *
+	 */
 	void moveDiagoBD();
 	
+	/** 
+	 * Move diagonal Up Left.
+	 *
+	 */
 	void moveDiagoBG();
 }
