@@ -715,20 +715,20 @@ public class Model extends Observable implements IModel<Hero> {
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
 				
-				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
-				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOHD";
-					this.getShoot().moveUp();
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
-				}
-				
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
 					this.fire_direction = "DIAGOBD";
 					this.getShoot().moveDown();
+					this.getShoot().moveRight();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.fire_direction = "DIAGOHD";
+					this.getShoot().moveUp();
 					this.getShoot().moveRight();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
