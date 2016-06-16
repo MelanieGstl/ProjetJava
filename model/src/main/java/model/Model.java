@@ -39,8 +39,9 @@ public class Model extends Observable implements IModel<Hero> {
 	public Monster monster3;
 	public Monster monster4;
 	public Shoot shoot;
-	
-	private String lastKey = "right";	 
+	public int you_can_fire = 1;	
+	private String lastKey = "RIGHT";	
+	public String fire_direction = "RIGHT";
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 	
@@ -53,11 +54,11 @@ public class Model extends Observable implements IModel<Hero> {
 	public Model() {
 		this.map = "";
 		this.hero = new Hero(0, 0);
-		this.monster = new Monster(0, 0);
-		this.monster2 = new Monster(0, 0);
-		this.monster3 = new Monster(0, 0);
-		this.monster4 = new Monster(0, 0);
-		this.shoot = new Shoot(0, 0);
+		this.monster = new Monster(1, 1);
+		this.monster2 = new Monster(2, 2);
+		this.monster3 = new Monster(3, 3);
+		this.monster4 = new Monster(4, 4);
+		this.shoot = new Shoot(5, 5);
 		this.message = "";
 	}
 	
@@ -171,8 +172,6 @@ public class Model extends Observable implements IModel<Hero> {
                     	this.tableau[i][j] = 'l';
                     	this.hero.setX(j);
                     	this.hero.setY(i);    
-                    	this.shoot.setX(j);
-                    	this.shoot.setY(i);
                     break;
                     
                     case '1':
@@ -359,13 +358,146 @@ public class Model extends Observable implements IModel<Hero> {
     	return this.lastKey;
     }
 
-	public void shoot() {
-		if(getLastMove() == "LEFT" && this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()-1))
+	public void shoot() 
+	{		
+		if(this.you_can_fire == 1)
 		{
-			this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-			this.getShoot().moveLeft();
-			this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+			this.you_can_fire = 0;
+			
+			if(getLastMove() == "LEFT" && this.isMovePossible(this.getHero().getY(), this.getHero().getX()-1))
+			{			
+				this.getShoot().setX(this.getHero().getX()-1);
+				this.getShoot().setY(this.getHero().getY());
+				this.tableau[this.getHero().getY()][this.getHero().getX()-1] = 'F';
+				this.fire_direction = "LEFT";
+			}
+			
+			else if(getLastMove() == "RIGHT" && this.isMovePossible(this.getHero().getY(), this.getHero().getX()+1))
+			{			
+				this.getShoot().setX(this.getHero().getX()+1);
+				this.getShoot().setY(this.getHero().getY());
+				this.tableau[this.getHero().getY()][this.getHero().getX()+1] = 'F';
+				this.fire_direction = "RIGHT";
+			}
+			
+			else if(getLastMove() == "UP" && this.isMovePossible(this.getHero().getY()-1, this.getHero().getX()))
+			{			
+				this.getShoot().setX(this.getHero().getX());
+				this.getShoot().setY(this.getHero().getY()-1);
+				this.tableau[this.getHero().getY()-1][this.getHero().getX()] = 'F';
+				this.fire_direction = "UP";
+			}
+			
+			else if(getLastMove() == "DOWN" && this.isMovePossible(this.getHero().getY()+1, this.getHero().getX()))
+			{		
+				this.getShoot().setX(this.getHero().getX());
+				this.getShoot().setY(this.getHero().getY()+1);
+				this.tableau[this.getHero().getY()+1][this.getHero().getX()] = 'F';
+				this.fire_direction = "DOWN";
+			}
 		}
+	}
+	
+	public void animateFire()
+	{
+		if(this.you_can_fire == 0)
+		{
+			if(this.fire_direction == "RIGHT")
+			{
+				if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()+1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.getShoot().moveRight();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()-1))
+				{
+					this.fire_direction = "LEFT";
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.getShoot().moveLeft();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+			}
+			
+			else if(this.fire_direction == "LEFT")
+			{
+				if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()-1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.getShoot().moveLeft();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()+1))
+				{
+					this.fire_direction = "RIGHT";
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.getShoot().moveRight();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+			}
+			
+			else if(this.fire_direction == "UP")
+			{
+				if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.getShoot().moveUp();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()))
+				{
+					this.fire_direction = "DOWN";
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.getShoot().moveDown();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+			}
+			
+			else if(this.fire_direction == "DOWN")
+			{
+				if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.getShoot().moveDown();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()))
+				{
+					this.fire_direction = "UP";
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.getShoot().moveUp();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+			}
+		}
+	}
+	
+	public boolean checkPosition()
+	{
+		if(this.getHero().getX() == this.getMonster(this.monster).getX() && this.getHero().getY() == this.getMonster(this.monster).getY())
+		{
+			return true;
+		}
+		
+		if(this.getHero().getX() == this.getMonster(this.monster2).getX() && this.getHero().getY() == this.getMonster(this.monster2).getY())
+		{
+			return true;
+		}
+		
+		if(this.getHero().getX() == this.getMonster(this.monster3).getX() && this.getHero().getY() == this.getMonster(this.monster3).getY())
+		{
+			return true;
+		}
+		
+		if(this.getHero().getX() == this.getMonster(this.monster4).getX() && this.getHero().getY() == this.getMonster(this.monster4).getY())
+		{
+			return true;
+		}
+		return false;
 	}
 
 }

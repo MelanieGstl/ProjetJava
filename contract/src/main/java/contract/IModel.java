@@ -61,4 +61,8 @@ public interface IModel<Hero> {
 	void setLastMove(String string);
 
 	void shoot();
+	
+	void animateFire();
+
+	boolean checkPosition();
 }
