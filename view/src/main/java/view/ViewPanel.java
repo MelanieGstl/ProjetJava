@@ -20,6 +20,9 @@ class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
 	private ViewFrame					viewFrame;
+	
+	private int gameOver = 0;
+	
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
 	
@@ -217,12 +220,29 @@ class ViewPanel extends JPanel implements Observer {
 			}
 		}
 		
-		this.viewFrame.getModel().animateFire();		
-		this.viewFrame.getModel().moveMonster();
 		if(this.viewFrame.getModel().checkPosition())
 		{
-
+			if(this.gameOver == 0)
+			{
+				this.gameOver = 1;
+				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+				this.viewFrame.printMap("GAME OVER !");
+			}
 		}
+		
+		this.viewFrame.getModel().animateFire();			
+		
+		if(this.viewFrame.getModel().checkPosition())
+		{
+			if(this.gameOver == 0)
+			{
+				this.gameOver = 1;
+				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+				this.viewFrame.printMap("GAME OVER !");
+			}
+		}
+		
+		this.viewFrame.getModel().moveMonster();
 	}
 
 
