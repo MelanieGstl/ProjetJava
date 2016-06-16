@@ -112,18 +112,22 @@ public class Controller implements IController {
 			
 			case DIAGO_HD:
 				this.model.moveDiagoHD();
+				this.model.setLastMove("DIAGOHD");
 			break;
 			
 			case DIAGO_HG:
 				this.model.moveDiagoHG();
+				this.model.setLastMove("DIAGOHG");
 			break;
 			
 			case DIAGO_BD:
 				this.model.moveDiagoBD();
+				this.model.setLastMove("DIAGOBD");
 			break;
 			
 			case DIAGO_BG:
 				this.model.moveDiagoBG();
+				this.model.setLastMove("DIAGOBG");
 			break;
 			
 			default:
