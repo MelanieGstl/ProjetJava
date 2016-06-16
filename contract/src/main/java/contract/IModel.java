@@ -67,4 +67,6 @@ public interface IModel<Hero> {
 	boolean checkPosition();
 
 	void InsertScore(String name, int score);
+
+	int getScore();
 }

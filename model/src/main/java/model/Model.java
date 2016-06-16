@@ -55,6 +55,10 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 	
+	public int getScore() {
+		return this.Score;
+	}
+	
 	/**
 	 * Instantiates a new model.
 	 */

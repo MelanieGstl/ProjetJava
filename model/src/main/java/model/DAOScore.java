@@ -62,10 +62,10 @@ import java.sql.SQLException;
 	public void SaveScore (final String name, int score) {
 		
 		try {
-			final String sql = "{call Insert_score(?)}";
+			final String sql = "{call Insert_score(?, ?)}";
 			final CallableStatement call = this.getConnection().prepareCall(sql);
-			call.setString(2, name);
-			call.setInt(3, score);
+			call.setString(1, name);
+			call.setInt(2, score);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			
