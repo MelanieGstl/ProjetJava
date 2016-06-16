@@ -218,7 +218,15 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	public boolean isMovePossible(final int x, final int y) {
-		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b' || this.getElement(x, y) == 'p'){
+		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b' || this.getElement(x, y) == 'p' || this.getElement(x, y) == 'e' || this.getElement(x, y) == 'c' || this.getElement(x, y) == 'C'){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	public boolean isMovePossible2(final int x, final int y) {
+		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b'){
 			return false;
 		}else{
 			return true;
@@ -226,7 +234,7 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 
 	public void moveUp() {
-		if(this.isMovePossible(this.getHero().getY()-1, this.getHero().getX()))
+		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()))
 		{
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
 			this.getHero().moveUp();		
@@ -235,7 +243,7 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	public void moveLeft() {
-		if(this.isMovePossible(this.getHero().getY(), this.getHero().getX()-1))
+		if(this.isMovePossible2(this.getHero().getY(), this.getHero().getX()-1))
 		{
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
 			this.getHero().moveLeft();		
@@ -244,7 +252,7 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	public void moveRight() {
-		if(this.isMovePossible(this.getHero().getY(), this.getHero().getX()+1))
+		if(this.isMovePossible2(this.getHero().getY(), this.getHero().getX()+1))
 		{
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
 			this.getHero().moveRight();		
@@ -253,7 +261,7 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	public void moveDown() {
-		if(this.isMovePossible(this.getHero().getY()+1, this.getHero().getX()))
+		if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()))
 		{
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
 			this.getHero().moveDown();		
@@ -829,6 +837,8 @@ public class Model extends Observable implements IModel<Hero> {
 		
 		if(this.getHero().getX() == this.energyX && this.getHero().getY() == this.energyY)
 		{
+			this.energyX = 0;
+			this.energyY = 0;
 			this.tableau[this.gateY][this.gateX] = 'C';
 			this.gate_open = 1;
 		}
