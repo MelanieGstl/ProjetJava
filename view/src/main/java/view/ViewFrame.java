@@ -1,15 +1,23 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import contract.IController;
 import contract.IModel;
+
+import javax.swing.JTextField;
 
 /**
  * The Class ViewFrame.
@@ -169,6 +177,33 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setContentPane(new ViewPanel(this));
 		this.setSize(650,510);
 		this.setLocationRelativeTo(null);
+	}
+	
+	  private JPanel container = new JPanel();
+	  private JTextField jtf = new JTextField("Valeur par défaut");
+	  private JLabel label = new JLabel("Un JTextField");
+	
+	public void FenetreScore() {
+		/*this.setTitle("Score");
+		this.setSize(300, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.setLocationRelativeTo(null);
+	    container.setBackground(Color.white);
+	    container.setLayout(new BorderLayout());
+	    JPanel top = new JPanel();
+	    Font police = new Font("Arial", Font.BOLD, 14);
+	    jtf.setFont(police);
+	    jtf.setPreferredSize(new Dimension(150, 30));
+	    jtf.setForeground(Color.BLUE);
+	    top.add(label);
+	    top.add(jtf);
+	    container.add(top, BorderLayout.NORTH);
+	    this.setContentPane(container);
+	    this.setVisible(true);*/
+		JOptionPane jOptionPane = new JOptionPane(); 
+		JOptionPane jOptionPane2 = new JOptionPane();
+		String nom = jOptionPane.showInputDialog(null, "Enter your name please", JOptionPane.QUESTION_MESSAGE);
+		jOptionPane.showMessageDialog(null, "You score is saved", null, JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	/**
