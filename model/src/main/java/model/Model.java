@@ -43,8 +43,8 @@ public class Model extends Observable implements IModel<Hero> {
 	public int monster_death3;
 	public int monster_death4;
 	public Shoot shoot;
-	public int energyX;
-	public int energyY;
+	public int energyX = 25;
+	public int energyY = 25;
 	public int gateX;
 	public int gateY;
 	public int gate_open = 0;
@@ -524,7 +524,7 @@ public class Model extends Observable implements IModel<Hero> {
 					
 					else if(this.getShoot().getX() == this.gateX && this.getShoot().getY() == this.gateY)
 					{
-						if(this.gate_open == 1)
+						if(this.gate_open == 0)
 						{
 							this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'c';
 						}
@@ -553,7 +553,7 @@ public class Model extends Observable implements IModel<Hero> {
 					
 					else if(this.getShoot().getX() == this.gateX && this.getShoot().getY() == this.gateY)
 					{
-						if(this.gate_open == 1)
+						if(this.gate_open == 0)
 						{
 							this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'c';
 						}
@@ -586,7 +586,7 @@ public class Model extends Observable implements IModel<Hero> {
 					
 					else if(this.getShoot().getX() == this.gateX && this.getShoot().getY() == this.gateY)
 					{
-						if(this.gate_open == 1)
+						if(this.gate_open == 0)
 						{
 							this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'c';
 						}
@@ -615,7 +615,7 @@ public class Model extends Observable implements IModel<Hero> {
 					
 					else if(this.getShoot().getX() == this.gateX && this.getShoot().getY() == this.gateY)
 					{
-						if(this.gate_open == 1)
+						if(this.gate_open == 0)
 						{
 							this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'c';
 						}
@@ -648,7 +648,7 @@ public class Model extends Observable implements IModel<Hero> {
 					
 					else if(this.getShoot().getX() == this.gateX && this.getShoot().getY() == this.gateY)
 					{
-						if(this.gate_open == 1)
+						if(this.gate_open == 0)
 						{
 							this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'c';
 						}
@@ -677,7 +677,7 @@ public class Model extends Observable implements IModel<Hero> {
 
 					else if(this.getShoot().getX() == this.gateX && this.getShoot().getY() == this.gateY)
 					{
-						if(this.gate_open == 1)
+						if(this.gate_open == 0)
 						{
 							this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'c';
 						}
@@ -710,7 +710,7 @@ public class Model extends Observable implements IModel<Hero> {
 
 					else if(this.getShoot().getX() == this.gateX && this.getShoot().getY() == this.gateY)
 					{
-						if(this.gate_open == 1)
+						if(this.gate_open == 0)
 						{
 							this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'c';
 						}
@@ -739,7 +739,7 @@ public class Model extends Observable implements IModel<Hero> {
 
 					else if(this.getShoot().getX() == this.gateX && this.getShoot().getY() == this.gateY)
 					{
-						if(this.gate_open == 1)
+						if(this.gate_open == 0)
 						{
 							this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'c';
 						}
