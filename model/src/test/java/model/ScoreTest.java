@@ -8,10 +8,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import element.Hero;
 import junit.framework.Assert;
 
-public class HelloWorldTest {
-	private HelloWorld hello;
+public class ScoreTest {
+
+	private Score score;
 
 	/**
 	 * Sets the up before class.
@@ -41,7 +43,7 @@ public class HelloWorldTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		this.hello= new HelloWorld();
+		this.score = new Score();
 	}
 
 	/**
@@ -55,42 +57,26 @@ public class HelloWorldTest {
 	}
 	
 	@Test
-	public void testGetId(){
-		Assert.assertEquals(0, this.hello.getId());
+	public void testGetScore(){
+		Assert.assertEquals(0, this.score.getScore());
 	}
 	
 	@Test
-	public void testSetId(){
-		final int expected = 2;
-		this.hello.setId(2);
-		Assert.assertEquals(expected, this.hello.getId());
+	public void testSetScore(){
+		final int expected = 3;
+		this.score.setScore(3);
+		Assert.assertEquals(expected, this.score.getScore());
 	}
 	
 	@Test
-	public void testGetKey(){
-		Assert.assertEquals("", this.hello.getKey());
+	public void testGetName(){
+		Assert.assertEquals("", this.score.getName());
 	}
 	
 	@Test
-	public void testSetKey(){
-		final String expected = "hello";
-		this.hello.setKey("hello");
-		Assert.assertEquals(expected, this.hello.getKey());
+	public void testSetName(){
+		final String expected = "julie";
+		this.score.setName("julie");
+		Assert.assertEquals(expected, this.score.getName());
 	}
-	
-	@Test
-	public void testGetMessage(){
-		Assert.assertEquals("", this.hello.getMessage());
-	}
-	
-	@Test
-	public void testSetMessage(){
-		final String expected = "hello";
-		this.hello.setMessage("hello");
-		Assert.assertEquals(expected, this.hello.getMessage());
-	}
-	
-	
-
-
 }

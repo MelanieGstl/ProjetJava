@@ -14,6 +14,7 @@ import org.junit.Test;
  * The Class ModelTest.
  *
  * @author Jean-Aymeric Diet
+ * @param <Monster>
  */
 public class ModelTest {
 	private Model model;
@@ -92,6 +93,11 @@ public class ModelTest {
 	}
 	
 	@Test
+	public void testIsMovePossible2(){
+		Assert.assertEquals(true, this.model.isMovePossible2(0, 0));
+	}
+	
+	@Test
 	public void testMoveUp(){
 		Assert.assertEquals(0, this.model.getElement(2, 3));
 	}
@@ -133,8 +139,8 @@ public class ModelTest {
 	}
 	
 	@Test
-	public void testGetLastKey(){
-		Assert.assertEquals("right", this.model.getLastMove());
+	public void testGetLastMove(){
+		Assert.assertEquals("RIGHT", this.model.getLastMove());
 	}
 	
 	@Test
@@ -142,6 +148,13 @@ public class ModelTest {
 		final String expected = "left";
 		this.model.setLastMove("left");
 		Assert.assertEquals(expected, this.model.getLastMove());
+	}
+	
+	/// pas fait encore les tests pour moveMonster, shoot et animateFire
+	
+	@Test
+	public void testCheckPosition(){
+		Assert.assertEquals(false, this.model.checkPosition());
 	}
 	
 
