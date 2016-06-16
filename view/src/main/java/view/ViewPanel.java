@@ -93,7 +93,7 @@ class ViewPanel extends JPanel implements Observer {
 				switch (this.map[i][j]){
 					case 'b':						
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/bone.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/bone.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -104,7 +104,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case 'h':						
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/horizontal_bone.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/horizontal_bone.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -115,7 +115,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case 'v':						
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/vertical_bone.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/vertical_bone.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -126,7 +126,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case 'p':					
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/purse.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/purse.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -137,7 +137,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case 'c':					
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/gate_closed.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/gate_closed.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -148,7 +148,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case 'e':					
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/crystal_ball.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/crystal_ball.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -159,7 +159,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case '1':
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/monster_1.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/monster_1.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -170,7 +170,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case '2':
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/monster_2.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/monster_2.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -181,7 +181,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case '3':
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/monster_3.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/monster_3.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -192,7 +192,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case '4':
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/monster_4.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/monster_4.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -203,7 +203,7 @@ class ViewPanel extends JPanel implements Observer {
 					
 					case 'C':
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/gate_open.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/gate_open.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 
@@ -213,16 +213,16 @@ class ViewPanel extends JPanel implements Observer {
 					break;
 					
 					case 'l':					
-						graphics.drawImage((new ImageIcon("C:/Users/gstal/git/ProjetJava/sprite/lorann.gif")).getImage(),32*j,32*i, this);
+						graphics.drawImage((new ImageIcon("C:/Users/Hugoo/git/ProjetJava/sprite/lorann.gif")).getImage(),32*j,32*i, this);
 					break;
 					
 					case 'F':						
-						graphics.drawImage((new ImageIcon("C:/Users/gstal/git/ProjetJava/sprite/Boule_feu.gif")).getImage(), 32*j, 32*i, this);						
+						graphics.drawImage((new ImageIcon("C:/Users/Hugoo/git/ProjetJava/sprite/Boule_feu.gif")).getImage(), 32*j, 32*i, this);						
 					break;
 
 					default:
 						try {
-							Image img = ImageIO.read(new File("C:/Users/gstal/git/ProjetJava/sprite/noimage.png"));
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/noimage.png"));
 							graphics.drawImage(img, 32*j, 32*i, this);
 						} catch (IOException e) {
 

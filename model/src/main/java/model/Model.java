@@ -52,6 +52,7 @@ public class Model extends Observable implements IModel<Hero> {
 	private String lastKey = "RIGHT";	
 	public String fire_direction = "RIGHT";
 	public int Score;
+	public int loadMap;
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 	
@@ -340,10 +341,16 @@ public class Model extends Observable implements IModel<Hero> {
     	this.notifyObservers();
     }
     
+    public int getLoadMap()
+    {
+    	return this.loadMap;
+    }
+    
     public void loadMap2(String key) {
         try {
             final DAOLoadMap daoLoadMap = new DAOLoadMap(DBConnection.getInstance().getConnection());
             this.setMap(daoLoadMap.find(key).getMap());
+            this.loadMap = 1;
         } catch (final SQLException e) {
             e.printStackTrace();
         }

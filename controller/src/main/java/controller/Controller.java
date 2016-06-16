@@ -86,48 +86,75 @@ public class Controller implements IController {
 				this.model.loadMap2("FIVE");
 			break;
 			
-			case UP:				
-				this.model.moveUp();
-				this.model.setLastMove("UP");
+			case UP:	
+				if(this.model.getLoadMap() == 1)
+				{
+					this.model.moveUp();
+					this.model.setLastMove("UP");
+				}
 			break;
 			
 			case LEFT:
-				this.model.moveLeft();	
-				this.model.setLastMove("LEFT");
+				if(this.model.getLoadMap() == 1)
+				{
+					this.model.moveLeft();	
+					this.model.setLastMove("LEFT");
+				}
 			break;
 			
 			case DOWN:
-				this.model.moveDown();	
-				this.model.setLastMove("DOWN");
+				if(this.model.getLoadMap() == 1)
+				{
+					this.model.moveDown();	
+					this.model.setLastMove("DOWN");
+				}
 			break;
 			
 			case RIGHT:
-				this.model.moveRight();
-				this.model.setLastMove("RIGHT");
+				if(this.model.getLoadMap() == 1)
+				{
+					this.model.moveRight();
+					this.model.setLastMove("RIGHT");
+				}
 			break;
 			
 			case SHOOT:
-				this.model.shoot();
+				if(this.model.getLoadMap() == 1)
+				{
+					this.model.shoot();
+				}
 			break;
 			
 			case DIAGO_HD:
-				this.model.moveDiagoHD();
-				this.model.setLastMove("DIAGOHD");
+				if(this.model.getLoadMap() == 1)
+				{
+					this.model.moveDiagoHD();
+					this.model.setLastMove("DIAGOHD");
+				}
 			break;
 			
 			case DIAGO_HG:
-				this.model.moveDiagoHG();
-				this.model.setLastMove("DIAGOHG");
+				if(this.model.getLoadMap() == 1)
+				{
+					this.model.moveDiagoHG();
+					this.model.setLastMove("DIAGOHG");
+				}
 			break;
 			
 			case DIAGO_BD:
-				this.model.moveDiagoBD();
-				this.model.setLastMove("DIAGOBD");
+				if(this.model.getLoadMap() == 1)
+				{
+					this.model.moveDiagoBD();
+					this.model.setLastMove("DIAGOBD");
+				}
 			break;
 			
 			case DIAGO_BG:
-				this.model.moveDiagoBG();
-				this.model.setLastMove("DIAGOBG");
+				if(this.model.getLoadMap() == 1)
+				{
+					this.model.moveDiagoBG();
+					this.model.setLastMove("DIAGOBG");
+				}
 			break;
 			
 			default:

@@ -163,8 +163,10 @@ public interface IModel<Hero> {
 	void moveDiagoBD();
 	
 	/** 
-	 * Move diagonal Up Left.
+	 * Move diagonal Down Left.
 	 *
 	 */
 	void moveDiagoBG();
+
+	int getLoadMap();
 }
