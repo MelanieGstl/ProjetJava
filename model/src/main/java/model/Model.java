@@ -51,7 +51,6 @@ public class Model extends Observable implements IModel<Hero> {
 	public int you_can_fire = 1;	
 	private String lastKey = "RIGHT";	
 	public String fire_direction = "RIGHT";
-	public String last_fire_direction = "RIGHT";
 	public int Score;
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
@@ -677,6 +676,24 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.fire_direction = "DIAGOBD";
+					this.getShoot().moveDown();
+					this.getShoot().moveRight();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.fire_direction = "DIAGOBG";
+					this.getShoot().moveDown();
+					this.getShoot().moveLeft();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
 			}
 			
 			else if(this.fire_direction == "DIAGOBG")
@@ -697,7 +714,25 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().moveRight();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
-			}
+				
+				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.fire_direction = "DIAGOHG";
+					this.getShoot().moveUp();
+					this.getShoot().moveLeft();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.fire_direction = "DIAGOHD";
+					this.getShoot().moveUp();
+					this.getShoot().moveRight();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+			}			
 		
 			else if(this.fire_direction == "DIAGOHG")
 			{
@@ -717,6 +752,25 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.fire_direction = "DIAGOHD";
+					this.getShoot().moveUp();
+					this.getShoot().moveRight();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.fire_direction = "DIAGOBD";
+					this.getShoot().moveDown();
+					this.getShoot().moveRight();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
 			}
 			
 			else if(this.fire_direction == "DIAGOBD")
@@ -735,6 +789,24 @@ public class Model extends Observable implements IModel<Hero> {
 					this.fire_direction = "DIAGOHD";
 					this.getShoot().moveUp();
 					this.getShoot().moveRight();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.fire_direction = "DIAGOBG";
+					this.getShoot().moveDown();
+					this.getShoot().moveLeft();
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
+				{
+					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
+					this.fire_direction = "DIAGOHG";
+					this.getShoot().moveUp();
+					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
 			}
