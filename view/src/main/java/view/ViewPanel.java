@@ -83,11 +83,11 @@ class ViewPanel extends JPanel implements Observer {
 		
 		this.map = this.viewFrame.getModel().getMap();
 
-		for(int i = 0; i < map.length; i++)
+		for(int i = 0; i < this.map.length; i++)
 		{
-			for (int j = 0; j < map[i].length; j++)
+			for (int j = 0; j < this.map[i].length; j++)
 			{
-				switch (map[i][j]){
+				switch (this.map[i][j]){
 					case 'b':						
 						try {
 							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/bone.png"));
@@ -235,8 +235,7 @@ class ViewPanel extends JPanel implements Observer {
 		{
 			if(this.gameOver == 0)
 			{
-				this.gameOver = 1;
-				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+				this.gameOver = 1;	
 				this.viewFrame.printMap("GAME OVER !");
 			}
 		}
@@ -248,7 +247,6 @@ class ViewPanel extends JPanel implements Observer {
 			if(this.gameOver == 0)
 			{
 				this.gameOver = 1;
-				graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				this.viewFrame.printMap("GAME OVER !");
 			}
 		}
