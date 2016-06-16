@@ -69,4 +69,12 @@ public interface IModel<Hero> {
 	void InsertScore(String name, int score);
 
 	int getScore();
+
+	void moveDiagoHD();
+	
+	void moveDiagoHG();
+	
+	void moveDiagoBD();
+	
+	void moveDiagoBG();
 }

@@ -17,5 +17,9 @@ public enum ControllerOrder {
 	RIGHT,
 	DOWN,
 	LEFT,
-	SHOOT
+	SHOOT,
+	DIAGO_HD,
+	DIAGO_BD,
+	DIAGO_BG,
+	DIAGO_HG
 }

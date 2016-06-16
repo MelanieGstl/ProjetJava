@@ -110,6 +110,22 @@ public class Controller implements IController {
 				this.model.shoot();
 			break;
 			
+			case DIAGO_HD:
+				this.model.moveDiagoHD();
+			break;
+			
+			case DIAGO_HG:
+				this.model.moveDiagoHG();
+			break;
+			
+			case DIAGO_BD:
+				this.model.moveDiagoBD();
+			break;
+			
+			case DIAGO_BG:
+				this.model.moveDiagoBG();
+			break;
+			
 			default:
 				
 			break;

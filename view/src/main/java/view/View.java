@@ -73,6 +73,14 @@ public class View implements IView, Runnable {
 				return ControllerOrder.RIGHT;
 			case KeyEvent.VK_SPACE:
 				return ControllerOrder.SHOOT;
+			case KeyEvent.VK_NUMPAD1:
+				return ControllerOrder.DIAGO_BG;
+			case KeyEvent.VK_NUMPAD3:
+				return ControllerOrder.DIAGO_BD;
+			case KeyEvent.VK_NUMPAD7:
+				return ControllerOrder.DIAGO_HG;
+			case KeyEvent.VK_NUMPAD9:
+				return ControllerOrder.DIAGO_HD;
 			default:
 				return ControllerOrder.NOTHING;
 		}

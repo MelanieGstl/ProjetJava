@@ -680,5 +680,65 @@ public class Model extends Observable implements IModel<Hero> {
 		return false;
 	}
 
+	public void moveDiagoHD() {
+		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()+1))
+		{
+			if(this.getElement(this.getHero().getY()-1, this.getHero().getX()+1) == 'p')
+			{
+				this.Score += 100;			
+			}
+			
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+			this.getHero().moveUp();	
+			this.getHero().moveRight();
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		}
+	}
+
+	public void moveDiagoHG() {
+		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()-1))
+		{
+			if(this.getElement(this.getHero().getY()-1, this.getHero().getX()-1) == 'p')
+			{
+				this.Score += 100;			
+			}
+			
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+			this.getHero().moveUp();	
+			this.getHero().moveLeft();
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		}
+	}
+
+	public void moveDiagoBD() {
+		if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()+1))
+		{
+			if(this.getElement(this.getHero().getY()+1, this.getHero().getX()+1) == 'p')
+			{
+				this.Score += 100;			
+			}
+			
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+			this.getHero().moveDown();	
+			this.getHero().moveRight();
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		}
+	}
+
+	public void moveDiagoBG() {
+		if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()-1))
+		{
+			if(this.getElement(this.getHero().getY()+1, this.getHero().getX()-1) == 'p')
+			{
+				this.Score += 100;			
+			}
+			
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
+			this.getHero().moveDown();	
+			this.getHero().moveLeft();
+			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+		}
+	}
+
 
 }
