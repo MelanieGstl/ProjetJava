@@ -198,6 +198,17 @@ class ViewPanel extends JPanel implements Observer {
 						}
 					break;
 					
+					case 'C':
+						try {
+							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/gate_open.png"));
+							graphics.drawImage(img, 32*j, 32*i, this);
+						} catch (IOException e) {
+
+							e.printStackTrace();
+
+						}
+					break;
+					
 					case 'l':					
 						graphics.drawImage((new ImageIcon("C:/Users/Hugoo/git/ProjetJava/sprite/lorann.gif")).getImage(),32*j,32*i, this);
 					break;
@@ -205,7 +216,7 @@ class ViewPanel extends JPanel implements Observer {
 					case 'F':						
 						graphics.drawImage((new ImageIcon("C:/Users/Hugoo/git/ProjetJava/sprite/Boule_feu.gif")).getImage(), 32*j, 32*i, this);						
 					break;
-				
+
 					default:
 						try {
 							Image img = ImageIO.read(new File("C:/Users/Hugoo/git/ProjetJava/sprite/noimage.png"));

@@ -43,6 +43,10 @@ public class Model extends Observable implements IModel<Hero> {
 	public int monster_death3;
 	public int monster_death4;
 	public Shoot shoot;
+	public int energyX;
+	public int energyY;
+	public int gateX;
+	public int gateY;
 	public int you_can_fire = 1;	
 	private String lastKey = "RIGHT";	
 	public String fire_direction = "RIGHT";
@@ -161,11 +165,15 @@ public class Model extends Observable implements IModel<Hero> {
                     
                     case 'c':                       
                     	this.tableau[i][j] = 'c'; 
+                    	this.gateX = j;
+                    	this.gateY = i;
                     	//System.out.print(this.tableau[i][j]);
                     break;
                     
                     case 'e':                       
                     	this.tableau[i][j] = 'e'; 
+                    	this.energyX = j;
+                    	this.energyY = i;
                     	//System.out.print(this.tableau[i][j]);
                     break;
                     
@@ -300,7 +308,16 @@ public class Model extends Observable implements IModel<Hero> {
 			{
 				if(this.isMovePossible(this.getMonster(this.monster).getY(), this.getMonster(this.monster).getX()-1))
 				{
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
+					if(this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] == 'e')
+					{
+						this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = 'e';
+					}
+					
+					else
+					{
+						this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
+					}
+					
 					this.getMonster(this.monster).moveLeft();		
 					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
 				}
@@ -312,7 +329,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
 				}
 				
-				else if(this.isMovePossible(this.getMonster(this.monster).getY(), this.getMonster(this.monster).getX()-1))
+				else if(this.isMovePossible(this.getMonster(this.monster).getY()+1, this.getMonster(this.monster).getX()))
 				{
 					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
 					this.getMonster(this.monster).moveLeft();		
@@ -557,6 +574,8 @@ public class Model extends Observable implements IModel<Hero> {
 			this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
 			this.you_can_fire = 1;
 			this.monster_death = 1;
+			this.getMonster(this.monster).setX(0);
+			this.getMonster(this.monster).setY(0);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster2).getX() && this.getShoot().getY() == this.getMonster(this.monster2).getY())
@@ -564,6 +583,8 @@ public class Model extends Observable implements IModel<Hero> {
 			this.tableau[this.getMonster(this.monster2).getY()][this.getMonster(this.monster2).getX()] = ' ';
 			this.you_can_fire = 1;
 			this.monster_death2 = 1;
+			this.getMonster(this.monster2).setX(0);
+			this.getMonster(this.monster2).setY(0);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster3).getX() && this.getShoot().getY() == this.getMonster(this.monster3).getY())
@@ -571,6 +592,8 @@ public class Model extends Observable implements IModel<Hero> {
 			this.tableau[this.getMonster(this.monster3).getY()][this.getMonster(this.monster3).getX()] = ' ';
 			this.you_can_fire = 1;
 			this.monster_death3 = 1;
+			this.getMonster(this.monster3).setX(0);
+			this.getMonster(this.monster3).setY(0);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster4).getX() && this.getShoot().getY() == this.getMonster(this.monster4).getY())
@@ -578,6 +601,13 @@ public class Model extends Observable implements IModel<Hero> {
 			this.tableau[this.getMonster(this.monster4).getY()][this.getMonster(this.monster4).getX()] = ' ';
 			this.you_can_fire = 1;
 			this.monster_death4 = 1;
+			this.getMonster(this.monster4).setX(0);
+			this.getMonster(this.monster4).setY(0);
+		}
+		
+		if(this.getHero().getX() == this.energyX && this.getHero().getY() == this.energyY)
+		{
+			this.tableau[this.gateY][this.gateX] = 'C';
 		}
 		
 		return false;
