@@ -183,6 +183,13 @@ class ViewFrame extends JFrame implements KeyListener {
 	  private JTextField jtf = new JTextField("Valeur par défaut");
 	  private JLabel label = new JLabel("Un JTextField");
 	
+	  	private String name; 
+	  	private int score;
+	  	
+	  	public String getName(){
+	  		return this.name;
+	  	}
+	  	
 	public void FenetreScore() {
 		/*this.setTitle("Score");
 		this.setSize(300, 300);
@@ -202,7 +209,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	    this.setVisible(true);*/
 		JOptionPane jOptionPane = new JOptionPane(); 
 		JOptionPane jOptionPane2 = new JOptionPane();
-		String nom = jOptionPane.showInputDialog(null, "Enter your name please", JOptionPane.QUESTION_MESSAGE);
+		String name = jOptionPane.showInputDialog(null, "Enter your name please", JOptionPane.QUESTION_MESSAGE);
 		jOptionPane.showMessageDialog(null, "You score is saved", null, JOptionPane.INFORMATION_MESSAGE);
 	}
 

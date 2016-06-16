@@ -238,6 +238,7 @@ class ViewPanel extends JPanel implements Observer {
 				this.gameOver = 1;	
 				this.viewFrame.printMap("GAME OVER !");
 				this.viewFrame.FenetreScore();
+				//this.viewFrame.getModel().InsertScore(this.viewFrame.getName(), );
 			}
 		}
 		

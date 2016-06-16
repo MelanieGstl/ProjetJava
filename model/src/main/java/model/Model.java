@@ -112,6 +112,20 @@ public class Model extends Observable implements IModel<Hero> {
 			e.printStackTrace();
 		}
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see contract.IModel#getMessage(java.lang.String)
+	 */
+	public void InsertScore(final String name, final int score) {
+		try {
+			final DAOScore daoScore = new DAOScore(DBConnection.getInstance().getConnection());
+			daoScore.SaveScore(name, score);
+		} catch (final SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -629,5 +643,6 @@ public class Model extends Observable implements IModel<Hero> {
 		
 		return false;
 	}
+
 
 }

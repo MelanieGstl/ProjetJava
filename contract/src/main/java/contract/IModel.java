@@ -65,4 +65,6 @@ public interface IModel<Hero> {
 	void animateFire();
 
 	boolean checkPosition();
+
+	void InsertScore(String name, int score);
 }
