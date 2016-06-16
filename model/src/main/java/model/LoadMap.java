@@ -5,7 +5,7 @@ package model;
  *
  * @author Cedric Meyer
  */
-class LoadMap extends Entity {
+public class LoadMap extends Entity {
 
     /** The id. */
     private int			id;
