@@ -45,8 +45,8 @@ public class Model extends Observable implements IModel<Hero> {
 	public Shoot shoot;
 	public int energyX = 25;
 	public int energyY = 25;
-	public int gateX;
-	public int gateY;
+	public int gateX = 25;
+	public int gateY = 25;
 	public int gate_open = 0;
 	public int you_can_fire = 1;	
 	private String lastKey = "RIGHT";	
@@ -218,7 +218,7 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	public boolean isMovePossible(final int x, final int y) {
-		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b'){
+		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b' || this.getElement(x, y) == 'p'){
 			return false;
 		}else{
 			return true;
@@ -831,6 +831,19 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			this.tableau[this.gateY][this.gateX] = 'C';
 			this.gate_open = 1;
+		}
+		
+		if(this.getHero().getX() == this.gateX && this.getHero().getY() == this.gateY)
+		{
+			if(this.gate_open == 0)
+			{
+				return true;
+			}
+			
+			else
+			{
+				// WIN
+			}
 		}
 		
 		return false;
