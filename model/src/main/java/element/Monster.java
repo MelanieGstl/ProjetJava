@@ -7,8 +7,9 @@ import model.Model;
 
 public class Monster{
 	
-	public int x;
-	public int y;
+	private int x;
+	private int y;
+	private int death;
 	
 	public Monster(int x, int y)
 	{
@@ -50,6 +51,16 @@ public class Monster{
 
 	public void moveRight() {
 		this.setX(this.getX() + 1);
+	}
+	
+	public int getDeath()
+	{
+		return this.death;
+	}
+	
+	public void setDeath(int death)
+	{
+		this.death = death;
 	}
 	
 }

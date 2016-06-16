@@ -38,28 +38,11 @@ public class Model extends Observable implements IModel<Hero> {
 	public Monster monster2;
 	public Monster monster3;
 	public Monster monster4;
-	public int monster_death;
-	public int monster_death2;
-	public int monster_death3;
-	public int monster_death4;
 	public Shoot shoot;
-	public int energyX = 25;
-	public int energyY = 25;
-	public int gateX = 25;
-	public int gateY = 25;
-	public int gate_open = 0;
-	public int you_can_fire = 1;	
-	private String lastKey = "RIGHT";	
-	public String fire_direction = "RIGHT";
-	public int Score;
-	public int loadMap;
+	public Map MAP;
 	
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
-	
-	public int getScore() {
-		return this.Score;
-	}
-	
+		
 	/**
 	 * Instantiates a new model.
 	 */
@@ -71,6 +54,7 @@ public class Model extends Observable implements IModel<Hero> {
 		this.monster3 = new Monster(0, 3);
 		this.monster4 = new Monster(0, 4);
 		this.shoot = new Shoot(5, 5);
+		this.MAP = new Map();
 		this.message = "";
 	}
 	
@@ -133,6 +117,11 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 
+	public int getScore()
+	{
+		return this.getMAP().getScore();
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 *
@@ -154,6 +143,10 @@ public class Model extends Observable implements IModel<Hero> {
     {
     	return this.shoot;
     }
+    
+	public Map getMAP() {
+		return this.MAP;
+	}
 	
 	public void loadMap()
 	{		
@@ -186,15 +179,15 @@ public class Model extends Observable implements IModel<Hero> {
                     
                     case 'c':                       
                     	this.tableau[i][j] = 'c'; 
-                    	this.gateX = j;
-                    	this.gateY = i;
+                    	this.getMAP().setGateX(j);
+                    	this.getMAP().setGateY(i);
                     	//System.out.print(this.tableau[i][j]);
                     break;
                     
                     case 'e':                       
                     	this.tableau[i][j] = 'e'; 
-                    	this.energyX = j;
-                    	this.energyY = i;
+                    	this.getMAP().setEnergyX(j);
+                    	this.getMAP().setEnergyY(i);
                     	//System.out.print(this.tableau[i][j]);
                     break;
                     
@@ -258,7 +251,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()-1, this.getHero().getX()) == 'p')
 			{
-				this.Score += 100;			
+				this.getMAP().setScore(this.getMAP().getScore() + 100);		
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -272,7 +265,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY(), this.getHero().getX()-1) == 'p')
 			{
-				this.Score += 100;			
+				this.getMAP().setScore(this.getMAP().getScore() + 100);			
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -286,7 +279,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY(), this.getHero().getX()+1) == 'p')
 			{
-				this.Score += 100;			
+				this.getMAP().setScore(this.getMAP().getScore() + 100);			
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -300,7 +293,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()+1, this.getHero().getX()) == 'p')
 			{
-				this.Score += 100;			
+				this.getMAP().setScore(this.getMAP().getScore() + 100);			
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -343,14 +336,14 @@ public class Model extends Observable implements IModel<Hero> {
     
     public int getLoadMap()
     {
-    	return this.loadMap;
+    	return this.getMAP().getLoadMap();
     }
     
     public void loadMap2(String key) {
         try {
             final DAOLoadMap daoLoadMap = new DAOLoadMap(DBConnection.getInstance().getConnection());
             this.setMap(daoLoadMap.find(key).getMap());
-            this.loadMap = 1;
+            this.getMAP().setLoadMap(1);
         } catch (final SQLException e) {
             e.printStackTrace();
         }
@@ -358,9 +351,9 @@ public class Model extends Observable implements IModel<Hero> {
 
 	public void moveMonster() {
 		
-		System.out.println("Score : "+this.Score);
+		System.out.println("Score : "+this.getMAP().getScore());
 		
-		if(this.monster_death == 0)
+		if(this.getMonster(this.monster).getDeath() == 0)
 		{
 			if(this.getMonster(this.monster).getX() > this.getHero().getX())
 			{
@@ -420,19 +413,19 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	public void setLastMove(String lastKey)
 	{
-		this.lastKey = lastKey;
+		this.getMAP().setLastKey(lastKey);
 	}
     
     public String getLastMove()
     {
-    	return this.lastKey;
+    	return this.getMAP().getLastKey();
     }
 
 	public void shoot() 
 	{		
-		if(this.you_can_fire == 1)
+		if(this.getMAP().getFire() == 1)
 		{
-			this.you_can_fire = 0;
+			this.getMAP().setFire(0);
 			
 			if(getLastMove() == "LEFT")
 			{			
@@ -441,7 +434,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()-1);
 					this.getShoot().setY(this.getHero().getY());
 					this.tableau[this.getHero().getY()][this.getHero().getX()-1] = 'F';
-					this.fire_direction = "LEFT";
+					this.getMAP().setFireDirection("LEFT");
 				}
 				
 				else
@@ -449,7 +442,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()+1);
 					this.getShoot().setY(this.getHero().getY());
 					this.tableau[this.getHero().getY()][this.getHero().getX()+1] = 'F';
-					this.fire_direction = "RIGHT";
+					this.getMAP().setFireDirection("RIGHT");
 				}
 			}
 			
@@ -460,7 +453,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()+1);
 					this.getShoot().setY(this.getHero().getY());
 					this.tableau[this.getHero().getY()][this.getHero().getX()+1] = 'F';
-					this.fire_direction = "RIGHT";
+					this.getMAP().setFireDirection("RIGHT");
 				}
 				
 				else
@@ -468,7 +461,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()-1);
 					this.getShoot().setY(this.getHero().getY());
 					this.tableau[this.getHero().getY()][this.getHero().getX()-1] = 'F';
-					this.fire_direction = "LEFT";
+					this.getMAP().setFireDirection("LEFT");
 				}
 			}
 			
@@ -479,7 +472,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX());
 					this.getShoot().setY(this.getHero().getY()-1);
 					this.tableau[this.getHero().getY()-1][this.getHero().getX()] = 'F';
-					this.fire_direction = "UP";
+					this.getMAP().setFireDirection("UP");
 				}
 				
 				else
@@ -487,7 +480,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX());
 					this.getShoot().setY(this.getHero().getY()+1);
 					this.tableau[this.getHero().getY()+1][this.getHero().getX()] = 'F';
-					this.fire_direction = "DOWN";
+					this.getMAP().setFireDirection("DOWN");
 				}
 			}
 			
@@ -498,7 +491,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX());
 					this.getShoot().setY(this.getHero().getY()+1);
 					this.tableau[this.getHero().getY()+1][this.getHero().getX()] = 'F';
-					this.fire_direction = "DOWN";
+					this.getMAP().setFireDirection("DOWN");
 				}
 				
 				else
@@ -506,7 +499,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX());
 					this.getShoot().setY(this.getHero().getY()-1);
 					this.tableau[this.getHero().getY()-1][this.getHero().getX()] = 'F';
-					this.fire_direction = "UP";
+					this.getMAP().setFireDirection("UP");
 				}
 			}
 			
@@ -517,7 +510,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()+1);
 					this.getShoot().setY(this.getHero().getY()-1);
 					this.tableau[this.getHero().getY()-1][this.getHero().getX()+1] = 'F';
-					this.fire_direction = "DIAGOHD";
+					this.getMAP().setFireDirection("DIAGOHD");
 				}
 				
 				else
@@ -525,7 +518,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()-1);
 					this.getShoot().setY(this.getHero().getY()-1);
 					this.tableau[this.getHero().getY()-1][this.getHero().getX()-1] = 'F';
-					this.fire_direction = "DIAGOHG";
+					this.getMAP().setFireDirection("DIAGOHG");
 				}
 			}
 			
@@ -536,7 +529,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()-1);
 					this.getShoot().setY(this.getHero().getY()+1);
 					this.tableau[this.getHero().getY()+1][this.getHero().getX()-1] = 'F';
-					this.fire_direction = "DIAGOBG";
+					this.getMAP().setFireDirection("DIAGOBG");
 				}
 				
 				else
@@ -544,7 +537,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()+1);
 					this.getShoot().setY(this.getHero().getY()+1);
 					this.tableau[this.getHero().getY()+1][this.getHero().getX()+1] = 'F';
-					this.fire_direction = "DIAGOBD";
+					this.getMAP().setFireDirection("DIAGOBD");
 				}
 			}
 			
@@ -555,7 +548,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()-1);
 					this.getShoot().setY(this.getHero().getY()-1);
 					this.tableau[this.getHero().getY()-1][this.getHero().getX()-1] = 'F';
-					this.fire_direction = "DIAGOHG";
+					this.getMAP().setFireDirection("DIAGOHG");
 				}
 				
 				else
@@ -563,7 +556,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()+1);
 					this.getShoot().setY(this.getHero().getY()-1);
 					this.tableau[this.getHero().getY()-1][this.getHero().getX()+1] = 'F';
-					this.fire_direction = "DIAGOHD";
+					this.getMAP().setFireDirection("DIAGOHD");
 				}
 			}
 			
@@ -574,7 +567,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()+1);
 					this.getShoot().setY(this.getHero().getY()+1);
 					this.tableau[this.getHero().getY()+1][this.getHero().getX()+1] = 'F';
-					this.fire_direction = "DIAGOBD";
+					this.getMAP().setFireDirection("DIAGOBD");
 				}
 				
 				else
@@ -582,7 +575,7 @@ public class Model extends Observable implements IModel<Hero> {
 					this.getShoot().setX(this.getHero().getX()-1);
 					this.getShoot().setY(this.getHero().getY()+1);
 					this.tableau[this.getHero().getY()+1][this.getHero().getX()-1] = 'F';
-					this.fire_direction = "DIAGOBG";
+					this.getMAP().setFireDirection("DIAGOBG");
 				}
 			}
 		}
@@ -590,9 +583,10 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	public void animateFire()
 	{
-		if(this.you_can_fire == 0)
+		System.out.println(this.getMAP().getFire());
+		if(this.getMAP().getFire() == 0)
 		{
-			if(this.fire_direction == "RIGHT")
+			if(this.getMAP().getFireDirection() == "RIGHT")
 			{
 				if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()+1))
 				{
@@ -604,13 +598,13 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()-1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';					
-					this.fire_direction = "LEFT";
+					this.getMAP().setFireDirection("LEFT");
 					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
 			}
 			
-			else if(this.fire_direction == "LEFT")
+			else if(this.getMAP().getFireDirection() == "LEFT")
 			{
 				if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()-1))
 				{
@@ -623,13 +617,13 @@ public class Model extends Observable implements IModel<Hero> {
 				{
 					
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "RIGHT";				
+					this.getMAP().setFireDirection("RIGHT");				
 					this.getShoot().moveRight();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
 			}
 			
-			else if(this.fire_direction == "UP")
+			else if(this.getMAP().getFireDirection() == "UP")
 			{
 				if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()))
 				{
@@ -641,13 +635,13 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DOWN";					
+					this.getMAP().setFireDirection("DOWN");					
 					this.getShoot().moveDown();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
 			}
 			
-			else if(this.fire_direction == "DOWN")
+			else if(this.getMAP().getFireDirection() == "DOWN")
 			{
 				if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()))
 				{
@@ -659,13 +653,13 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "UP";
+					this.getMAP().setFireDirection("UP");
 					this.getShoot().moveUp();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
 			}
 			
-			else if(this.fire_direction == "DIAGOHD")
+			else if(this.getMAP().getFireDirection()== "DIAGOHD")
 			{
 				if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
@@ -678,7 +672,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOHG";
+					this.getMAP().setFireDirection("DIAGOHG");
 					this.getShoot().moveUp();
 					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -687,7 +681,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOBD";
+					this.getMAP().setFireDirection("DIAGOBD");
 					this.getShoot().moveDown();
 					this.getShoot().moveRight();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -696,14 +690,14 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOBG";
+					this.getMAP().setFireDirection("DIAGOBG");
 					this.getShoot().moveDown();
 					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
 			}
 			
-			else if(this.fire_direction == "DIAGOBG")
+			else if(this.getMAP().getFireDirection() == "DIAGOBG")
 			{
 				if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
@@ -716,7 +710,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOHG";
+					this.getMAP().setFireDirection("DIAGOHG");
 					this.getShoot().moveUp();
 					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -725,7 +719,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOBD";
+					this.getMAP().setFireDirection("DIAGOBD");
 					this.getShoot().moveDown();
 					this.getShoot().moveRight();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -734,14 +728,14 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOHD";
+					this.getMAP().setFireDirection("DIAGOHD");
 					this.getShoot().moveUp();
 					this.getShoot().moveRight();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
 				}
 			}			
 		
-			else if(this.fire_direction == "DIAGOHG")
+			else if(this.getMAP().getFireDirection() == "DIAGOHG")
 			{
 				if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
@@ -754,7 +748,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOBG";
+					this.getMAP().setFireDirection("DIAGOBG");
 					this.getShoot().moveDown();
 					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -763,7 +757,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOHD";
+					this.getMAP().setFireDirection("DIAGOHD");
 					this.getShoot().moveUp();
 					this.getShoot().moveRight();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -772,7 +766,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOBD";
+					this.getMAP().setFireDirection("DIAGOBD");
 					this.getShoot().moveDown();
 					this.getShoot().moveRight();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -780,7 +774,7 @@ public class Model extends Observable implements IModel<Hero> {
 				
 			}
 			
-			else if(this.fire_direction == "DIAGOBD")
+			else if(this.getMAP().getFireDirection()== "DIAGOBD")
 			{
 				if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
 				{
@@ -793,7 +787,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOHD";
+					this.getMAP().setFireDirection("DIAGOHD");
 					this.getShoot().moveUp();
 					this.getShoot().moveRight();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -802,7 +796,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOBG";
+					this.getMAP().setFireDirection("DIAGOBG");
 					this.getShoot().moveDown();
 					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -811,7 +805,7 @@ public class Model extends Observable implements IModel<Hero> {
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.fire_direction = "DIAGOHG";
+					this.getMAP().setFireDirection("DIAGOHG");
 					this.getShoot().moveUp();
 					this.getShoot().moveLeft();
 					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
@@ -845,61 +839,60 @@ public class Model extends Observable implements IModel<Hero> {
 		if(this.getHero().getX() == this.getShoot().getX() && this.getHero().getY() == this.getShoot().getY())
 		{
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
-			this.you_can_fire = 1;
+			this.getMAP().setFire(1);;
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster).getX() && this.getShoot().getY() == this.getMonster(this.monster).getY())
 		{
 			this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
-			this.you_can_fire = 1;
-			this.monster_death = 1;
+			this.getMAP().setFire(1);
+			this.getMonster(this.monster).setDeath(1);
 			this.getMonster(this.monster).setX(0);
 			this.getMonster(this.monster).setY(0);
-			this.Score += 250;
+			this.getMAP().setScore(this.getMAP().getScore() + 250);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster2).getX() && this.getShoot().getY() == this.getMonster(this.monster2).getY())
 		{
 			this.tableau[this.getMonster(this.monster2).getY()][this.getMonster(this.monster2).getX()] = ' ';
-			this.you_can_fire = 1;
-			this.monster_death2 = 1;
+			this.getMAP().setFire(1);
+			this.getMonster(this.monster2).setDeath(1);
 			this.getMonster(this.monster2).setX(0);
 			this.getMonster(this.monster2).setY(0);
-			this.Score += 250;
+			this.getMAP().setScore(this.getMAP().getScore() + 250);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster3).getX() && this.getShoot().getY() == this.getMonster(this.monster3).getY())
 		{
 			this.tableau[this.getMonster(this.monster3).getY()][this.getMonster(this.monster3).getX()] = ' ';
-			this.you_can_fire = 1;
-			this.monster_death3 = 1;
+			this.getMAP().setFire(1);
+			this.getMonster(this.monster3).setDeath(1);
 			this.getMonster(this.monster3).setX(0);
 			this.getMonster(this.monster3).setY(0);
-			this.Score += 250;
+			this.getMAP().setScore(this.getMAP().getScore() + 250);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster4).getX() && this.getShoot().getY() == this.getMonster(this.monster4).getY())
 		{
 			this.tableau[this.getMonster(this.monster4).getY()][this.getMonster(this.monster4).getX()] = ' ';
-			this.you_can_fire = 1;
-			this.monster_death4 = 1;
+			this.getMAP().setFire(1);
+			this.getMonster(this.monster4).setDeath(1);
 			this.getMonster(this.monster4).setX(0);
 			this.getMonster(this.monster4).setY(0);
-			this.Score += 250;
+			this.getMAP().setScore(this.getMAP().getScore() + 250);
 		}
 		
-		if(this.getHero().getX() == this.energyX && this.getHero().getY() == this.energyY)
+		if(this.getHero().getX() == this.getMAP().getEnergyX() && this.getHero().getY() == this.getMAP().getEnergyY())
 		{
-			this.energyX = 0;
-			this.energyY = 0;
-			this.tableau[this.gateY][this.gateX] = 'C';
-			this.gate_open = 1;
-			this.Score += 50;
+			this.getMAP().setEnergyX(0);
+			this.getMAP().setEnergyY(0);
+			this.tableau[this.getMAP().getGateY()][this.getMAP().getGateX()] = 'C';
+			this.getMAP().setScore(this.getMAP().getScore() + 50);
 		}
 		
-		if(this.getHero().getX() == this.gateX && this.getHero().getY() == this.gateY)
+		if(this.getHero().getX() == this.getMAP().getGateX() && this.getHero().getY() == this.getMAP().getGateY())
 		{
-			if(this.gate_open == 0)
+			if(this.getMAP().getGateOpen() == 0)
 			{
 				return true;
 			}
@@ -907,9 +900,9 @@ public class Model extends Observable implements IModel<Hero> {
 			else
 			{
 				// WIN
-				this.gateX = 0;
-				this.gateY = 0;
-				this.Score += 500;
+				this.getMAP().setGateX(0);
+				this.getMAP().setGateY(0);
+				this.getMAP().setScore(this.getMAP().getScore() + 500);
 			}
 		}
 		
@@ -921,7 +914,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()-1, this.getHero().getX()+1) == 'p')
 			{
-				this.Score += 100;			
+				this.getMAP().setScore(this.getMAP().getScore() + 100);			
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -936,7 +929,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()-1, this.getHero().getX()-1) == 'p')
 			{
-				this.Score += 100;			
+				this.getMAP().setScore(this.getMAP().getScore() + 100);		
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -951,7 +944,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()+1, this.getHero().getX()+1) == 'p')
 			{
-				this.Score += 100;			
+				this.getMAP().setScore(this.getMAP().getScore() + 100);		
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -966,7 +959,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()+1, this.getHero().getX()-1) == 'p')
 			{
-				this.Score += 100;			
+				this.getMAP().setScore(this.getMAP().getScore() + 100);		
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
