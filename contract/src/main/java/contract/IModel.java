@@ -92,28 +92,10 @@ public interface IModel<Hero> {
 	Hero getHero();
 
 	/** 
-	 * Move up.
+	 * Move Hero.
 	 *
 	 */
-	void moveUp();
-
-	/** 
-	 * Move left.
-	 *
-	 */
-	void moveLeft();
-	
-	/** 
-	 * Move right.
-	 *
-	 */
-	void moveRight();
-	
-	/** 
-	 * Move down.
-	 *
-	 */
-	void moveDown();
+	void moveHero(String move);
 
 	/** 
 	 * Move the monster.

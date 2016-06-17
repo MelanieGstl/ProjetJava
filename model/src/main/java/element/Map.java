@@ -8,7 +8,6 @@ public class Map {
 	public int gate_open = 0;
 	public int you_can_fire = 1;	
 	private String lastKey = "RIGHT";	
-	public String fire_direction = "RIGHT";
 	public int Score;
 	public int loadMap;
 	
@@ -80,16 +79,6 @@ public class Map {
 	public void setLastKey(String lastKey)
 	{
 		this.lastKey = lastKey;
-	}
-	
-	public String getFireDirection()
-	{
-		return this.fire_direction;
-	}
-	
-	public void setFireDirection(String fireDirection)
-	{
-		this.fire_direction = fireDirection;
 	}
 	
 	public int getScore()

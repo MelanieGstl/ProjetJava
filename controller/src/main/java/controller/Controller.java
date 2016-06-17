@@ -104,7 +104,7 @@ public class Controller implements IController {
 			case UP:	
 				if(this.model.getLoadMap() == 1)
 				{
-					this.model.moveUp();
+					this.model.moveHero("UP");
 					this.model.setLastMove("UP");
 				}
 			break;
@@ -112,7 +112,7 @@ public class Controller implements IController {
 			case LEFT:
 				if(this.model.getLoadMap() == 1)
 				{
-					this.model.moveLeft();	
+					this.model.moveHero("LEFT");	
 					this.model.setLastMove("LEFT");
 				}
 			break;
@@ -120,7 +120,7 @@ public class Controller implements IController {
 			case DOWN:
 				if(this.model.getLoadMap() == 1)
 				{
-					this.model.moveDown();	
+					this.model.moveHero("DOWN");	
 					this.model.setLastMove("DOWN");
 				}
 			break;
@@ -128,7 +128,7 @@ public class Controller implements IController {
 			case RIGHT:
 				if(this.model.getLoadMap() == 1)
 				{
-					this.model.moveRight();
+					this.model.moveHero("RIGHT");
 					this.model.setLastMove("RIGHT");
 				}
 			break;

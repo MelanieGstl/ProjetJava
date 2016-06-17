@@ -7,8 +7,8 @@ import model.Model;
 
 public class Hero{
 	
-	public int x;
-	public int y;
+	private int x;
+	private int y;
 	
 	public Hero(int x, int y)
 	{
@@ -50,6 +50,39 @@ public class Hero{
 
 	public void moveRight() {
 		this.setX(this.getX() + 1);
+	}
+	
+	public char[][] move(char[][] map, String move)
+	{
+		if(move == "LEFT")
+		{
+			map[this.y][this.x] = ' ';
+			this.moveLeft();
+			map[this.y][this.x] = 'l';
+		}	
+			
+		else if(move == "UP")
+		{
+			map[this.y][this.x] = ' ';
+			this.moveUp();
+			map[this.y][this.x] = 'l';
+		}	
+			
+		else if(move == "RIGHT")
+		{
+			map[this.y][this.x] = ' ';
+			this.moveRight();
+			map[this.y][this.x] = 'l';
+		}	
+			
+		else if(move == "DOWN")
+		{
+			map[this.y][this.x] = ' ';
+			this.moveDown();
+			map[this.y][this.x] = 'l';
+		}	
+		
+		return map;
 	}
 	
 }

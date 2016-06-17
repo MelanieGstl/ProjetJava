@@ -53,7 +53,7 @@ public class Model extends Observable implements IModel<Hero> {
 		this.monster2 = new Monster(0, 2);
 		this.monster3 = new Monster(0, 3);
 		this.monster4 = new Monster(0, 4);
-		this.shoot = new Shoot(5, 5);
+		this.shoot = new Shoot(1, 1);
 		this.MAP = new Map();
 		this.message = "";
 	}
@@ -194,7 +194,7 @@ public class Model extends Observable implements IModel<Hero> {
                     case 'l':                       
                     	this.tableau[i][j] = 'l';
                     	this.hero.setX(j);
-                    	this.hero.setY(i);    
+                    	this.hero.setY(i);   
                     break;
                     
                     case '1':
@@ -246,59 +246,46 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 
-	public void moveUp() {
-		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()))
+	public void moveHero(String move)
+	{
+		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()) && move == "UP")
 		{
 			if(this.getElement(this.getHero().getY()-1, this.getHero().getX()) == 'p')
 			{
 				this.getMAP().setScore(this.getMAP().getScore() + 100);		
 			}
 			
-			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
-			this.getHero().moveUp();		
-			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+			this.tableau = this.getHero().move(this.tableau, "UP");				
 		}
-	}
-	
-	public void moveLeft() {
-		if(this.isMovePossible2(this.getHero().getY(), this.getHero().getX()-1))
+		
+		else if(this.isMovePossible2(this.getHero().getY(), this.getHero().getX()-1) && move == "LEFT")
 		{
 			if(this.getElement(this.getHero().getY(), this.getHero().getX()-1) == 'p')
 			{
 				this.getMAP().setScore(this.getMAP().getScore() + 100);			
 			}
 			
-			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
-			this.getHero().moveLeft();		
-			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+			this.tableau = this.getHero().move(this.tableau, "LEFT");			
 		}
-	}
-	
-	public void moveRight() {
-		if(this.isMovePossible2(this.getHero().getY(), this.getHero().getX()+1))
+		
+		else if(this.isMovePossible2(this.getHero().getY(), this.getHero().getX()+1) && move == "RIGHT")
 		{
 			if(this.getElement(this.getHero().getY(), this.getHero().getX()+1) == 'p')
 			{
 				this.getMAP().setScore(this.getMAP().getScore() + 100);			
 			}
 			
-			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
-			this.getHero().moveRight();		
-			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+			this.tableau = this.getHero().move(this.tableau, "RIGHT");
 		}
-	}
-	
-	public void moveDown() {
-		if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()))
+		
+		else if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()) && move == "DOWN")
 		{
 			if(this.getElement(this.getHero().getY()+1, this.getHero().getX()) == 'p')
 			{
 				this.getMAP().setScore(this.getMAP().getScore() + 100);			
 			}
 			
-			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
-			this.getHero().moveDown();		
-			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+			this.tableau = this.getHero().move(this.tableau, "DOWN");
 		}
 	}
 	
@@ -351,7 +338,9 @@ public class Model extends Observable implements IModel<Hero> {
 
 	public void moveMonster() {
 		
-		System.out.println("Score : "+this.getMAP().getScore());
+		// System.out.println("Score : "+this.getMAP().getScore());
+		System.out.println("X : "+this.getShoot().getX());
+		System.out.println("Y : "+this.getShoot().getY());
 		
 		if(this.getMonster(this.monster).getDeath() == 0)
 		{
@@ -416,21 +405,15 @@ public class Model extends Observable implements IModel<Hero> {
 			this.getMAP().setFire(0);
 			
 			if(getLastMove() == "LEFT")
-			{			
+			{	
 				if(this.isMovePossible(this.getHero().getY(), this.getHero().getX()-1))
 				{
-					this.getShoot().setX(this.getHero().getX()-1);
-					this.getShoot().setY(this.getHero().getY());
-					this.tableau[this.getHero().getY()][this.getHero().getX()-1] = 'F';
-					this.getMAP().setFireDirection("LEFT");
+					this.tableau = this.getShoot().move(this.tableau, this.getShoot().getFireDirection(), this.getHero().getY(), this.getHero().getX()-1);
 				}
 				
 				else
 				{
-					this.getShoot().setX(this.getHero().getX()+1);
-					this.getShoot().setY(this.getHero().getY());
-					this.tableau[this.getHero().getY()][this.getHero().getX()+1] = 'F';
-					this.getMAP().setFireDirection("RIGHT");
+					this.tableau = this.getShoot().move(this.tableau, "RIGHT", this.getHero().getY(), this.getHero().getX()+1);
 				}
 			}
 			
@@ -438,18 +421,12 @@ public class Model extends Observable implements IModel<Hero> {
 			{			
 				if(this.isMovePossible(this.getHero().getY(), this.getHero().getX()+1))
 				{
-					this.getShoot().setX(this.getHero().getX()+1);
-					this.getShoot().setY(this.getHero().getY());
-					this.tableau[this.getHero().getY()][this.getHero().getX()+1] = 'F';
-					this.getMAP().setFireDirection("RIGHT");
+					this.tableau = this.getShoot().move(this.tableau, this.getShoot().getFireDirection(), this.getHero().getY(), this.getHero().getX()+1);
 				}
 				
 				else
 				{
-					this.getShoot().setX(this.getHero().getX()-1);
-					this.getShoot().setY(this.getHero().getY());
-					this.tableau[this.getHero().getY()][this.getHero().getX()-1] = 'F';
-					this.getMAP().setFireDirection("LEFT");
+					this.tableau = this.getShoot().move(this.tableau, "LEFT", this.getHero().getY(), this.getHero().getX()-1);
 				}
 			}
 			
@@ -457,18 +434,12 @@ public class Model extends Observable implements IModel<Hero> {
 			{			
 				if(this.isMovePossible(this.getHero().getY()-1, this.getHero().getX()))
 				{
-					this.getShoot().setX(this.getHero().getX());
-					this.getShoot().setY(this.getHero().getY()-1);
-					this.tableau[this.getHero().getY()-1][this.getHero().getX()] = 'F';
-					this.getMAP().setFireDirection("UP");
+					this.tableau = this.getShoot().move(this.tableau, this.getShoot().getFireDirection(), this.getHero().getY()-1, this.getHero().getX());
 				}
 				
 				else
 				{
-					this.getShoot().setX(this.getHero().getX());
-					this.getShoot().setY(this.getHero().getY()+1);
-					this.tableau[this.getHero().getY()+1][this.getHero().getX()] = 'F';
-					this.getMAP().setFireDirection("DOWN");
+					this.tableau = this.getShoot().move(this.tableau, "DOWN", this.getHero().getY()+1, this.getHero().getX());
 				}
 			}
 			
@@ -476,18 +447,12 @@ public class Model extends Observable implements IModel<Hero> {
 			{		
 				if(this.isMovePossible(this.getHero().getY()+1, this.getHero().getX()))
 				{
-					this.getShoot().setX(this.getHero().getX());
-					this.getShoot().setY(this.getHero().getY()+1);
-					this.tableau[this.getHero().getY()+1][this.getHero().getX()] = 'F';
-					this.getMAP().setFireDirection("DOWN");
+					this.tableau = this.getShoot().move(this.tableau, this.getShoot().getFireDirection(), this.getHero().getY()+1, this.getHero().getX());
 				}
 				
 				else
 				{
-					this.getShoot().setX(this.getHero().getX());
-					this.getShoot().setY(this.getHero().getY()-1);
-					this.tableau[this.getHero().getY()-1][this.getHero().getX()] = 'F';
-					this.getMAP().setFireDirection("UP");
+					this.tableau = this.getShoot().move(this.tableau, "UP", this.getHero().getY()-1, this.getHero().getX());
 				}
 			}
 			
@@ -495,18 +460,12 @@ public class Model extends Observable implements IModel<Hero> {
 			{		
 				if(this.isMovePossible(this.getHero().getY()-1, this.getHero().getX()+1))
 				{
-					this.getShoot().setX(this.getHero().getX()+1);
-					this.getShoot().setY(this.getHero().getY()-1);
-					this.tableau[this.getHero().getY()-1][this.getHero().getX()+1] = 'F';
-					this.getMAP().setFireDirection("DIAGOHD");
+					this.tableau = this.getShoot().move(this.tableau, this.getShoot().getFireDirection(), this.getHero().getY()-1, this.getHero().getX()+1);
 				}
 				
 				else
 				{
-					this.getShoot().setX(this.getHero().getX()-1);
-					this.getShoot().setY(this.getHero().getY()-1);
-					this.tableau[this.getHero().getY()-1][this.getHero().getX()-1] = 'F';
-					this.getMAP().setFireDirection("DIAGOHG");
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHG", this.getHero().getY()-1, this.getHero().getX()-1);
 				}
 			}
 			
@@ -514,18 +473,12 @@ public class Model extends Observable implements IModel<Hero> {
 			{		
 				if(this.isMovePossible(this.getHero().getY()+1, this.getHero().getX()-1))
 				{
-					this.getShoot().setX(this.getHero().getX()-1);
-					this.getShoot().setY(this.getHero().getY()+1);
-					this.tableau[this.getHero().getY()+1][this.getHero().getX()-1] = 'F';
-					this.getMAP().setFireDirection("DIAGOBG");
+					this.tableau = this.getShoot().move(this.tableau, this.getShoot().getFireDirection(), this.getHero().getY()+1, this.getHero().getX()-1);
 				}
 				
 				else
 				{
-					this.getShoot().setX(this.getHero().getX()+1);
-					this.getShoot().setY(this.getHero().getY()+1);
-					this.tableau[this.getHero().getY()+1][this.getHero().getX()+1] = 'F';
-					this.getMAP().setFireDirection("DIAGOBD");
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBD", this.getHero().getY()+1, this.getHero().getX()+1);
 				}
 			}
 			
@@ -533,18 +486,12 @@ public class Model extends Observable implements IModel<Hero> {
 			{		
 				if(this.isMovePossible(this.getHero().getY()-1, this.getHero().getX()-1))
 				{
-					this.getShoot().setX(this.getHero().getX()-1);
-					this.getShoot().setY(this.getHero().getY()-1);
-					this.tableau[this.getHero().getY()-1][this.getHero().getX()-1] = 'F';
-					this.getMAP().setFireDirection("DIAGOHG");
+					this.tableau = this.getShoot().move(this.tableau, this.getShoot().getFireDirection(), this.getHero().getY()-1, this.getHero().getX()-1);
 				}
 				
 				else
 				{
-					this.getShoot().setX(this.getHero().getX()+1);
-					this.getShoot().setY(this.getHero().getY()-1);
-					this.tableau[this.getHero().getY()-1][this.getHero().getX()+1] = 'F';
-					this.getMAP().setFireDirection("DIAGOHD");
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBG", this.getHero().getY()+1, this.getHero().getX()-1);
 				}
 			}
 			
@@ -552,18 +499,12 @@ public class Model extends Observable implements IModel<Hero> {
 			{		
 				if(this.isMovePossible(this.getHero().getY()+1, this.getHero().getX()+1))
 				{
-					this.getShoot().setX(this.getHero().getX()+1);
-					this.getShoot().setY(this.getHero().getY()+1);
-					this.tableau[this.getHero().getY()+1][this.getHero().getX()+1] = 'F';
-					this.getMAP().setFireDirection("DIAGOBD");
+					this.tableau = this.getShoot().move(this.tableau, this.getShoot().getFireDirection(), this.getHero().getY()+1, this.getHero().getX()+1);
 				}
 				
 				else
 				{
-					this.getShoot().setX(this.getHero().getX()-1);
-					this.getShoot().setY(this.getHero().getY()+1);
-					this.tableau[this.getHero().getY()+1][this.getHero().getX()-1] = 'F';
-					this.getMAP().setFireDirection("DIAGOBG");
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHD", this.getHero().getY()-1, this.getHero().getX()+1);
 				}
 			}
 		}
@@ -573,229 +514,149 @@ public class Model extends Observable implements IModel<Hero> {
 	{
 		if(this.getMAP().getFire() == 0)
 		{
-			if(this.getMAP().getFireDirection() == "RIGHT")
+			if(this.getShoot().getFireDirection() == "RIGHT")
 			{
 				if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()+1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "RIGHT");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';					
-					this.getMAP().setFireDirection("LEFT");
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "LEFT");
 				}
 			}
 			
-			else if(this.getMAP().getFireDirection() == "LEFT")
+			else if(this.getShoot().getFireDirection() == "LEFT")
 			{
 				if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "LEFT");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY(), this.getShoot().getX()+1))
 				{
 					
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("RIGHT");				
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "RIGHT");
 				}
 			}
 			
-			else if(this.getMAP().getFireDirection() == "UP")
+			else if(this.getShoot().getFireDirection() == "UP")
 			{
 				if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getShoot().moveUp();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "UP");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DOWN");					
-					this.getShoot().moveDown();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DOWN");
 				}
 			}
 			
-			else if(this.getMAP().getFireDirection() == "DOWN")
+			else if(this.getShoot().getFireDirection() == "DOWN")
 			{
 				if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getShoot().moveDown();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DOWN");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("UP");
-					this.getShoot().moveUp();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "UP");
 				}
 			}
 			
-			else if(this.getMAP().getFireDirection()== "DIAGOHD")
+			else if(this.getShoot().getFireDirection()== "DIAGOHD")
 			{
 				if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getShoot().moveUp();
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHD");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOHG");
-					this.getShoot().moveUp();
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
-				}
-				
-				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
-				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOBD");
-					this.getShoot().moveDown();
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHG");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOBG");
-					this.getShoot().moveDown();
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBG");
+				}
+				
+				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
+				{
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBD");
 				}
 			}
 			
-			else if(this.getMAP().getFireDirection() == "DIAGOBG")
+			else if(this.getShoot().getFireDirection() == "DIAGOBG")
 			{
 				if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getShoot().moveDown();
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBG");
 				}				
 				
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOHG");
-					this.getShoot().moveUp();
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHG");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOBD");
-					this.getShoot().moveDown();
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBD");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOHD");
-					this.getShoot().moveUp();
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHD");
 				}
 			}			
 		
-			else if(this.getMAP().getFireDirection() == "DIAGOHG")
+			else if(this.getShoot().getFireDirection() == "DIAGOHG")
 			{
 				if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getShoot().moveUp();
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHG");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOBG");
-					this.getShoot().moveDown();
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBG");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOHD");
-					this.getShoot().moveUp();
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHD");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOBD");
-					this.getShoot().moveDown();
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBD");
 				}
 				
 			}
 			
-			else if(this.getMAP().getFireDirection()== "DIAGOBD")
+			else if(this.getShoot().getFireDirection()== "DIAGOBD")
 			{
 				if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()+1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getShoot().moveDown();
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBD");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOHD");
-					this.getShoot().moveUp();
-					this.getShoot().moveRight();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHD");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOBG");
-					this.getShoot().moveDown();
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOBG");
 				}
 				
 				else if(this.isMovePossible(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = ' ';
-					this.getMAP().setFireDirection("DIAGOHG");
-					this.getShoot().moveUp();
-					this.getShoot().moveLeft();
-					this.tableau[this.getShoot().getY()][this.getShoot().getX()] = 'F';
+					this.tableau = this.getShoot().move(this.tableau, "DIAGOHG");
 				}
 			}
 		}
@@ -826,7 +687,7 @@ public class Model extends Observable implements IModel<Hero> {
 		if(this.getHero().getX() == this.getShoot().getX() && this.getHero().getY() == this.getShoot().getY())
 		{
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
-			this.getMAP().setFire(1);;
+			this.getMAP().setFire(1);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster).getX() && this.getShoot().getY() == this.getMonster(this.monster).getY())
