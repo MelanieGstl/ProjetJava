@@ -359,23 +359,17 @@ public class Model extends Observable implements IModel<Hero> {
 			{
 				if(this.isMovePossible(this.getMonster(this.monster).getY(), this.getMonster(this.monster).getX()-1))
 				{
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';					
-					this.getMonster(this.monster).moveLeft();		
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+					this.tableau = this.getMonster(this.monster).move(this.tableau, "LEFT");
 				}
 				
 				else if(this.isMovePossible(this.getMonster(this.monster).getY()-1, this.getMonster(this.monster).getX()))
 				{
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
-					this.getMonster(this.monster).moveUp();		
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+					this.tableau = this.getMonster(this.monster).move(this.tableau, "UP");
 				}
 				
 				else if(this.isMovePossible(this.getMonster(this.monster).getY()+1, this.getMonster(this.monster).getX()))
 				{
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';					
-					this.getMonster(this.monster).moveLeft();		
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+					this.tableau = this.getMonster(this.monster).move(this.tableau, "DOWN");
 				}
 			}
 		
@@ -383,9 +377,7 @@ public class Model extends Observable implements IModel<Hero> {
 			{
 				if(this.isMovePossible(this.getMonster(this.monster).getY(), this.getMonster(this.monster).getX()+1))
 				{
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
-					this.getMonster(this.monster).moveRight();		
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+					this.tableau = this.getMonster(this.monster).move(this.tableau, "RIGHT");
 				}
 			}
 			
@@ -393,9 +385,7 @@ public class Model extends Observable implements IModel<Hero> {
 			{
 				if(this.isMovePossible(this.getMonster(this.monster).getY()+1, this.getMonster(this.monster).getX()))
 				{	
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';					
-					this.getMonster(this.monster).moveDown();		
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+					this.tableau = this.getMonster(this.monster).move(this.tableau, "DOWN");
 				}
 			}
 			
@@ -403,9 +393,7 @@ public class Model extends Observable implements IModel<Hero> {
 			{
 				if(this.isMovePossible(this.getMonster(this.monster).getY()-1, this.getMonster(this.monster).getX()))
 				{
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
-					this.getMonster(this.monster).moveUp();		
-					this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = '1';
+					this.tableau = this.getMonster(this.monster).move(this.tableau, "UP");
 				}
 			}			
 		}
@@ -583,7 +571,6 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	public void animateFire()
 	{
-		System.out.println(this.getMAP().getFire());
 		if(this.getMAP().getFire() == 0)
 		{
 			if(this.getMAP().getFireDirection() == "RIGHT")

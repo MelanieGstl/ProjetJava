@@ -63,4 +63,38 @@ public class Monster{
 		this.death = death;
 	}
 	
+	public char[][] move(char[][] map, String move)
+	{
+		if(this.death == 0)
+		{
+			if(move == "LEFT")
+			{
+				map[this.y][this.x] = ' ';
+				this.moveLeft();
+				map[this.y][this.x] = '1';
+			}	
+			
+			else if(move == "UP")
+			{
+				map[this.y][this.x] = ' ';
+				this.moveUp();
+				map[this.y][this.x] = '1';
+			}	
+			
+			else if(move == "RIGHT")
+			{
+				map[this.y][this.x] = ' ';
+				this.moveRight();
+				map[this.y][this.x] = '1';
+			}	
+			
+			else if(move == "DOWN")
+			{
+				map[this.y][this.x] = ' ';
+				this.moveDown();
+				map[this.y][this.x] = '1';
+			}	
+		}
+		return map;
+	}
 }
