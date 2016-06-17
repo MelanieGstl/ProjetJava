@@ -20,6 +20,50 @@ import element.*;
  */
 public class Model extends Observable implements IModel<Hero> {
 
+	private String[] DBplayerName = new String[6];
+    private int[] DBplayerScore = new int[6];
+    
+    public String getDBplayerName(int i) {
+        return this.DBplayerName[i];
+    }
+
+    public int getDBplayerScore(int i) {
+        return this.DBplayerScore[i];
+    }
+
+    /** setters **/
+    public void setDBplayerName(String DBplayerName[]) {
+        this.DBplayerName = DBplayerName;
+    }
+
+    public void setDBplayerScore(int DBplayerScore[]) {
+        this.DBplayerScore = DBplayerScore;
+    }
+	
+    private void setDBplayer(final String[] name, final int[] score) {
+        this.setDBplayerName(name);
+        this.setDBplayerScore(score);
+    }
+    
+    public void loadHighscore() {
+        try {
+            final DAOScore daoScore = new DAOScore(DBConnection.getInstance().getConnection());
+            this.setDBplayer(daoScore.putHighscores().getName(),daoScore.putHighscores().getScore());
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/** The message. */
 	private String message;
 	

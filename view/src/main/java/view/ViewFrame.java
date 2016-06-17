@@ -175,8 +175,9 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setResizable(false);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
-		this.setSize(650,510);
+		this.setSize(650,580);
 		this.setLocationRelativeTo(null);
+		
 	}
 	
 		/** The name of the player*/
@@ -223,7 +224,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	    this.setVisible(true);*/
 		JOptionPane jOptionPane = new JOptionPane(); 
 		JOptionPane jOptionPane2 = new JOptionPane();
-		this.name = jOptionPane.showInputDialog(null, "Enter your name please", JOptionPane.QUESTION_MESSAGE);
+		this.name = jOptionPane.showInputDialog(null, "Enter your name please", "");
 		if(this.name == null)
 		{
 			this.name = "Unkown";

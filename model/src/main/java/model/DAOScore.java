@@ -80,6 +80,35 @@ import java.sql.SQLException;
 		return null;
 	}
 
+	public LoadHighscore putHighscores() {
+        LoadHighscore loadHighscore = new LoadHighscore();
+        try {
+            String[] name = new String[6];
+            int[] score = new int[6];
+            final String sql = "{call Take_Score()}";
+            final CallableStatement call = this.getConnection().prepareCall(sql);
+            call.execute();
+            final ResultSet resultSet = call.getResultSet();
+            if (resultSet.first()) {
+                for (int m = 0; m < 6; m++) {
+                    name[m] = resultSet.getString("name");
+                    score[m] = resultSet.getInt("score");
+                    resultSet.next();
+                    System.out.println(name[m]+"   "+score[m]);
+                }
+                loadHighscore = new LoadHighscore(name, score);
+            }
+
+            return loadHighscore;
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+	
+	
 	
 }
+	
+
 

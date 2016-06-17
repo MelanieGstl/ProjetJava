@@ -153,4 +153,18 @@ public interface IModel<Hero> {
 	int getLoadMap();
 
 	void setLevel(int level);
+
+	void loadHighscore();
+
+	int getDBplayerScore(int i);
+
+	int getLevel();
+
+	String getDBplayerName(int i);
+
+
+
+	
+
+
 }
