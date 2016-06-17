@@ -762,27 +762,34 @@ public class Model extends Observable implements IModel<Hero> {
 				this.getMonster(this.monster2).setDeath(0);
 				this.getMonster(this.monster3).setDeath(0);
 				this.getMonster(this.monster4).setDeath(0);
-				this.getMAP().setGateX(0);
-				this.getMAP().setGateY(0);
+				this.getMAP().setGateX(25);
+				this.getMAP().setGateY(25);
+				this.getMAP().setEnergyX(25);
+				this.getMAP().setEnergyY(25);
+				this.getMAP().setFire(1);
 				this.getMAP().setScore(this.getMAP().getScore() + 500);
 				
 				if(this.level == 1)
-				{
-					this.loadMap2("TWO");
+				{					
+					this.level = 2;
+					this.loadMap2("TWO");	
 				}
 				
 				else if(this.level == 2)
 				{
+					this.level = 3;
 					this.loadMap2("THREE");
 				}
 				
 				else if(this.level == 3)
 				{
+					this.level = 4;
 					this.loadMap2("FOUR");
 				}
 				
 				else if(this.level == 4)
 				{
+					this.level = 5;
 					this.loadMap2("FIVE");
 				}
 				
@@ -790,6 +797,9 @@ public class Model extends Observable implements IModel<Hero> {
 				{
 					System.out.print("Fini !");
 				}
+				
+				this.getShoot().setX(this.getHero().getX());
+				this.getShoot().setY(this.getHero().getY());
 			}
 		}
 		
