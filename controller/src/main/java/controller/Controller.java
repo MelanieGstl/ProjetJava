@@ -70,6 +70,7 @@ public class Controller implements IController {
 				if(this.model.getLoadMap() == 0)
 				{
 					this.model.loadMap2("ONE");	
+					this.model.setLevel(1);
 				}
 			break;
 				
@@ -77,6 +78,7 @@ public class Controller implements IController {
 				if(this.model.getLoadMap() == 0)
 				{
 					this.model.loadMap2("TWO");
+					this.model.setLevel(2);
 				}
 			break;
 				
@@ -84,6 +86,7 @@ public class Controller implements IController {
 				if(this.model.getLoadMap() == 0)
 				{
 					this.model.loadMap2("THREE");
+					this.model.setLevel(3);
 				}
 			break;
 				
@@ -91,6 +94,7 @@ public class Controller implements IController {
 				if(this.model.getLoadMap() == 0)
 				{
 					this.model.loadMap2("FOUR");
+					this.model.setLevel(4);
 				}
 			break;
 			
@@ -98,6 +102,7 @@ public class Controller implements IController {
 				if(this.model.getLoadMap() == 0)
 				{
 					this.model.loadMap2("FIVE");
+					this.model.setLevel(5);
 				}
 			break;
 			

@@ -151,4 +151,6 @@ public interface IModel<Hero> {
 	void moveDiagoBG();
 
 	int getLoadMap();
+
+	void setLevel(int level);
 }

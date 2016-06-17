@@ -32,6 +32,9 @@ public class Model extends Observable implements IModel<Hero> {
 	/** Height */
 	private int width = 20;
 	
+	/** Level */
+	private int level;
+	
 	/** Hero */
 	public Hero hero;
 	public Monster monster;
@@ -120,6 +123,16 @@ public class Model extends Observable implements IModel<Hero> {
 	public int getScore()
 	{
 		return this.getMAP().getScore();
+	}
+	
+	public int getLevel()
+	{
+		return this.level;
+	}
+	
+	public void setLevel(int level)
+	{
+		this.level = level;
 	}
 	
 	/*
@@ -337,10 +350,6 @@ public class Model extends Observable implements IModel<Hero> {
     }
 
 	public void moveMonster() {
-		
-		// System.out.println("Score : "+this.getMAP().getScore());
-		System.out.println("X : "+this.getShoot().getX());
-		System.out.println("Y : "+this.getShoot().getY());
 		
 		if(this.getMonster(this.monster).getDeath() == 0)
 		{
@@ -734,6 +743,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			this.getMAP().setEnergyX(0);
 			this.getMAP().setEnergyY(0);
+			this.getMAP().setGateOpen(1);
 			this.tableau[this.getMAP().getGateY()][this.getMAP().getGateX()] = 'C';
 			this.getMAP().setScore(this.getMAP().getScore() + 50);
 		}
@@ -742,20 +752,50 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getMAP().getGateOpen() == 0)
 			{
+				System.out.println(this.getMAP().getGateOpen());
 				return true;
 			}
 			
 			else
 			{
-				// WIN
+				this.getMonster(this.monster).setDeath(0);
+				this.getMonster(this.monster2).setDeath(0);
+				this.getMonster(this.monster3).setDeath(0);
+				this.getMonster(this.monster4).setDeath(0);
 				this.getMAP().setGateX(0);
 				this.getMAP().setGateY(0);
 				this.getMAP().setScore(this.getMAP().getScore() + 500);
+				
+				if(this.level == 1)
+				{
+					this.loadMap2("TWO");
+				}
+				
+				else if(this.level == 2)
+				{
+					this.loadMap2("THREE");
+				}
+				
+				else if(this.level == 3)
+				{
+					this.loadMap2("FOUR");
+				}
+				
+				else if(this.level == 4)
+				{
+					this.loadMap2("FIVE");
+				}
+				
+				else if(this.level == 5)
+				{
+					System.out.print("Fini !");
+				}
 			}
 		}
 		
 		return false;
 	}
+	
 
 	public void moveDiagoHD() {
 		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()+1))
@@ -771,6 +811,7 @@ public class Model extends Observable implements IModel<Hero> {
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
 		}
 	}
+	
 
 	public void moveDiagoHG() {
 		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()-1))
@@ -786,6 +827,7 @@ public class Model extends Observable implements IModel<Hero> {
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
 		}
 	}
+	
 
 	public void moveDiagoBD() {
 		if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()+1))
@@ -801,6 +843,8 @@ public class Model extends Observable implements IModel<Hero> {
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
 		}
 	}
+	
+	
 
 	public void moveDiagoBG() {
 		if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()-1))
@@ -816,6 +860,5 @@ public class Model extends Observable implements IModel<Hero> {
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
 		}
 	}
-
 
 }
