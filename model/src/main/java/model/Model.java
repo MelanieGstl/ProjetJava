@@ -39,7 +39,7 @@ public class Model extends Observable implements IModel<Hero> {
 	public Hero hero;
 	
 	/** The first monster. */
-	public Monster monster;
+	public Monster monster1;
 	
 	/** The second monster. */
 	public Monster monster2;
@@ -237,10 +237,12 @@ public class Model extends Observable implements IModel<Hero> {
 	public Model() {
 		this.map = ""; //instanciate attribut map
 		this.hero = new Hero(0, 0); //instanciate an hero
-		this.monster = new Monster(0, 1); //instanciate the first monster
-		this.monster2 = new Monster(0, 2); //instanciate the second monster
-		this.monster3 = new Monster(0, 3); //instanciate the third monster
-		this.monster4 = new Monster(0, 4); //instanciate the forth monster
+
+		this.monster1 = new Monster(0, 1);
+		this.monster2 = new Monster(0, 2);
+		this.monster3 = new Monster(0, 3);
+		this.monster4 = new Monster(0, 4);
+
 		this.shoot = new Shoot(1, 1);
 		this.elementLevel = new ElementLevel(); //instanciate a new element
 		this.message = "";
@@ -376,26 +378,30 @@ public class Model extends Observable implements IModel<Hero> {
                     
                     case '1':
                     	this.tableau[i][j] = '1';
-                    	this.monster.setX(j);
-                    	this.monster.setY(i);
+                    	this.monster1.setX(j);
+                    	this.monster1.setY(i);
+                    	this.getMonster(this.monster1).setDeath(0);
                     break;
                     
                     case '2':
                     	this.tableau[i][j] = '2';
                     	this.monster2.setX(j);
                     	this.monster2.setY(i);
+                    	this.getMonster(this.monster2).setDeath(0);
                     break;
                     
                     case '3':
                     	this.tableau[i][j] = '3';
                     	this.monster3.setX(j);
                     	this.monster3.setY(i);
+                    	this.getMonster(this.monster3).setDeath(0);
                     break;
                     
                     case '4':
                     	this.tableau[i][j] = '4';
                     	this.monster4.setX(j);
                     	this.monster4.setY(i);
+                    	this.getMonster(this.monster4).setDeath(0);
                     break;
                     
                     default:
@@ -513,52 +519,309 @@ public class Model extends Observable implements IModel<Hero> {
         }
     }
 
-	public void moveMonster() {
-		
-		if(this.getMonster(this.monster).getDeath() == 0)
+	public void moveMonster() 
+	{
+
+		if(this.getMonster(this.monster1).getDeath() == 0)
 		{
-			if(this.getMonster(this.monster).getX() > this.getHero().getX())
+			if(this.getMonster(this.monster1).getX() > this.getHero().getX())
 			{
-				if(this.isMovePossible(this.getMonster(this.monster).getY(), this.getMonster(this.monster).getX()-1))
+				if(this.isMovePossible(this.getMonster(this.monster1).getY(), this.getMonster(this.monster1).getX()-1))
 				{
-					this.tableau = this.getMonster(this.monster).move(this.tableau, "LEFT");
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "LEFT");
 				}
-				
-				else if(this.isMovePossible(this.getMonster(this.monster).getY()-1, this.getMonster(this.monster).getX()))
+					
+				else if(this.isMovePossible(this.getMonster(this.monster1).getY()-1, this.getMonster(this.monster1).getX()))
 				{
-					this.tableau = this.getMonster(this.monster).move(this.tableau, "UP");
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "UP");
 				}
-				
-				else if(this.isMovePossible(this.getMonster(this.monster).getY()+1, this.getMonster(this.monster).getX()))
+					
+				else if(this.isMovePossible(this.getMonster(this.monster1).getY()+1, this.getMonster(this.monster1).getX()))
 				{
-					this.tableau = this.getMonster(this.monster).move(this.tableau, "DOWN");
-				}
-			}
-		
-			else if(this.getMonster(this.monster).getX() < this.getHero().getX())
-			{
-				if(this.isMovePossible(this.getMonster(this.monster).getY(), this.getMonster(this.monster).getX()+1))
-				{
-					this.tableau = this.getMonster(this.monster).move(this.tableau, "RIGHT");
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "DOWN");
 				}
 			}
 			
-			else if(this.getMonster(this.monster).getY() < this.getHero().getY())
+			else if(this.getMonster(this.monster1).getX() < this.getHero().getX())
 			{
-				if(this.isMovePossible(this.getMonster(this.monster).getY()+1, this.getMonster(this.monster).getX()))
+				if(this.isMovePossible(this.getMonster(this.monster1).getY(), this.getMonster(this.monster1).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster1).getY()-1, this.getMonster(this.monster1).getX()))
+				{
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "UP");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster1).getY()+1, this.getMonster(this.monster1).getX()))
+				{
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "DOWN");
+				}
+			}
+				
+			else if(this.getMonster(this.monster1).getY() < this.getHero().getY())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster1).getY()+1, this.getMonster(this.monster1).getX()))
 				{	
-					this.tableau = this.getMonster(this.monster).move(this.tableau, "DOWN");
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "DOWN");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster1).getY(), this.getMonster(this.monster1).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster1).getY(), this.getMonster(this.monster1).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "LEFT");
 				}
 			}
-			
-			else if(this.getMonster(this.monster).getY() > this.getHero().getY())
+				
+			else if(this.getMonster(this.monster1).getY() > this.getHero().getY())
 			{
-				if(this.isMovePossible(this.getMonster(this.monster).getY()-1, this.getMonster(this.monster).getX()))
+				if(this.isMovePossible(this.getMonster(this.monster1).getY()-1, this.getMonster(this.monster1).getX()))
 				{
-					this.tableau = this.getMonster(this.monster).move(this.tableau, "UP");
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "UP");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster1).getY(), this.getMonster(this.monster1).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster1).getY(), this.getMonster(this.monster1).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "LEFT");
 				}
 			}			
 		}
+		
+		if(this.getMonster(this.monster2).getDeath() == 0)
+		{
+			if(this.getMonster(this.monster2).getX() > this.getHero().getX())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster2).getY(), this.getMonster(this.monster2).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "LEFT");
+				}
+					
+				else if(this.isMovePossible(this.getMonster(this.monster2).getY()-1, this.getMonster(this.monster2).getX()))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "UP");
+				}
+					
+				else if(this.isMovePossible(this.getMonster(this.monster2).getY()+1, this.getMonster(this.monster2).getX()))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "DOWN");
+				}
+			}
+			
+			else if(this.getMonster(this.monster2).getX() < this.getHero().getX())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster2).getY(), this.getMonster(this.monster2).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster2).getY()-1, this.getMonster(this.monster2).getX()))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "UP");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster2).getY()+1, this.getMonster(this.monster2).getX()))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "DOWN");
+				}
+			}
+				
+			else if(this.getMonster(this.monster2).getY() < this.getHero().getY())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster2).getY()+1, this.getMonster(this.monster2).getX()))
+				{	
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "DOWN");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster2).getY(), this.getMonster(this.monster2).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster2).getY(), this.getMonster(this.monster2).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "LEFT");
+				}
+			}
+				
+			else if(this.getMonster(this.monster2).getY() > this.getHero().getY())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster2).getY()-1, this.getMonster(this.monster2).getX()))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "UP");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster2).getY(), this.getMonster(this.monster2).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster2).getY(), this.getMonster(this.monster2).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster2).move(this.tableau, "LEFT");
+				}
+			}			
+		}
+		
+		if(this.getMonster(this.monster3).getDeath() == 0)
+		{
+			if(this.getMonster(this.monster3).getX() > this.getHero().getX())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster3).getY(), this.getMonster(this.monster3).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "LEFT");
+				}
+					
+				else if(this.isMovePossible(this.getMonster(this.monster3).getY()-1, this.getMonster(this.monster3).getX()))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "UP");
+				}
+					
+				else if(this.isMovePossible(this.getMonster(this.monster3).getY()+1, this.getMonster(this.monster3).getX()))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "DOWN");
+				}
+			}
+			
+			else if(this.getMonster(this.monster3).getX() < this.getHero().getX())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster3).getY(), this.getMonster(this.monster3).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster3).getY()-1, this.getMonster(this.monster3).getX()))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "UP");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster3).getY()+1, this.getMonster(this.monster3).getX()))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "DOWN");
+				}
+			}
+				
+			else if(this.getMonster(this.monster3).getY() < this.getHero().getY())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster3).getY()+1, this.getMonster(this.monster3).getX()))
+				{	
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "DOWN");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster3).getY(), this.getMonster(this.monster3).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster3).getY(), this.getMonster(this.monster3).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "LEFT");
+				}
+			}
+				
+			else if(this.getMonster(this.monster3).getY() > this.getHero().getY())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster3).getY()-1, this.getMonster(this.monster3).getX()))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "UP");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster3).getY(), this.getMonster(this.monster3).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster3).getY(), this.getMonster(this.monster3).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster3).move(this.tableau, "LEFT");
+				}
+			}			
+		}
+		
+		if(this.getMonster(this.monster4).getDeath() == 0)
+		{
+			if(this.getMonster(this.monster4).getX() > this.getHero().getX())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster4).getY(), this.getMonster(this.monster4).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "LEFT");
+				}
+					
+				else if(this.isMovePossible(this.getMonster(this.monster4).getY()-1, this.getMonster(this.monster4).getX()))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "UP");
+				}
+					
+				else if(this.isMovePossible(this.getMonster(this.monster4).getY()+1, this.getMonster(this.monster4).getX()))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "DOWN");
+				}
+			}
+			
+			else if(this.getMonster(this.monster4).getX() < this.getHero().getX())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster4).getY(), this.getMonster(this.monster4).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster1).getY()-1, this.getMonster(this.monster1).getX()))
+				{
+					this.tableau = this.getMonster(this.monster1).move(this.tableau, "UP");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster4).getY()+1, this.getMonster(this.monster4).getX()))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "DOWN");
+				}
+			}
+				
+			else if(this.getMonster(this.monster4).getY() < this.getHero().getY())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster4).getY()+1, this.getMonster(this.monster4).getX()))
+				{	
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "DOWN");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster4).getY(), this.getMonster(this.monster4).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster4).getY(), this.getMonster(this.monster4).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "LEFT");
+				}
+			}
+				
+			else if(this.getMonster(this.monster4).getY() > this.getHero().getY())
+			{
+				if(this.isMovePossible(this.getMonster(this.monster4).getY()-1, this.getMonster(this.monster4).getX()))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "UP");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster4).getY(), this.getMonster(this.monster4).getX()+1))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "RIGHT");
+				}
+				
+				else if(this.isMovePossible(this.getMonster(this.monster4).getY(), this.getMonster(this.monster4).getX()-1))
+				{
+					this.tableau = this.getMonster(this.monster4).move(this.tableau, "LEFT");
+				}
+			}			
+		}
+		
 	}
 	
 	public void setLastMove(String lastKey)
@@ -837,7 +1100,7 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	public boolean checkPosition()
 	{
-		if(this.getHero().getX() == this.getMonster(this.monster).getX() && this.getHero().getY() == this.getMonster(this.monster).getY())
+		if(this.getHero().getX() == this.getMonster(this.monster1).getX() && this.getHero().getY() == this.getMonster(this.monster1).getY())
 		{
 			return true;
 		}
@@ -863,13 +1126,13 @@ public class Model extends Observable implements IModel<Hero> {
 			this.getElementLevel().setFire(1);
 		}
 		
-		if(this.getShoot().getX() == this.getMonster(this.monster).getX() && this.getShoot().getY() == this.getMonster(this.monster).getY())
+		if(this.getShoot().getX() == this.getMonster(this.monster1).getX() && this.getShoot().getY() == this.getMonster(this.monster1).getY())
 		{
-			this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
+			this.tableau[this.getMonster(this.monster1).getY()][this.getMonster(this.monster1).getX()] = ' ';
 			this.getElementLevel().setFire(1);
-			this.getMonster(this.monster).setDeath(1);
-			this.getMonster(this.monster).setX(0);
-			this.getMonster(this.monster).setY(0);
+			this.getMonster(this.monster1).setDeath(1);
+			this.getMonster(this.monster1).setX(0);
+			this.getMonster(this.monster1).setY(0);
 			this.getElementLevel().setScore(this.getElementLevel().getScore() + 250);
 		}
 		
@@ -922,10 +1185,10 @@ public class Model extends Observable implements IModel<Hero> {
 			
 			else
 			{
-				this.getMonster(this.monster).setDeath(0);
-				this.getMonster(this.monster2).setDeath(0);
-				this.getMonster(this.monster3).setDeath(0);
-				this.getMonster(this.monster4).setDeath(0);
+				this.getMonster(this.monster1).setDeath(1);
+				this.getMonster(this.monster2).setDeath(1);
+				this.getMonster(this.monster3).setDeath(1);
+				this.getMonster(this.monster4).setDeath(1);
 				this.getElementLevel().setGateX(25);
 				this.getElementLevel().setGateY(25);
 				this.getElementLevel().setEnergyX(25);

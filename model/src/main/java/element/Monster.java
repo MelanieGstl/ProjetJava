@@ -9,7 +9,7 @@ public class Monster{
 	
 	private int x;
 	private int y;
-	private int death;
+	private int death = 1;
 	
 	public Monster(int x, int y)
 	{
