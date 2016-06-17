@@ -1,6 +1,6 @@
 package element;
 
-public class Map {
+public class ElementLevel {
 	public int energyX = 25;
 	public int energyY = 25;
 	public int gateX = 25;

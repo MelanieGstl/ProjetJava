@@ -81,27 +81,42 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	/** Hero */
 	public Hero hero;
-	public Monster monster;
-	public Monster monster2;
-	public Monster monster3;
-	public Monster monster4;
-	public Shoot shoot;
-	public Map MAP;
 	
+	/** The first monster. */
+	public Monster monster;
+	
+	/** The second monster. */
+	public Monster monster2;
+	
+	/** The third monster. */
+	public Monster monster3;
+	
+	/** The forth monster. */
+	public Monster monster4;
+	
+	/** The shoot. */
+	public Shoot shoot;
+	
+	/** The . */
+	public ElementLevel elementLevel;
+	
+	/** The table for the map. */
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 		
+	
+	/////CONSTRUCTOR///////////////////////////////////
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
-		this.map = "";
-		this.hero = new Hero(0, 0);
-		this.monster = new Monster(0, 1);
-		this.monster2 = new Monster(0, 2);
-		this.monster3 = new Monster(0, 3);
-		this.monster4 = new Monster(0, 4);
+		this.map = ""; //instanciate attribut map
+		this.hero = new Hero(0, 0); //instanciate an hero
+		this.monster = new Monster(0, 1); //instanciate the first monster
+		this.monster2 = new Monster(0, 2); //instanciate the second monster
+		this.monster3 = new Monster(0, 3); //instanciate the third monster
+		this.monster4 = new Monster(0, 4); //instanciate the forth monster
 		this.shoot = new Shoot(1, 1);
-		this.MAP = new Map();
+		this.elementLevel = new ElementLevel(); //instanciate 
 		this.message = "";
 	}
 	
@@ -166,7 +181,7 @@ public class Model extends Observable implements IModel<Hero> {
 
 	public int getScore()
 	{
-		return this.getMAP().getScore();
+		return this.getElementLevel().getScore();
 	}
 	
 	public int getLevel()
@@ -201,8 +216,8 @@ public class Model extends Observable implements IModel<Hero> {
     	return this.shoot;
     }
     
-	public Map getMAP() {
-		return this.MAP;
+	public ElementLevel getElementLevel() {
+		return this.elementLevel;
 	}
 	
 	public void loadMap()
@@ -236,15 +251,15 @@ public class Model extends Observable implements IModel<Hero> {
                     
                     case 'c':                       
                     	this.tableau[i][j] = 'c'; 
-                    	this.getMAP().setGateX(j);
-                    	this.getMAP().setGateY(i);
+                    	this.getElementLevel().setGateX(j);
+                    	this.getElementLevel().setGateY(i);
                     	//System.out.print(this.tableau[i][j]);
                     break;
                     
                     case 'e':                       
                     	this.tableau[i][j] = 'e'; 
-                    	this.getMAP().setEnergyX(j);
-                    	this.getMAP().setEnergyY(i);
+                    	this.getElementLevel().setEnergyX(j);
+                    	this.getElementLevel().setEnergyY(i);
                     	//System.out.print(this.tableau[i][j]);
                     break;
                     
@@ -309,7 +324,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()-1, this.getHero().getX()) == 'p')
 			{
-				this.getMAP().setScore(this.getMAP().getScore() + 100);		
+				this.getElementLevel().setScore(this.getElementLevel().getScore() + 100);		
 			}
 			
 			this.tableau = this.getHero().move(this.tableau, "UP");				
@@ -319,7 +334,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY(), this.getHero().getX()-1) == 'p')
 			{
-				this.getMAP().setScore(this.getMAP().getScore() + 100);			
+				this.getElementLevel().setScore(this.getElementLevel().getScore() + 100);			
 			}
 			
 			this.tableau = this.getHero().move(this.tableau, "LEFT");			
@@ -329,7 +344,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY(), this.getHero().getX()+1) == 'p')
 			{
-				this.getMAP().setScore(this.getMAP().getScore() + 100);			
+				this.getElementLevel().setScore(this.getElementLevel().getScore() + 100);			
 			}
 			
 			this.tableau = this.getHero().move(this.tableau, "RIGHT");
@@ -339,7 +354,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()+1, this.getHero().getX()) == 'p')
 			{
-				this.getMAP().setScore(this.getMAP().getScore() + 100);			
+				this.getElementLevel().setScore(this.getElementLevel().getScore() + 100);			
 			}
 			
 			this.tableau = this.getHero().move(this.tableau, "DOWN");
@@ -380,14 +395,14 @@ public class Model extends Observable implements IModel<Hero> {
     
     public int getLoadMap()
     {
-    	return this.getMAP().getLoadMap();
+    	return this.getElementLevel().getLoadMap();
     }
     
     public void loadMap2(String key) {
         try {
             final DAOLoadMap daoLoadMap = new DAOLoadMap(DBConnection.getInstance().getConnection());
             this.setMap(daoLoadMap.find(key).getMap());
-            this.getMAP().setLoadMap(1);
+            this.getElementLevel().setLoadMap(1);
         } catch (final SQLException e) {
             e.printStackTrace();
         }
@@ -443,19 +458,19 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	public void setLastMove(String lastKey)
 	{
-		this.getMAP().setLastKey(lastKey);
+		this.getElementLevel().setLastKey(lastKey);
 	}
     
     public String getLastMove()
     {
-    	return this.getMAP().getLastKey();
+    	return this.getElementLevel().getLastKey();
     }
 
 	public void shoot() 
 	{		
-		if(this.getMAP().getFire() == 1)
+		if(this.getElementLevel().getFire() == 1)
 		{
-			this.getMAP().setFire(0);
+			this.getElementLevel().setFire(0);
 			
 			if(getLastMove() == "LEFT")
 			{	
@@ -565,7 +580,7 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	public void animateFire()
 	{
-		if(this.getMAP().getFire() == 0)
+		if(this.getElementLevel().getFire() == 0)
 		{
 			if(this.getShoot().getFireDirection() == "RIGHT")
 			{
@@ -740,63 +755,63 @@ public class Model extends Observable implements IModel<Hero> {
 		if(this.getHero().getX() == this.getShoot().getX() && this.getHero().getY() == this.getShoot().getY())
 		{
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
-			this.getMAP().setFire(1);
+			this.getElementLevel().setFire(1);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster).getX() && this.getShoot().getY() == this.getMonster(this.monster).getY())
 		{
 			this.tableau[this.getMonster(this.monster).getY()][this.getMonster(this.monster).getX()] = ' ';
-			this.getMAP().setFire(1);
+			this.getElementLevel().setFire(1);
 			this.getMonster(this.monster).setDeath(1);
 			this.getMonster(this.monster).setX(0);
 			this.getMonster(this.monster).setY(0);
-			this.getMAP().setScore(this.getMAP().getScore() + 250);
+			this.getElementLevel().setScore(this.getElementLevel().getScore() + 250);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster2).getX() && this.getShoot().getY() == this.getMonster(this.monster2).getY())
 		{
 			this.tableau[this.getMonster(this.monster2).getY()][this.getMonster(this.monster2).getX()] = ' ';
-			this.getMAP().setFire(1);
+			this.getElementLevel().setFire(1);
 			this.getMonster(this.monster2).setDeath(1);
 			this.getMonster(this.monster2).setX(0);
 			this.getMonster(this.monster2).setY(0);
-			this.getMAP().setScore(this.getMAP().getScore() + 250);
+			this.getElementLevel().setScore(this.getElementLevel().getScore() + 250);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster3).getX() && this.getShoot().getY() == this.getMonster(this.monster3).getY())
 		{
 			this.tableau[this.getMonster(this.monster3).getY()][this.getMonster(this.monster3).getX()] = ' ';
-			this.getMAP().setFire(1);
+			this.getElementLevel().setFire(1);
 			this.getMonster(this.monster3).setDeath(1);
 			this.getMonster(this.monster3).setX(0);
 			this.getMonster(this.monster3).setY(0);
-			this.getMAP().setScore(this.getMAP().getScore() + 250);
+			this.getElementLevel().setScore(this.getElementLevel().getScore() + 250);
 		}
 		
 		if(this.getShoot().getX() == this.getMonster(this.monster4).getX() && this.getShoot().getY() == this.getMonster(this.monster4).getY())
 		{
 			this.tableau[this.getMonster(this.monster4).getY()][this.getMonster(this.monster4).getX()] = ' ';
-			this.getMAP().setFire(1);
+			this.getElementLevel().setFire(1);
 			this.getMonster(this.monster4).setDeath(1);
 			this.getMonster(this.monster4).setX(0);
 			this.getMonster(this.monster4).setY(0);
-			this.getMAP().setScore(this.getMAP().getScore() + 250);
+			this.getElementLevel().setScore(this.getElementLevel().getScore() + 250);
 		}
 		
-		if(this.getHero().getX() == this.getMAP().getEnergyX() && this.getHero().getY() == this.getMAP().getEnergyY())
+		if(this.getHero().getX() == this.getElementLevel().getEnergyX() && this.getHero().getY() == this.getElementLevel().getEnergyY())
 		{
-			this.getMAP().setEnergyX(0);
-			this.getMAP().setEnergyY(0);
-			this.getMAP().setGateOpen(1);
-			this.tableau[this.getMAP().getGateY()][this.getMAP().getGateX()] = 'C';
-			this.getMAP().setScore(this.getMAP().getScore() + 50);
+			this.getElementLevel().setEnergyX(0);
+			this.getElementLevel().setEnergyY(0);
+			this.getElementLevel().setGateOpen(1);
+			this.tableau[this.getElementLevel().getGateY()][this.getElementLevel().getGateX()] = 'C';
+			this.getElementLevel().setScore(this.getElementLevel().getScore() + 50);
 		}
 		
-		if(this.getHero().getX() == this.getMAP().getGateX() && this.getHero().getY() == this.getMAP().getGateY())
+		if(this.getHero().getX() == this.getElementLevel().getGateX() && this.getHero().getY() == this.getElementLevel().getGateY())
 		{
-			if(this.getMAP().getGateOpen() == 0)
+			if(this.getElementLevel().getGateOpen() == 0)
 			{
-				System.out.println(this.getMAP().getGateOpen());
+				System.out.println(this.getElementLevel().getGateOpen());
 				return true;
 			}
 			
@@ -806,12 +821,12 @@ public class Model extends Observable implements IModel<Hero> {
 				this.getMonster(this.monster2).setDeath(0);
 				this.getMonster(this.monster3).setDeath(0);
 				this.getMonster(this.monster4).setDeath(0);
-				this.getMAP().setGateX(25);
-				this.getMAP().setGateY(25);
-				this.getMAP().setEnergyX(25);
-				this.getMAP().setEnergyY(25);
-				this.getMAP().setFire(1);
-				this.getMAP().setScore(this.getMAP().getScore() + 500);
+				this.getElementLevel().setGateX(25);
+				this.getElementLevel().setGateY(25);
+				this.getElementLevel().setEnergyX(25);
+				this.getElementLevel().setEnergyY(25);
+				this.getElementLevel().setFire(1);
+				this.getElementLevel().setScore(this.getElementLevel().getScore() + 500);
 				
 				if(this.level == 1)
 				{					
@@ -856,7 +871,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()-1, this.getHero().getX()+1) == 'p')
 			{
-				this.getMAP().setScore(this.getMAP().getScore() + 100);			
+				this.getElementLevel().setScore(this.getElementLevel().getScore() + 100);			
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -872,7 +887,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()-1, this.getHero().getX()-1) == 'p')
 			{
-				this.getMAP().setScore(this.getMAP().getScore() + 100);		
+				this.getElementLevel().setScore(this.getElementLevel().getScore() + 100);		
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -888,7 +903,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()+1, this.getHero().getX()+1) == 'p')
 			{
-				this.getMAP().setScore(this.getMAP().getScore() + 100);		
+				this.getElementLevel().setScore(this.getElementLevel().getScore() + 100);		
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
@@ -905,7 +920,7 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElement(this.getHero().getY()+1, this.getHero().getX()-1) == 'p')
 			{
-				this.getMAP().setScore(this.getMAP().getScore() + 100);		
+				this.getElementLevel().setScore(this.getElementLevel().getScore() + 100);		
 			}
 			
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = ' ';
