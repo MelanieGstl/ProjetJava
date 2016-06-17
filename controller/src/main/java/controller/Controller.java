@@ -16,28 +16,9 @@ public class Controller implements IController {
 
 	/** The model. */
 	private IModel	model;
+	
 
-	/**
-	 * Instantiates a new controller.
-	 *
-	 * @param view
-	 *          the view
-	 * @param model
-	 *          the model
-	 */
-	public Controller(final IView view, final IModel model) {
-		this.setView(view);
-		this.setModel(model);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see contract.IController#control()
-	 */
-	public void control() {
-		this.view.printMap("Press 1, 2, 3, 4 or 5 to choose the level that you want.");
-	}
+/////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
 
 	/**
 	 * Sets the view.
@@ -59,6 +40,35 @@ public class Controller implements IController {
 		this.model = model;
 	}
 
+
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
+
+	/**
+	 * Instantiates a new controller.
+	 *
+	 * @param view
+	 *          the view
+	 * @param model
+	 *          the model
+	 */
+	public Controller(final IView view, final IModel model) {
+		this.setView(view);
+		this.setModel(model);
+	}
+
+
+////////////////////////////////////////////////////////METHODS///////////////////////////////////////////////////////////////
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see contract.IController#control()
+	 */
+	public void control() {
+		this.view.printMap("Press 1, 2, 3, 4 or 5 to choose the level that you want.");
+	}
+
+	
 	/*
 	 * (non-Javadoc)
 	 *

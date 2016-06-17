@@ -18,8 +18,29 @@ import contract.IView;
 public class View implements IView, Runnable {
 
 	/** The frame. */
-	private final ViewFrame viewFrame;
-
+	private final ViewFrame viewFrame;	
+	
+	
+//////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
+	
+	/**
+	 * Sets the controller.
+	 *
+	 *<p>
+	 *This method set a new controller
+	 *<p>
+	 *
+	 * @param controller
+	 *          the new controller
+	 */
+	public void setController(final IController controller) {
+		this.viewFrame.setController(controller);
+	}
+	
+	
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
+	
+	
 	/**
 	 * Instantiates a new view.
 	 * 
@@ -34,6 +55,9 @@ public class View implements IView, Runnable {
 		this.viewFrame = new ViewFrame(model);
 		SwingUtilities.invokeLater(this);
 	}
+	
+	
+////////////////////////////////////////////////METHODS//////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * Key code to controller order.
@@ -87,7 +111,7 @@ public class View implements IView, Runnable {
 	}
 
 	/**
-	 * Prints the map.
+	 * Prints the map in the window.
 	 * 
 	 *  @param map
 	 *  		the map
@@ -105,17 +129,4 @@ public class View implements IView, Runnable {
 		this.viewFrame.setVisible(true);
 	}
 
-	/**
-	 * Sets the controller.
-	 *
-	 *<p>
-	 *This method set a new controller
-	 *<p>
-	 *
-	 * @param controller
-	 *          the new controller
-	 */
-	public void setController(final IController controller) {
-		this.viewFrame.setController(controller);
-	}
 }

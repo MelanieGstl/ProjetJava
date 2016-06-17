@@ -27,26 +27,109 @@ import javax.swing.JTextField;
 class ViewFrame extends JFrame implements KeyListener {
 
 	/** The model. */
-	private IModel						model;
-
+	private IModel model;
+	
 	/** The controller. */
-	private IController				controller;
+	private IController controller;
 	
 	/** The Constant serialVersionUID. */
-	private static final long	serialVersionUID	= -697358409737458175L;
+	private static final long serialVersionUID = -697358409737458175L;
+	
+	/** The name of the player*/
+  	private String name;
+  	
+  	/** The score of the player*/ 
+  	private int score;
 
-	/**
-	 * Instantiates a new view frame.
-	 *<p>
-	 * In this frame we can post a panel to see the graphic game.
+  	
+  /////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
+  	
+  	/**
+	 * Gets the controller.
+	 *
+	 * <p>
+	 * This method return the controller we used.
 	 * <p>
 	 * 
-	 * @param model
-	 *          the model
-	 * @throws HeadlessException
-	 *           the headless exception : Thrown when code that is dependent on a keyboard, display, or mouse 
-	 *           is called in an environment that does not support a keyboard, display, or mouse
+	 * @return the controller
 	 */
+	private IController getController() {
+		return this.controller;
+	}
+  	
+	
+	/**
+	 * Gets the model.
+	 * 
+	 * <p>
+	 * This method return the controller we used.
+	 * <p>
+	 *
+	 * @return the model
+	 */
+	protected IModel getModel() {
+		return this.model;
+	}
+  	
+	
+	/**
+	 * Gets the name of the player.
+	 * 
+	 * <p>
+	 * This method name of the player which is enter in the window.
+	 * <p>
+	 *
+	 * @return the name
+	 */
+  	public String getName(){
+  		return this.name;
+  	}
+	
+ //////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
+  	
+	/**
+	 * Sets the controller.
+	 *
+	 *<p>
+	 *This method set a controller
+	 *<p>
+	 * @param controller
+	 *          the new controller
+	 */
+	protected void setController(final IController controller) {
+		this.controller = controller;
+	}
+
+
+	/**
+	 * Sets the model.
+	 * 
+	 *<p>
+	 *This method set a new model
+	 *<p>
+	 *
+	 * @param model
+	 *          the new model
+	 */
+	private void setModel(final IModel model) {
+		this.model = model;
+	}
+  	
+  	
+  ///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
+	
+	/**
+	* Instantiates a new view frame.
+	*<p>
+	* In this frame we can post a panel to see the graphic game.
+	* <p>
+	* 
+	* @param model
+	*          the model
+	* @throws HeadlessException
+	*           the headless exception : Thrown when code that is dependent on a keyboard, display, or mouse 
+	*           is called in an environment that does not support a keyboard, display, or mouse
+	*/
 	public ViewFrame(final IModel model) throws HeadlessException {
 		this.buildViewFrame(model);
 	}
@@ -106,57 +189,8 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.buildViewFrame(model);
 	}
 
-	/**
-	 * Gets the controller.
-	 *
-	 * <p>
-	 * This method return the controller we used.
-	 * <p>
-	 * @return the controller
-	 */
-	private IController getController() {
-		return this.controller;
-	}
-
-	/**
-	 * Sets the controller.
-	 *
-	 *<p>
-	 *This method set a new controller
-	 *<p>
-	 * @param controller
-	 *          the new controller
-	 */
-	protected void setController(final IController controller) {
-		this.controller = controller;
-	}
-
-	/**
-	 * Gets the model.
-	 * 
-	 * <p>
-	 * This method return the controller we used.
-	 * <p>
-	 *
-	 * @return the model
-	 */
-	protected IModel getModel() {
-		return this.model;
-	}
-
-	/**
-	 * Sets the model.
-	 * 
-	 *<p>
-	 *This method set a new model
-	 *<p>
-	 *
-	 * @param model
-	 *          the new model
-	 */
-	private void setModel(final IModel model) {
-		this.model = model;
-	}
+	
+////////////////////////////////////////////////METHODS//////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * Builds the view frame.
@@ -177,34 +211,16 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setContentPane(new ViewPanel(this));
 		this.setSize(650,580);
 		this.setLocationRelativeTo(null);
-		
 	}
 	
-		/** The name of the player*/
-	  	private String name;
 	  	
-	  	/** The score of the player*/ 
-	  	private int score;
-	  	
-	  	/**
-		 * Gets the name of the player.
-		 * 
-		 * <p>
-		 * This method name of the player which is enter in the window.
-		 * <p>
-		 *
-		 * @return the name
-		 */
-	  	public String getName(){
-	  		return this.name;
-	  	}
-		/**
-		 * Builds the window for the score.
-		 * 
-		 * <p>
-		 * This method is used to print a window to enter the name of the player. With this name we can save the score.
-		 * <p>
-		 */  	
+	/**
+	* Builds the window for the score.
+	* 
+	* <p>
+	* This method is used to print a window to enter the name of the player. With this name we can save the score.
+	* <p>
+	*/  	
 	public void FenetreScore() {
 		/*this.setTitle("Score");
 		this.setSize(300, 300);
@@ -253,6 +269,8 @@ class ViewFrame extends JFrame implements KeyListener {
 		// this.getController().orderPerform(View.keyCodeToControllerOrder(e.getKeyCode()));
 	}
 
+	
+	
 	/*
 	 * (non-Javadoc)
 	 *

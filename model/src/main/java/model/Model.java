@@ -16,54 +16,10 @@ import element.*;
 /**
  * The Class Model.
  *
- * @author Jean-Aymeric Diet
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 public class Model extends Observable implements IModel<Hero> {
 
-	private String[] DBplayerName = new String[6];
-    private int[] DBplayerScore = new int[6];
-    
-    public String getDBplayerName(int i) {
-        return this.DBplayerName[i];
-    }
-
-    public int getDBplayerScore(int i) {
-        return this.DBplayerScore[i];
-    }
-
-    /** setters **/
-    public void setDBplayerName(String DBplayerName[]) {
-        this.DBplayerName = DBplayerName;
-    }
-
-    public void setDBplayerScore(int DBplayerScore[]) {
-        this.DBplayerScore = DBplayerScore;
-    }
-	
-    private void setDBplayer(final String[] name, final int[] score) {
-        this.setDBplayerName(name);
-        this.setDBplayerScore(score);
-    }
-    
-    public void loadHighscore() {
-        try {
-            final DAOScore daoScore = new DAOScore(DBConnection.getInstance().getConnection());
-            this.setDBplayer(daoScore.putHighscores().getName(),daoScore.putHighscores().getScore());
-        } catch (final SQLException e) {
-            e.printStackTrace();
-        }
-    }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/** The message. */
 	private String message;
 	
@@ -102,35 +58,41 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	/** The table for the map. */
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
-		
 	
-	/////CONSTRUCTOR///////////////////////////////////
-	/**
-	 * Instantiates a new model.
-	 */
-	public Model() {
-		this.map = ""; //instanciate attribut map
-		this.hero = new Hero(0, 0); //instanciate an hero
-		this.monster = new Monster(0, 1); //instanciate the first monster
-		this.monster2 = new Monster(0, 2); //instanciate the second monster
-		this.monster3 = new Monster(0, 3); //instanciate the third monster
-		this.monster4 = new Monster(0, 4); //instanciate the forth monster
-		this.shoot = new Shoot(1, 1);
-		this.elementLevel = new ElementLevel(); //instanciate 
-		this.message = "";
-	}
+	/** The name of the player */
+	private String[] DBplayerName = new String[6];
 	
-	/*/**
-	 * Instantiates a new level with the file given
-	 * @param fileName
-	 * @throws IOException
-	 */
-	/*public Model(final String fileName) throws IOException {
-		this();
-		this.loadFile(fileName);
-	*/
+	/** The score of the player */
+    private int[] DBplayerScore = new int[6];
 	
-	/*
+	
+/////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
+
+    /** 
+     * Gets the name of the player
+     * 
+     *   @param i
+     *   
+     *   @ return DBplayerName
+     *   				the name of the player
+     */
+    public String getDBplayerName(int i) {
+        return this.DBplayerName[i];
+    }
+    
+    /** 
+     * Gets the score of the player
+     * 
+     *   @param i
+     *   
+     *   @ return DBplayerScore
+     *   				the score of the player at the end of the game
+     */
+    public int getDBplayerScore(int i) {
+        return this.DBplayerScore[i];
+    }
+    
+    /*
 	 * (non-Javadoc)
 	 *
 	 * @see contract.IModel#getMessage()
@@ -138,8 +100,113 @@ public class Model extends Observable implements IModel<Hero> {
 	public String getMessage() {
 		return this.message;
 	}
+	
+	/** 
+	 * Gets the score
+	 * 
+	 * @return getElementLevel().getScore()
+	 * 				the score during the game
+	 * 
+	 */
+	public int getScore()
+	{
+		return this.getElementLevel().getScore();
+	}
+	
+	/** 
+	 * Gets the level
+	 * 
+	 * @return level
+	 * 				the level
+	 * 
+	 */
+	public int getLevel()
+	{
+		return this.level;
+	}
+	
+	/**  
+	 * Gets the hero
+	 * 
+	 * @return hero
+	 * 			the hero
+	 * 
+	 */
+	public Hero getHero() {
+		return this.hero;
+	}
+    
+	/**  
+	 * Gets the hero
+	 * 
+	 * @return monster
+	 * 			the hero
+	 * 
+	 */
+    public Monster getMonster(Monster monster) {
+		return monster;
+	}
+    
+    /**  
+	 * Gets the shoot
+	 * 
+	 * @return shoot
+	 * 			the shoot
+	 * 
+	 */
+    public Shoot getShoot()
+    {
+    	return this.shoot;
+    }
+    
+    /**  
+	 * Gets an element in a level
+	 * 
+	 * @return elementLevel
+	 * 			the element level
+	 * 
+	 */
+	public ElementLevel getElementLevel() {
+		return this.elementLevel;
+	}
 
-	/**
+/////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
+
+    /** 
+     * Set the name of the player
+     * 
+     *   @param DBplayerName
+     *   
+     */
+    public void setDBplayerName(String DBplayerName[]) {
+        this.DBplayerName = DBplayerName;
+    }
+
+    /** 
+     * Set the score of the player
+     * 
+     *   @param DBplayerScore
+     *   
+     */
+    public void setDBplayerScore(int DBplayerScore[]) {
+        this.DBplayerScore = DBplayerScore;
+    }
+	
+    /** 
+     * Set the player
+     * 
+     *   @param name
+     *   		the name of the player
+     *   @param score
+     *   		the score of the player
+     *   
+     */
+    private void setDBplayer(final String[] name, final int[] score) {
+        this.setDBplayerName(name);
+        this.setDBplayerScore(score);
+    }
+    
+    /**
 	 * Sets the message.
 	 *
 	 * @param message
@@ -151,6 +218,51 @@ public class Model extends Observable implements IModel<Hero> {
 		this.notifyObservers();
 	}
 
+	/**
+	 * Sets the level.
+	 *
+	 * @param level
+	 *          the new level
+	 */
+	public void setLevel(int level)
+	{
+		this.level = level;
+	}
+
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
+
+    /**
+	 * Instantiates a new model.
+	 */
+	public Model() {
+		this.map = ""; //instanciate attribut map
+		this.hero = new Hero(0, 0); //instanciate an hero
+		this.monster = new Monster(0, 1); //instanciate the first monster
+		this.monster2 = new Monster(0, 2); //instanciate the second monster
+		this.monster3 = new Monster(0, 3); //instanciate the third monster
+		this.monster4 = new Monster(0, 4); //instanciate the forth monster
+		this.shoot = new Shoot(1, 1);
+		this.elementLevel = new ElementLevel(); //instanciate a new element
+		this.message = "";
+	}
+
+
+////////////////////////////////////////////////////////METHODS///////////////////////////////////////////////////////////////
+
+    /**  
+     * Load the highscores
+     * 
+     */
+    public void loadHighscore() {
+        try {
+            final DAOScore daoScore = new DAOScore(DBConnection.getInstance().getConnection());
+            this.setDBplayer(daoScore.putHighscores().getName(),daoScore.putHighscores().getScore());
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	
 	/*
 	 * (non-Javadoc)
 	 *
@@ -165,10 +277,10 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 	
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Insert a score in the DataBase
 	 *
-	 * @see contract.IModel#getMessage(java.lang.String)
+	 * 
 	 */
 	public void InsertScore(final String name, final int score) {
 		try {
@@ -179,21 +291,6 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 
-	public int getScore()
-	{
-		return this.getElementLevel().getScore();
-	}
-	
-	public int getLevel()
-	{
-		return this.level;
-	}
-	
-	public void setLevel(int level)
-	{
-		this.level = level;
-	}
-	
 	/*
 	 * (non-Javadoc)
 	 *
@@ -203,22 +300,30 @@ public class Model extends Observable implements IModel<Hero> {
 		return this;
 	}
 	
-    public Hero getHero() {
-		return this.hero;
-	}
+	
+	
+	
+	
+	
+	
     
-    public Monster getMonster(Monster monster) {
-		return monster;
-	}
-    
-    public Shoot getShoot()
-    {
-    	return this.shoot;
-    }
-    
-	public ElementLevel getElementLevel() {
-		return this.elementLevel;
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void loadMap()
 	{		

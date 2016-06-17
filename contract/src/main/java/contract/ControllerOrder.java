@@ -5,6 +5,7 @@ package contract;
  *
  * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
+
 public enum ControllerOrder {
 
 	ONE,

@@ -21,7 +21,7 @@ class ViewPanel extends JPanel implements Observer {
 	/** The view frame. */
 	private ViewFrame viewFrame;
 	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	private int gameOver = 0;
 	
 	/** The Constant serialVersionUID. */
@@ -30,7 +30,36 @@ class ViewPanel extends JPanel implements Observer {
 	/** Table with the map which is read */
 	private char[][] map;
 	
+	/** Attribute used to calculat to moment when we have to write the score on in the window */
 	private int h = 0;
+
+	
+/////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
+	
+	/**
+	 * Gets the view frame.
+	 *
+	 * @return the view frame
+	 */
+	private ViewFrame getViewFrame() {
+		return this.viewFrame;
+	}
+	
+	
+/////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
+
+	/**
+	 * Sets the view frame.
+	 *
+	 * @param viewFrame
+	 *          the new view frame
+	 */
+	private void setViewFrame(final ViewFrame viewFrame) {
+		this.viewFrame = viewFrame;
+	}
+
+
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
 
 	/**
 	 * Instantiates a new view panel.
@@ -43,27 +72,9 @@ class ViewPanel extends JPanel implements Observer {
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
 
-	//public char[][] map = new char[12][21];
 
-	/**
-	 * Gets the view frame.
-	 *
-	 * @return the view frame
-	 */
-	private ViewFrame getViewFrame() {
-		return this.viewFrame;
-	}
-
-	/**
-	 * Sets the view frame.
-	 *
-	 * @param viewFrame
-	 *          the new view frame
-	 */
-	private void setViewFrame(final ViewFrame viewFrame) {
-		this.viewFrame = viewFrame;
-	}
-
+////////////////////////////////////////////////////////METHODS///////////////////////////////////////////////////////////////
+	
 	/*
 	 * (non-Javadoc)
 	 *
@@ -79,7 +90,6 @@ class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());		
@@ -264,16 +274,18 @@ class ViewPanel extends JPanel implements Observer {
 		
 		
 		
-		
-		if (this.h < 1) {		/** display highscore log only when you start the game **/
+		//Write the best score at the beginning of the game only when we start the game
+		if (this.h < 1) {		
 			this.viewFrame.getModel().loadHighscore();
 			for(int c = 1;c < 8; c++){
 				if(c==1) {
-					graphics.setColor(Color.RED);
+					graphics.setColor(Color.PINK);
+					graphics.drawString("This are the best score for this game, applause us !!",256,64*c);
+					graphics.setColor(Color.YELLOW);
 					graphics.drawString("Highscores :",256,64+32*c);
 				}
 				else {
-					graphics.setColor(Color.WHITE);
+					graphics.setColor(Color.CYAN);
 					for (int i = 0 ; i < 6;) {
 						graphics.drawString(this.viewFrame.getModel().getDBplayerName(i) + " :  " + this.viewFrame.getModel().getDBplayerScore(i), 256, (128+ (32 * i)));
 						i++;
@@ -284,14 +296,14 @@ class ViewPanel extends JPanel implements Observer {
 		}
 		this.h++;
 		
+		//Print the score and the level in the bottom of the window 
 		if(h>2) {
 			graphics.setColor(Color.MAGENTA);
 			graphics.drawString("--> Score : "+ this.viewFrame.getModel().getScore(), 4, this.getHeight()-10);
+			graphics.setColor(Color.PINK);
 			graphics.drawString("--> Level : " + this.viewFrame.getModel().getLevel(), 200, this.getHeight()-10);
 			graphics.setColor(Color.BLACK);
-		}
-		
-		
+		}	
 		
 	}
 	
