@@ -94,7 +94,6 @@ import java.sql.SQLException;
                     name[m] = resultSet.getString("name");
                     score[m] = resultSet.getInt("score");
                     resultSet.next();
-                    System.out.println(name[m]+"   "+score[m]);
                 }
                 loadHighscore = new LoadHighscore(name, score);
             }

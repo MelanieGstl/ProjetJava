@@ -87,7 +87,7 @@ public class ModelTest {
 	
 	
 	
-	@Test
+	/*@Test
 	public void testIsMovePossible(){
 		Assert.assertEquals(true, this.model.isMovePossible(0, 0));
 	}
@@ -95,7 +95,7 @@ public class ModelTest {
 	@Test
 	public void testIsMovePossible2(){
 		Assert.assertEquals(true, this.model.isMovePossible2(0, 0));
-	}
+	}*/
 	
 	@Test
 	public void testMoveUp(){
