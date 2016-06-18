@@ -985,7 +985,6 @@ public class Model extends Observable implements IModel<Hero> {
 		{
 			if(this.getElementLevel().getGateOpen() == 0)
 			{
-				System.out.println(this.getElementLevel().getGateOpen());
 				return true;
 			}
 			
@@ -1001,6 +1000,7 @@ public class Model extends Observable implements IModel<Hero> {
 				this.getElementLevel().setEnergyX(25);
 				this.getElementLevel().setEnergyY(25);
 				this.getElementLevel().setFire(1);
+				this.getElementLevel().setGateOpen(0);
 				this.getElementLevel().setScore(this.getElementLevel().getScore() + 500);
 				
 				if(this.level == 1)
