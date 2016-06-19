@@ -20,6 +20,28 @@ import element.*;
  */
 public class Model extends Observable implements IModel<Hero> {
 
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
+
+	/**
+	* Instantiates a new model.
+	*/
+	public Model() {
+	this.map = ""; //instanciate attribut map
+	this.hero = new Hero(0, 0); //instanciate an hero
+	
+	this.monster1 = new Monster(0, 1);
+	this.monster2 = new Monster(0, 2);
+	this.monster3 = new Monster(0, 3);
+	this.monster4 = new Monster(0, 4);
+	
+	this.monsters = new Monster[]{this.monster1, this.monster2, this.monster3, this.monster4};
+	
+	this.shoot = new Shoot(1, 1);
+	this.elementLevel = new ElementLevel(); //instanciate a new element
+	this.message = "";
+	}
+
+	
 	/** The message. */
 	private String message;
 	
@@ -340,27 +362,6 @@ public class Model extends Observable implements IModel<Hero> {
 		this.getElementLevel().setLastKey(lastKey);
 	}
 
-///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
-
-    /**
-	 * Instantiates a new model.
-	 */
-	public Model() {
-		this.map = ""; //instanciate attribut map
-		this.hero = new Hero(0, 0); //instanciate an hero
-
-		this.monster1 = new Monster(0, 1);
-		this.monster2 = new Monster(0, 2);
-		this.monster3 = new Monster(0, 3);
-		this.monster4 = new Monster(0, 4);
-		
-		this.monsters = new Monster[]{this.monster1, this.monster2, this.monster3, this.monster4};
-
-		this.shoot = new Shoot(1, 1);
-		this.elementLevel = new ElementLevel(); //instanciate a new element
-		this.message = "";
-	}
-
 
 ////////////////////////////////////////////////////////METHODS///////////////////////////////////////////////////////////////
 
@@ -506,7 +507,7 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	/**
-	 * Check if the movement is possible
+	 * Check if the movement is possible when the element's permeability is penetrable
 	 * 
 	 */
 	public boolean isMovePossible(final int x, final int y) {
@@ -519,7 +520,10 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * Check if the movement is possible when the element's permeability is blocking
+	 * 
+	 */
 	public boolean isMovePossible2(final int x, final int y) {
 		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b'){
 			return false;
@@ -742,7 +746,7 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	
 	/**
-	 * Shoot with a fireball
+	 * Shoot with a fireball and place it
 	 * 
 	 */
 	public void shoot() 
@@ -1152,24 +1156,10 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * Move in diagonal in the bottom right hand corner
+	 * 
+	 */
 	public void moveDiagoBD() {
 		if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()+1))
 		{
@@ -1186,7 +1176,10 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	
-
+	/**
+	 * Move in diagonal in the bottom left hand corner
+	 * 
+	 */
 	public void moveDiagoBG() {
 		if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()-1))
 		{
