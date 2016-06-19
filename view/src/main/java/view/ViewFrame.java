@@ -144,7 +144,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @param model
 	 *          the model
 	 * @param gc
-	 *          the gc
+	 *          the graphics configuration
 	 */
 	public ViewFrame(final IModel model, final GraphicsConfiguration gc) {
 		super(gc);
@@ -182,7 +182,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @param title
 	 *          the title
 	 * @param gc
-	 *          the gc
+	 *          the graphics configuration
 	 */
 	public ViewFrame(final IModel model, final String title, final GraphicsConfiguration gc) {
 		super(title, gc);
