@@ -102,4 +102,37 @@ public class ShootTest {
 		this.shoot.moveRight();
 		Assert.assertEquals(11, this.shoot.getX());
 	}
+	
+	@Test
+	public void testMoveDiagoHD(){
+		this.shoot.moveDiagoHD();
+		Assert.assertEquals(9, this.shoot.getY());
+		Assert.assertEquals(11, this.shoot.getX());
+	}
+	
+	@Test
+	public void testMoveDaigoHG(){
+		this.shoot.moveDiagoHG();
+		Assert.assertEquals(9, this.shoot.getY());
+		Assert.assertEquals(9, this.shoot.getX());
+	}
+	
+	@Test
+	public void testMoveDiagoBD(){
+		this.shoot.moveDiagoBD();
+		Assert.assertEquals(11, this.shoot.getX());
+		Assert.assertEquals(11, this.shoot.getY());
+	}
+	
+	@Test
+	public void testMoveDiagoBG(){
+		this.shoot.moveDiagoBG();
+		Assert.assertEquals(9, this.shoot.getX());
+		Assert.assertEquals(11, this.shoot.getY());
+	}
+	
+	@Test
+	public void testGetFireDirection(){
+		Assert.assertEquals("RIGHT", this.shoot.getFireDirection());
+	}
 }

@@ -102,4 +102,16 @@ public class MonsterTest {
 		this.monster.moveRight();
 		Assert.assertEquals(11, this.monster.getX());
 	}
+	
+	@Test
+	public void testSetDeath(){
+		final int expected = 2;
+		this.monster.setDeath(2);
+		Assert.assertEquals(expected, this.monster.getDeath());
+	}
+	
+	@Test
+	public void testGetDeath(){
+		Assert.assertEquals(1, this.monster.getDeath());
+	}
 }
