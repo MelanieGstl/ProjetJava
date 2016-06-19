@@ -3,28 +3,21 @@ package model;
 /**
  * The Class LoadMap.
  *
- * @author Cedric Meyer
+ * @author Groupe 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 public class LoadMap extends Entity {
 
-    /** The id. */
-    private int			id;
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
 
-    /** The key. */
-    private String	key;
-
-    /** The map content. */
-    private String	map;
-
-    /**
-     * Instantiates a new hello world.
+	/**
+     * Instantiates a new LoadMap.
      *
      * @param id
      *          the id
      * @param key
      *          the key
      * @param map
-     *          the map content
+     *          the map 
      */
     public LoadMap(final int id, final String key, final String map) {
         this.setId(id);
@@ -39,6 +32,20 @@ public class LoadMap extends Entity {
         this(0, "", "");
     }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/** The id. */
+    private int			id;
+
+    /** The key. */
+    private String	key;
+
+    /** The map. */
+    private String	map;
+
+
+/////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
+
     /**
      * Gets the id.
      *
@@ -47,17 +54,7 @@ public class LoadMap extends Entity {
     public int getId() {
         return this.id;
     }
-
-    /**
-     * Sets the id.
-     *
-     * @param id
-     *          the new id
-     */
-    public void setId(final int id) {
-        this.id = id;
-    }
-
+    
     /**
      * Gets the key.
      *
@@ -66,35 +63,47 @@ public class LoadMap extends Entity {
     public String getKey() {
         return this.key;
     }
-
+    
     /**
-     * Sets the key.
+     * Gets the map.
      *
-     * @param key
-     *          the new key
-     */
-    public void setKey(final String key) {
-        this.key = key;
-    }
-
-    /**
-     * Gets the map content.
-     *
-     * @return the map content
+     * @return the map 
      */
     public String getMap() {
         return this.map;
 
     }
 
+/////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
+
     /**
-     * Sets the map content.
-     *
-     * @param map
-     *          the new map content
-     */
-    public void setMap(final String map) {
-        this.map = map;
-    }
+    * Sets the id.
+    *
+    * @param id
+    *          the new id
+    */
+   public void setId(final int id) {
+       this.id = id;
+   }
+
+   /**
+    * Sets the key.
+    *
+    * @param key
+    *          the new key
+    */
+   public void setKey(final String key) {
+       this.key = key;
+   }
+
+   /**
+    * Sets the map.
+    *
+    * @param map
+    *          the new map
+    */
+   public void setMap(final String map) {
+       this.map = map;
+   }
 }
 

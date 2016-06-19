@@ -3,22 +3,17 @@ package model;
 /**
  * The Class LoadHighscores.
  *
- * @author Cedric Meyer
+ * @author Groupe 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 public class LoadHighscore extends Entity {
 
-    /** The name. */
-    private String[] name = new String[6];
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
 
-
-    /** The scores. */
-    private int[] score = new int[6];
-
-    /**
-     * Instantiates a new hello world.
+	/**
+     * Instantiates a new LoadHighscore.
      *
      * @param name
-     *          the nickname
+     *          the name
      * @param score
      *          the scores
      */
@@ -28,26 +23,67 @@ public class LoadHighscore extends Entity {
     }
 
     /**
-     * Instantiates a new Load Map.
+     * Instantiates a new LoadHighscore.
      */
     public LoadHighscore() {
         
     }
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/** The name. */
+    private String[] name = new String[6];
+
+
+    /** The scores. */
+    private int[] score = new int[6];
+
+
+/////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
+    
+    /**
+	 * Gets the name.
+	 *
+	 * @return name
+	 * 			the name
+	 */
     public String[] getName() {
         return name;
     }
-
-    public void setName(String[] name) {
-        this.name = name;
-    }
-
+    
+    /**
+	 * Gets the score.
+	 *
+	 * @return score
+	 * 			the score
+	 */
     public int[] getScore() {
         return score;
     }
 
+/////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
+
+    /**
+	 * Sets the name.
+	 *
+	 * @param name
+	 * 			the name
+	 */
+    public void setName(String[] name) {
+        this.name = name;
+    }
+
+    /**
+	 * Sets the score.
+	 *
+	 * @param score
+	 * 			the score
+	 */
     public void setScore(int[] score) {
         this.score = score;
     }
+
+
 }
 

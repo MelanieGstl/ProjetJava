@@ -3,9 +3,9 @@ package model;
 /**
  * The Class HelloWorld.
  *
- * @author Jean-Aymeric Diet
+ * @author Groupe 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
-class HelloWorld extends Entity {
+public class HelloWorld extends Entity {
 
 	/** The id. */
 	private int			id;

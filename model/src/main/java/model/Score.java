@@ -1,28 +1,22 @@
 package model;
 
 /**
- * The Class LoadMap.
+ * The Class Score.
  *
- * @author 
+ * @author Groupe 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 public class Score extends Entity{
-	/** The score. */
-    private int	score;
+	
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
 
-    /** The name. */
-    private String	name;
-
-
-
-    /**
-     * Instantiates a new hello world.
+	/**
+     * Instantiates a new score.
      *
-     * @param id
-     *          the id
-     * @param key
-     *          the key
-     * @param map
-     *          the map content
+     * @param name
+     *          the name
+     * @param score
+     *          the score
+     * 
      */
     public Score(final String name, final int score) {
         this.setName(name);
@@ -30,45 +24,60 @@ public class Score extends Entity{
     }
 
     /**
-     * Instantiates a new Load Map.
+     * Instantiates a new score.
      */
     public Score() {
         this("", 0);
     }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/** The score. */
+    private int	score;
+
+    /** The name. */
+    private String	name;
+
+
+/////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
+
     /**
-     * Gets the id.
+     * Gets the score.
      *
-     * @return the id
+     * @return score
+     * 			the score
      */
     public int getScore() {
         return this.score;
     }
+    
+    /**
+     * Gets the name.
+     *
+     * @return name
+     * 			the name
+     */
+    public String getName() {
+        return this.name;
+    }
+
+/////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
 
     /**
-     * Sets the id.
+     * Sets the score.
      *
-     * @param id
-     *          the new id
+     * @param score
+     *          the new score
      */
     public void setScore(final int score) {
         this.score = score;
     }
 
     /**
-     * Gets the key.
+     * Sets the name.
      *
-     * @return the key
-     */
-    public String getName() {
-        return this.name;
-    }
-
-    /**
-     * Sets the key.
-     *
-     * @param key
-     *          the new key
+     * @param name
+     *          the new name
      */
     public void setName(final String name) {
         this.name = name;
