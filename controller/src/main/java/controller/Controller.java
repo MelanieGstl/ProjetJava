@@ -11,6 +11,22 @@ import contract.IView;
  */
 public class Controller implements IController {
 
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
+
+	/**
+	* Instantiates a new controller.
+	*
+	* @param view
+	*          the view
+	* @param model
+	*          the model
+	*/
+	public Controller(final IView view, final IModel model) {
+	this.setView(view);
+	this.setModel(model);
+	}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
 	/** The view. */
 	private IView		view;
 
@@ -38,22 +54,6 @@ public class Controller implements IController {
 	 */
 	private void setModel(final IModel model) {
 		this.model = model;
-	}
-
-
-///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
-
-	/**
-	 * Instantiates a new controller.
-	 *
-	 * @param view
-	 *          the view
-	 * @param model
-	 *          the model
-	 */
-	public Controller(final IView view, final IModel model) {
-		this.setView(view);
-		this.setModel(model);
 	}
 
 

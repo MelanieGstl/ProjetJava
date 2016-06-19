@@ -5,6 +5,11 @@ import java.awt.Point;
 
 import model.Model;
 
+/**
+ * The Class Shoot.
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
+ *
+ */
 public class Shoot{
 	
 	private int x;

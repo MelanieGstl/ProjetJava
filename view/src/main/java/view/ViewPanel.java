@@ -16,12 +16,26 @@ import javax.swing.JPanel;
  *
  * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
-class ViewPanel extends JPanel implements Observer {
+public class ViewPanel extends JPanel implements Observer {
 
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
+
+	/**
+	* Instantiates a new view panel.
+	*
+	* @param viewFrame
+	*          the view frame
+	*/
+	public ViewPanel(final ViewFrame viewFrame) {
+	this.setViewFrame(viewFrame);
+	viewFrame.getModel().getObservable().addObserver(this);
+	}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	
 	/** The view frame. */
 	private ViewFrame viewFrame;
 	
-	
+	/** Attribute to know if the game is finished */
 	private int gameOver = 0;
 	
 	/** The Constant serialVersionUID. */
@@ -30,7 +44,7 @@ class ViewPanel extends JPanel implements Observer {
 	/** Table with the map which is read */
 	private char[][] map;
 	
-	/** Attribute used to calculat to moment when we have to write the score on in the window */
+	/** Attribute used to calculate the moment when we have to write the score on in the window */
 	private int h = 0;
 
 	
@@ -56,20 +70,6 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	private void setViewFrame(final ViewFrame viewFrame) {
 		this.viewFrame = viewFrame;
-	}
-
-
-///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
-
-	/**
-	 * Instantiates a new view panel.
-	 *
-	 * @param viewFrame
-	 *          the view frame
-	 */
-	public ViewPanel(final ViewFrame viewFrame) {
-		this.setViewFrame(viewFrame);
-		viewFrame.getModel().getObservable().addObserver(this);
 	}
 
 

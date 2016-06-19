@@ -41,7 +41,7 @@ public class Model extends Observable implements IModel<Hero> {
 	this.message = "";
 	}
 
-	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	/** The message. */
 	private String message;
 	
@@ -98,7 +98,7 @@ public class Model extends Observable implements IModel<Hero> {
      * 
      *   @param i
      *   
-     *   @ return DBplayerName
+     *   @return DBplayerName
      *   				the name of the player
      */
     public String getDBplayerName(int i) {
@@ -110,7 +110,7 @@ public class Model extends Observable implements IModel<Hero> {
      * 
      *   @param i
      *   
-     *   @ return DBplayerScore
+     *   @return DBplayerScore
      *   				the score of the player at the end of the game
      */
     public int getDBplayerScore(int i) {

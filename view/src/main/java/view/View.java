@@ -17,6 +17,26 @@ import contract.IView;
  */
 public class View implements IView, Runnable {
 
+///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
+	
+	
+	/**
+	* Instantiates a new view.
+	* 
+	*<p>
+	* In this View we can instantiate a ViewFrame and a ViewPanel to post the game and play it.
+	* <p>
+	* 
+	* @param model
+	*          the model
+	*/
+	public View(final IModel model) {
+	this.viewFrame = new ViewFrame(model);
+	SwingUtilities.invokeLater(this);
+	}
+
+	
+	
 	/** The frame. */
 	private final ViewFrame viewFrame;	
 	
@@ -36,26 +56,6 @@ public class View implements IView, Runnable {
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
 	}
-	
-	
-///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
-	
-	
-	/**
-	 * Instantiates a new view.
-	 * 
-	 *<p>
-	 * In this View we can instantiate a ViewFrame and a ViewPanel to post the game and play it.
-	 * <p>
-	 * 
-	 * @param model
-	 *          the model
-	 */
-	public View(final IModel model) {
-		this.viewFrame = new ViewFrame(model);
-		SwingUtilities.invokeLater(this);
-	}
-	
 	
 ////////////////////////////////////////////////METHODS//////////////////////////////////////////////////////////////////////////
 
