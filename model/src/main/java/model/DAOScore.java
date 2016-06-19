@@ -9,7 +9,7 @@ import java.sql.SQLException;
 	/**
 	 * The Class DAOLoadMap.
 	 *
-	 * @author 
+	 * @author Groupe 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
 	 */
 	class DAOScore extends DAOEntity<Score> {
 
@@ -58,7 +58,11 @@ import java.sql.SQLException;
 	        return false;
 	    }	
 	
-	
+	    /*
+	     * (non-Javadoc)
+	     *
+	     * @see model.DAOEntity#SaveScore(java.lang.String)
+	     */
 	public void SaveScore (final String name, int score) {
 		
 		try {
@@ -80,6 +84,11 @@ import java.sql.SQLException;
 		return null;
 	}
 
+	/*
+     * (non-Javadoc)
+     *
+     * @see model.DAOEntity#LoadHighscores(java.lang.String)
+     */
 	public LoadHighscore putHighscores() {
         LoadHighscore loadHighscore = new LoadHighscore();
         try {

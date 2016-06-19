@@ -12,14 +12,14 @@ import model.Model;
 public class Monster{
 	
 ///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
-/**
- * Instanciate a new monster
- * 
- * @param x
- * 			the horizontal place of a monster
- * @param y
- * 			the vertical place of a monster
- */
+	/**
+	 * Instanciate a new monster
+	 * 
+	 * @param x
+	 * 			the horizontal place of a monster
+	 * @param y
+	 * 			the vertical place of a monster
+	 */
 	public Monster(int x, int y)
 	{
 		this.setX(x);

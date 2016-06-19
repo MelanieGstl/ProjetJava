@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * The Class DAOEntity.
  *
- * @author Jean-Aymeric Diet
+ * @author Groupe 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  *
  * @param <E>
  *          the element type
@@ -38,7 +38,7 @@ abstract class DAOEntity<E extends Entity> {
 	}
 
 	/**
-	 * Creates the.
+	 * Create.
 	 *
 	 * @param entity
 	 *          the entity

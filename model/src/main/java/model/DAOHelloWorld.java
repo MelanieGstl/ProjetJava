@@ -11,7 +11,7 @@ import java.sql.SQLException;
 /**
  * The Class DAOHelloWorld.
  *
- * @author Jean-Aymeric Diet
+ * @author Groupe 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 public class DAOHelloWorld extends DAOEntity<HelloWorld> {
 
