@@ -87,7 +87,7 @@ public class ModelTest {
 	
 	
 	
-	/*@Test
+	@Test
 	public void testIsMovePossible(){
 		Assert.assertEquals(true, this.model.isMovePossible(0, 0));
 	}
@@ -95,25 +95,25 @@ public class ModelTest {
 	@Test
 	public void testIsMovePossible2(){
 		Assert.assertEquals(true, this.model.isMovePossible2(0, 0));
-	}*/
+	}
 	
 	@Test
-	public void testMoveUp(){
+	public void testMoveDiagoHD(){
 		Assert.assertEquals(0, this.model.getElement(2, 3));
 	}
 	
 	@Test
-	public void testMoveLeft(){
+	public void testMoveDiagoHG(){
 		Assert.assertEquals(0, this.model.getElement(5, 9));
 	}
 	
 	@Test
-	public void testMoveRight(){
+	public void testMoveDiagoBD(){
 		Assert.assertEquals(0, this.model.getElement(10, 2));
 	}
 	
 	@Test
-	public void testMoveDown(){
+	public void testMoveDiagoBG(){
 		Assert.assertEquals(0, this.model.getElement(12, 16));
 	}
 	
@@ -133,6 +133,8 @@ public class ModelTest {
 		Assert.assertEquals(map, this.model.getMap());
 	}
 	
+	
+	
 	@Test
 	public void testGetElement(){
 		Assert.assertEquals(0, this.model.getElement(5, 6));
@@ -150,12 +152,38 @@ public class ModelTest {
 		Assert.assertEquals(expected, this.model.getLastMove());
 	}
 	
-	/// pas fait encore les tests pour moveMonster, shoot et animateFire
 	
 	@Test
 	public void testCheckPosition(){
 		Assert.assertEquals(false, this.model.checkPosition());
 	}
+	
+	 public void testGetDBplayerName(){
+			Assert.assertEquals(null, this.model.getDBplayerName(1));
+		}
+		
+		@Test
+		public void testGetDGplayerScore(){
+			Assert.assertEquals(0, this.model.getDBplayerScore(1));
+		}
+		
+		@Test
+		 public void testGetScore(){
+			Assert.assertEquals(0, this.model.getScore());
+		}
+		
+		@Test
+		public void testGetLevel(){
+			Assert.assertEquals(0, this.model.getLevel());
+		}
+		
+		@Test
+		public void testSetLevel(){
+			final int expected = 1;
+			this.model.setLevel(1);
+			Assert.assertEquals(expected, this.model.getLevel());
+		}
+
 	
 
 }
