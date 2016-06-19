@@ -140,10 +140,13 @@ public class Model extends Observable implements IModel<Hero> {
 	}
     
 	/**  
-	 * Gets the hero
+	 * Gets the monster
+	 * 
+	 * @param monster
+	 * 			the monster
 	 * 
 	 * @return monster
-	 * 			the hero
+	 * 			the monster
 	 * 
 	 */
     public Monster getMonster(Monster monster) {
@@ -172,6 +175,78 @@ public class Model extends Observable implements IModel<Hero> {
 	public ElementLevel getElementLevel() {
 		return this.elementLevel;
 	}
+	
+	/**  
+	 * Gets the width of the map
+	 * 
+	 * @return width
+	 * 			the width of the map
+	 * 
+	 */
+	public int getWidth()
+	{
+		return this.width;
+	}
+	
+	/**  
+	 * Gets the height of the map
+	 * 
+	 * @return height
+	 * 			the height of the map
+	 * 
+	 */
+	public int getHeight()
+	{
+		return this.height;
+	}
+	
+	/**  
+	 * Gets the array with the map
+	 * 
+	 * @return tableau
+	 * 			the array with the map
+	 * 
+	 */
+	public char[][] getMap() {
+        return this.tableau;
+    }
+	
+	/**  
+	 * Gets an element on the map
+	 * 
+	 * @return tableau[x][y]
+	 * 				the place of an element in the array which correspond to the map
+	 * 
+	 */
+	public char getElement(int x, int y){
+		if ((x < 0) || (y < 0) || (x >= this.getWidth()) || (y >= this.getHeight())) {
+			return (Character) null;
+		}
+		return this.tableau[x][y];
+	}
+	////////////////////////////////////////////////////////////
+	 /**  
+	 * Gets 
+	 * 
+	 * @return 
+	 * 
+	 */
+	public int getLoadMap()
+    {
+    	return this.getElementLevel().getLoadMap();
+    }
+	
+	/**  
+	 * Gets the last movement
+	 * 
+	 * @return getElementLevel().getLastKey()
+	 * 				the last movement
+	 * 
+	 */
+	public String getLastMove()
+    {
+    	return this.getElementLevel().getLastKey();
+    }
 
 /////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
 
@@ -179,6 +254,7 @@ public class Model extends Observable implements IModel<Hero> {
      * Set the name of the player
      * 
      *   @param DBplayerName
+     *   			The name of the player
      *   
      */
     public void setDBplayerName(String DBplayerName[]) {
@@ -189,6 +265,7 @@ public class Model extends Observable implements IModel<Hero> {
      * Set the score of the player
      * 
      *   @param DBplayerScore
+     *   			The score of the player
      *   
      */
     public void setDBplayerScore(int DBplayerScore[]) {
@@ -230,6 +307,37 @@ public class Model extends Observable implements IModel<Hero> {
 	public void setLevel(int level)
 	{
 		this.level = level;
+	}
+	
+	/**
+	 * Sets the map.
+	 *
+	 * @param map
+	 *          the new map
+	 */
+	 private void setMap(final String map) {
+	     this.map = map;
+	     this.setChanged();
+	     this.notifyObservers();
+	 }
+	 
+	/**
+	* Sets the mobile.
+	*/
+	public void setMobileHasChanged(){
+	    this.setChanged();
+	    this.notifyObservers();
+	}
+	
+	/**
+	 * Sets the last movement.
+	 *
+	 * @param lastKey
+	 *          the last key which were pressed by the player
+	 */
+	public void setLastMove(String lastKey)
+	{
+		this.getElementLevel().setLastKey(lastKey);
 	}
 
 ///////////////////////////////////////////////////////CONSTRUCTORS///////////////////////////////////////////////////////////
@@ -286,7 +394,6 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	/**
 	 * Insert a score in the DataBase
-	 *
 	 * 
 	 */
 	public void InsertScore(final String name, final int score) {
@@ -308,30 +415,10 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	
-	
-	
-	
-	
-	
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * Fill an array with data in database
+	 * 
+	 */
 	public void loadMap()
 	{		
 		String[] tabmap = this.map.split("\n"); 
@@ -418,6 +505,10 @@ public class Model extends Observable implements IModel<Hero> {
         }
 	}
 	
+	/**
+	 * Check if the movement is possible
+	 * 
+	 */
 	public boolean isMovePossible(final int x, final int y) {
 		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b' || this.getElement(x, y) == 'p' || this.getElement(x, y) == 'e' || this.getElement(x, y) == 'c' || this.getElement(x, y) == 'C'){
 			return false;
@@ -426,6 +517,9 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 	
+	
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 	public boolean isMovePossible2(final int x, final int y) {
 		if(this.getElement(x, y) == 'h' || this.getElement(x, y) == 'v' || this.getElement(x, y) == 'b'){
 			return false;
@@ -434,6 +528,10 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 
+	/**
+	 * Move an hero in the array
+	 * 
+	 */
 	public void moveHero(String move)
 	{
 		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()) && move == "UP")
@@ -477,43 +575,12 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 	
-	public int getWidth()
-	{
-		return this.width;
-	}
-	
-	public int getHeight()
-	{
-		return this.height;
-	}
-	
-	public char[][] getMap() {
-        return this.tableau;
-    }
-	
-	public char getElement(int x, int y){
-		if ((x < 0) || (y < 0) || (x >= this.getWidth()) || (y >= this.getHeight())) {
-			return (Character) null;
-		}
-		return this.tableau[x][y];
-	}
-
-    private void setMap(final String map) {
-        this.map = map;
-        this.setChanged();
-        this.notifyObservers();
-    }
-    
-    public void setMobileHasChanged(){
-    	this.setChanged();
-    	this.notifyObservers();
-    }
-    
-    public int getLoadMap()
-    {
-    	return this.getElementLevel().getLoadMap();
-    }
-    
+	/**
+	 * Load the map from the data base.
+	 *
+	 * @param key
+	 *          the key of the map we would like to read in the database
+	 */ 
     public void loadMap2(String key) {
         try {
             final DAOLoadMap daoLoadMap = new DAOLoadMap(DBConnection.getInstance().getConnection());
@@ -524,6 +591,10 @@ public class Model extends Observable implements IModel<Hero> {
         }
     }
 
+    /**
+	 * Move a monster in the array
+	 * 
+	 */
 	public void moveMonster() 
 	{		
 		for(Monster m :this.monsters)
@@ -669,16 +740,11 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 	
-	public void setLastMove(String lastKey)
-	{
-		this.getElementLevel().setLastKey(lastKey);
-	}
-    
-    public String getLastMove()
-    {
-    	return this.getElementLevel().getLastKey();
-    }
-
+	
+	/**
+	 * Shoot with a fireball
+	 * 
+	 */
 	public void shoot() 
 	{		
 		if(this.getElementLevel().getFire() == 1)
@@ -791,6 +857,10 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 	
+	/**
+	 * Animate the fireball
+	 * 
+	 */
 	public void animateFire()
 	{
 		if(this.getElementLevel().getFire() == 0)
@@ -943,6 +1013,10 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 	
+	/**
+	 * Check the position of the monster compared to the hero
+	 * 
+	 */
 	public boolean checkPosition()
 	{
 		for(Monster m : this.monsters)
@@ -1040,7 +1114,10 @@ public class Model extends Observable implements IModel<Hero> {
 		return false;
 	}
 	
-
+	/**
+	 * Move in diagonal in the top right hand corner
+	 * 
+	 */
 	public void moveDiagoHD() {
 		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()+1))
 		{
@@ -1056,7 +1133,10 @@ public class Model extends Observable implements IModel<Hero> {
 		}
 	}
 	
-
+	/**
+	 * Move in diagonal in the top left hand corner
+	 * 
+	 */
 	public void moveDiagoHG() {
 		if(this.isMovePossible2(this.getHero().getY()-1, this.getHero().getX()-1))
 		{
@@ -1073,6 +1153,23 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void moveDiagoBD() {
 		if(this.isMovePossible2(this.getHero().getY()+1, this.getHero().getX()+1))
 		{
