@@ -511,7 +511,7 @@ public class Model extends Observable implements IModel<Hero> {
 	 * 
 	 */
 	public boolean isMovePossible(final int x, final int y) {
-		if(this.getElement(x, y) == ' ' || this.getElement(x, y) == 'l'){
+		if(this.getElement(x, y) == ' ' || this.getElement(x, y) == 'l' || this.getElement(x, y) == 'F'){
 			return true;
 		}else{
 			return false;
@@ -608,8 +608,7 @@ public class Model extends Observable implements IModel<Hero> {
 	 * 
 	 */
 	public void moveMonster() 
-	{	
-		int up = 0;		
+	{
 		int index = 1;
 
 		for(Monster m : this.monsters)
@@ -620,11 +619,7 @@ public class Model extends Observable implements IModel<Hero> {
 				{
 					if(this.isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 					{
-						if(up == 0)
-						{
-							this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);						
-							up = 0;
-						}
+						this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);						
 					}
 					
 					else
@@ -713,7 +708,7 @@ public class Model extends Observable implements IModel<Hero> {
 				{
 					if(this.isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 					{
-						this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
+						this.tableau = this.getMonster(m).move(this.tableau, "UP", index);						
 					}
 					
 					else
@@ -745,7 +740,7 @@ public class Model extends Observable implements IModel<Hero> {
 								y++;
 							}	
 							
-							else
+							else 
 							{
 								stop_y = 1;
 							}
@@ -847,7 +842,6 @@ public class Model extends Observable implements IModel<Hero> {
 								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-									up = 1;
 								}
 							}
 							
@@ -937,7 +931,6 @@ public class Model extends Observable implements IModel<Hero> {
 								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-									up = 1;
 								}
 							}
 							
@@ -1145,7 +1138,6 @@ public class Model extends Observable implements IModel<Hero> {
 	 */
 	public void animateFire()
 	{
-		System.out.println(this.getShoot().getFireDirection());
 		if(this.getElementLevel().getFire() == 0)
 		{
 			if(this.getShoot().getFireDirection() == "RIGHT")
@@ -1203,7 +1195,6 @@ public class Model extends Observable implements IModel<Hero> {
 			
 			else if(this.getShoot().getFireDirection()== "DIAGOHD")
 			{
-				System.out.println("8");
 				if(this.isMovePossible3(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
 					this.tableau = this.getShoot().move(this.tableau, "DIAGOHD");
@@ -1227,7 +1218,6 @@ public class Model extends Observable implements IModel<Hero> {
 			
 			else if(this.getShoot().getFireDirection() == "DIAGOBG")
 			{
-				System.out.println("7");
 				if(this.isMovePossible3(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
 					this.tableau = this.getShoot().move(this.tableau, "DIAGOBG");
@@ -1251,7 +1241,6 @@ public class Model extends Observable implements IModel<Hero> {
 		
 			else if(this.getShoot().getFireDirection() == "DIAGOHG")
 			{
-				System.out.println("6");
 				if(this.isMovePossible3(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
 					this.tableau = this.getShoot().move(this.tableau, "DIAGOHG");
@@ -1276,29 +1265,24 @@ public class Model extends Observable implements IModel<Hero> {
 			
 			else if(this.getShoot().getFireDirection()== "DIAGOBD")
 			{
-				System.out.println("1");
 				if(this.isMovePossible3(this.getShoot().getY()+1, this.getShoot().getX()+1))
 				{
 					this.tableau = this.getShoot().move(this.tableau, "DIAGOBD");
-					System.out.println("2");
 				}
 				
 				else if(this.isMovePossible3(this.getShoot().getY()-1, this.getShoot().getX()+1))
 				{
 					this.tableau = this.getShoot().move(this.tableau, "DIAGOHD");
-					System.out.println("3");
 				}
 				
 				else if(this.isMovePossible3(this.getShoot().getY()+1, this.getShoot().getX()-1))
 				{
 					this.tableau = this.getShoot().move(this.tableau, "DIAGOBG");
-					System.out.println("4");
 				}
 				
 				else if(this.isMovePossible3(this.getShoot().getY()-1, this.getShoot().getX()-1))
 				{
 					this.tableau = this.getShoot().move(this.tableau, "DIAGOHG");
-					System.out.println("5");
 				}
 			}
 		}
