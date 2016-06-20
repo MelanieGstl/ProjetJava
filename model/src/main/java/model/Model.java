@@ -611,13 +611,9 @@ public class Model extends Observable implements IModel<Hero> {
 	{	
 		int up = 0;		
 		int index = 1;
-		
-		System.out.println("Début : "+index);
-		
+
 		for(Monster m : this.monsters)
 		{
-			System.out.println("Boucle : "+index);
-			
 			if(this.getMonster(m).getDeath() == 0)
 			{
 				if(this.getMonster(m).getY() < this.getHero().getY())
