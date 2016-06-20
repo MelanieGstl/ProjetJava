@@ -261,7 +261,10 @@ public class ViewPanel extends JPanel implements Observer {
 				
 		this.viewFrame.getModel().checkPosition();
 
-		this.viewFrame.getModel().moveMonster();
+		if(this.viewFrame.getModel().checkPosition() == false)
+		{
+			this.viewFrame.getModel().moveMonster();
+		}
 		
 		if(this.viewFrame.getModel().checkPosition())
 		{
