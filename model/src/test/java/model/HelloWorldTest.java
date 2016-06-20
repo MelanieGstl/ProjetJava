@@ -10,7 +10,15 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
+/**
+ * The HelloWorld Test class.
+ * 
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
+ *
+ */
 public class HelloWorldTest {
+	
+	/** Helloworld */
 	private HelloWorld hello;
 
 	/**
@@ -54,11 +62,17 @@ public class HelloWorldTest {
 	public void tearDown() throws Exception {
 	}
 	
+	/**
+	 * Test GetId
+	 */
 	@Test
 	public void testGetId(){
 		Assert.assertEquals(0, this.hello.getId());
 	}
 	
+	/**
+	 * Test SetId
+	 */
 	@Test
 	public void testSetId(){
 		final int expected = 2;
@@ -66,11 +80,17 @@ public class HelloWorldTest {
 		Assert.assertEquals(expected, this.hello.getId());
 	}
 	
+	/**
+	 * Test GetKey
+	 */
 	@Test
 	public void testGetKey(){
 		Assert.assertEquals("", this.hello.getKey());
 	}
 	
+	/**
+	 * Test SetKey
+	 */
 	@Test
 	public void testSetKey(){
 		final String expected = "hello";
@@ -78,11 +98,17 @@ public class HelloWorldTest {
 		Assert.assertEquals(expected, this.hello.getKey());
 	}
 	
+	/**
+	 * Test GetMessage
+	 */
 	@Test
 	public void testGetMessage(){
 		Assert.assertEquals("", this.hello.getMessage());
 	}
 	
+	/**
+	 * Test SetMessage
+	 */
 	@Test
 	public void testSetMessage(){
 		final String expected = "hello";

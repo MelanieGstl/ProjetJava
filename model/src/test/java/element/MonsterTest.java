@@ -10,8 +10,15 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
+/**
+ * The Class MonsterTest.
+ * 
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
+ *
+ */
 public class MonsterTest {
 
+	/** The monster */
 	private Monster monster;
 
 	/**
@@ -55,11 +62,17 @@ public class MonsterTest {
 	public void tearDown() throws Exception {
 	}
 	
+	/**
+	 * Test GetX
+	 */
 	@Test
 	public void testGetX(){
 		Assert.assertEquals(10, this.monster.getX());
 	}
 	
+	/**
+	 * Test SetX
+	 */
 	@Test
 	public void testSetX(){
 		final int expected = 3;
@@ -67,11 +80,17 @@ public class MonsterTest {
 		Assert.assertEquals(expected, this.monster.getX());
 	}
 	
+	/**
+	 * Test GetY
+	 */
 	@Test
 	public void testGetY(){
 		Assert.assertEquals(10, this.monster.getY());
 	}
 	
+	/**
+	 * Test SetY
+	 */
 	@Test
 	public void testSetY(){
 		final int expected = 4;
@@ -79,30 +98,45 @@ public class MonsterTest {
 		Assert.assertEquals(expected, this.monster.getY());
 	}
 
+	/**
+	 * Test MoveUp
+	 */
 	@Test
 	public void testMoveUp(){
 		this.monster.moveUp();
 		Assert.assertEquals(9, this.monster.getY());
 	}
 	
+	/**
+	 * Test MoveDown
+	 */
 	@Test
 	public void testMoveDown(){
 		this.monster.moveDown();
 		Assert.assertEquals(11, this.monster.getY());
 	}
 	
+	/**
+	 * Test MoveLeft
+	 */
 	@Test
 	public void testMoveLeft(){
 		this.monster.moveLeft();
 		Assert.assertEquals(9, this.monster.getX());
 	}
 	
+	/**
+	 * Test MoveRight
+	 */
 	@Test
 	public void testMoveRight(){
 		this.monster.moveRight();
 		Assert.assertEquals(11, this.monster.getX());
 	}
 	
+	/**
+	 * Test SetDeath
+	 */
 	@Test
 	public void testSetDeath(){
 		final int expected = 2;
@@ -110,6 +144,9 @@ public class MonsterTest {
 		Assert.assertEquals(expected, this.monster.getDeath());
 	}
 	
+	/**
+	 * Test GetDeath
+	 */
 	@Test
 	public void testGetDeath(){
 		Assert.assertEquals(1, this.monster.getDeath());

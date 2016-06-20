@@ -10,6 +10,12 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
+/**
+ * The Class LoadMapTest.
+ * 
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
+ *
+ */
 public class LoadMapTest {
 	private LoadMap load;
 
@@ -54,11 +60,17 @@ public class LoadMapTest {
 	public void tearDown() throws Exception {
 	}
 	
+	/**
+	 * Test GetId
+	 */
 	@Test
 	public void testGetId(){
 		Assert.assertEquals(0, this.load.getId());
 	}
 	
+	/**
+	 * Test SetId
+	 */
 	@Test
 	public void testSetId(){
 		final int expected = 2;
@@ -66,11 +78,17 @@ public class LoadMapTest {
 		Assert.assertEquals(expected, this.load.getId());
 	}
 	
+	/**
+	 * Test GetKey
+	 */
 	@Test
 	public void testGetKey(){
 		Assert.assertEquals("", this.load.getKey());
 	}
 	
+	/**
+	 * Test SetKey
+	 */
 	@Test
 	public void testSetKey(){
 		final String expected = "hello";
@@ -78,11 +96,17 @@ public class LoadMapTest {
 		Assert.assertEquals(expected, this.load.getKey());
 	}
 	
+	/**
+	 * Test GetMap
+	 */
 	@Test
 	public void testGetMap(){
 		Assert.assertEquals("", this.load.getMap());
 	}
 	
+	/**
+	 * Test SetMap
+	 */
 	@Test
 	public void testSetMap(){
 		final String expected = "hello";

@@ -86,65 +86,98 @@ public class ModelTest {
 	}
 	
 	
-	
+	/**
+	 * Test isMoveIsPossible
+	 */
 	@Test
 	public void testIsMovePossible(){
 		Assert.assertEquals(true, this.model.isMovePossible(0, 0));
 	}
 	
+	/**
+	 * Test isMoveIsPossible2
+	 */
 	@Test
 	public void testIsMovePossible2(){
 		Assert.assertEquals(true, this.model.isMovePossible2(0, 0));
 	}
 	
+	/**
+	 * Test MoveDiagoHD
+	 */
 	@Test
 	public void testMoveDiagoHD(){
 		Assert.assertEquals(0, this.model.getElement(2, 3));
 	}
 	
+	/**
+	 * Test MoveDiagoHG
+	 */
 	@Test
 	public void testMoveDiagoHG(){
 		Assert.assertEquals(0, this.model.getElement(5, 9));
 	}
 	
+	/**
+	 * Test MoveDiagoBD
+	 */
 	@Test
 	public void testMoveDiagoBD(){
 		Assert.assertEquals(0, this.model.getElement(10, 2));
 	}
 	
+	/**
+	 * Test MoveDiagoBG
+	 */
 	@Test
 	public void testMoveDiagoBG(){
 		Assert.assertEquals(0, this.model.getElement(12, 16));
 	}
 	
+	/**
+	 * Test GetWidth
+	 */
 	@Test
 	public void testGetWidth(){
 		Assert.assertEquals(20, this.model.getWidth());
 	}
 	
+	/**
+	 * Test GetHeight
+	 */
 	@Test
 	public void testGetHeight(){
 		Assert.assertEquals(20, this.model.getHeight());
 	}
 	
+	/**
+	 * Test GetMap
+	 */
 	@Test
 	public void testGetMap(){
 		char[][] map = new char[21][21];
 		Assert.assertEquals(map, this.model.getMap());
 	}
-	
-	
-	
+
+	/**
+	 * Test GetElement
+	 */
 	@Test
 	public void testGetElement(){
 		Assert.assertEquals(0, this.model.getElement(5, 6));
 	}
 	
+	/**
+	 * Test GetLastMove
+	 */
 	@Test
 	public void testGetLastMove(){
 		Assert.assertEquals("RIGHT", this.model.getLastMove());
 	}
 	
+	/**
+	 * Test SetLastMove
+	 */
 	@Test
 	public void testSetLastMove(){
 		final String expected = "left";
@@ -152,37 +185,54 @@ public class ModelTest {
 		Assert.assertEquals(expected, this.model.getLastMove());
 	}
 	
-	
+	/**
+	 * Test CheckPosition
+	 */
 	@Test
 	public void testCheckPosition(){
 		Assert.assertEquals(false, this.model.checkPosition());
 	}
 	
-	 public void testGetDBplayerName(){
+	/**
+	 * Test GetPlayerName
+	 */
+	 public void testGetPlayerName(){
 			Assert.assertEquals(null, this.model.getPlayerName(1));
-		}
-		
-		@Test
-		public void testGetDGplayerScore(){
-			Assert.assertEquals(0, this.model.getPlayerScore(1));
-		}
-		
-		@Test
-		 public void testGetScore(){
-			Assert.assertEquals(0, this.model.getScore());
-		}
-		
-		@Test
-		public void testGetLevel(){
-			Assert.assertEquals(0, this.model.getLevel());
-		}
-		
-		@Test
-		public void testSetLevel(){
-			final int expected = 1;
-			this.model.setLevel(1);
-			Assert.assertEquals(expected, this.model.getLevel());
-		}
+	}
+	
+	/**
+	* Test GetPlayerScore	
+	*/
+	@Test
+	public void testGetPlayerScore(){
+		Assert.assertEquals(0, this.model.getPlayerScore(1));
+	}
+	
+	/**
+	 * Test GetScore
+	 */
+	@Test
+	 public void testGetScore(){
+		Assert.assertEquals(0, this.model.getScore());
+	}
+	
+	/**
+	 * Test GetLevel
+	 */
+	@Test
+	public void testGetLevel(){
+		Assert.assertEquals(0, this.model.getLevel());
+	}
+	
+	/**
+	 * Test SetLevel
+	 */
+	@Test
+	public void testSetLevel(){
+		final int expected = 1;
+		this.model.setLevel(1);
+		Assert.assertEquals(expected, this.model.getLevel());
+	}
 
 	
 

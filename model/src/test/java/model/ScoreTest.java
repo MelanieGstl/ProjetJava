@@ -11,8 +11,15 @@ import org.junit.Test;
 import element.Hero;
 import junit.framework.Assert;
 
+/**
+ * The Class ScoreTest.
+ * 
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
+ *
+ */
 public class ScoreTest {
 
+	/** The score*/
 	private Score score;
 
 	/**
@@ -56,11 +63,17 @@ public class ScoreTest {
 	public void tearDown() throws Exception {
 	}
 	
+	/**
+	 * Test GetScore
+	 */
 	@Test
 	public void testGetScore(){
 		Assert.assertEquals(0, this.score.getScore());
 	}
 	
+	/**
+	 * Test SetScore
+	 */
 	@Test
 	public void testSetScore(){
 		final int expected = 3;
@@ -68,11 +81,17 @@ public class ScoreTest {
 		Assert.assertEquals(expected, this.score.getScore());
 	}
 	
+	/**
+	 * Test GetName
+	 */
 	@Test
 	public void testGetName(){
 		Assert.assertEquals("", this.score.getName());
 	}
 	
+	/**
+	 * Test SetName
+	 */
 	@Test
 	public void testSetName(){
 		final String expected = "julie";

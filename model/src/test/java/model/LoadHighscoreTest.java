@@ -11,8 +11,15 @@ import org.junit.Test;
 import element.Hero;
 import junit.framework.Assert;
 
+/**
+ * The Class LoadHighscoreTest.
+ * 
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
+ *
+ */
 public class LoadHighscoreTest {
 
+	/** Highscore */
 	private LoadHighscore load;
 
 	/**
