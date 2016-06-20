@@ -90,7 +90,6 @@ public class Model extends Observable implements IModel<Hero> {
 	/** The score of the player */
     private int[] playerScore = new int[6];
 	
-	
 /////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
 
     /** 
@@ -619,7 +618,7 @@ public class Model extends Observable implements IModel<Hero> {
 				{
 					if(this.isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 					{
-						this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);						
+						this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
 					}
 					
 					else
@@ -929,8 +928,8 @@ public class Model extends Observable implements IModel<Hero> {
 							if(i > y && stop_y == 0)
 							{
 								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-								{
-									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
+								{									
+									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);								
 								}
 							}
 							
@@ -954,7 +953,7 @@ public class Model extends Observable implements IModel<Hero> {
 							{
 								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 								{
-									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);									
+									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);	
 								}
 							}
 							
@@ -1305,6 +1304,8 @@ public class Model extends Observable implements IModel<Hero> {
 		if(this.getHero().getX() == this.getShoot().getX() && this.getHero().getY() == this.getShoot().getY())
 		{
 			this.tableau[this.getHero().getY()][this.getHero().getX()] = 'l';
+			this.getShoot().setX(1);
+			this.getShoot().setY(1);
 			this.getElementLevel().setFire(1);
 		}
 		
