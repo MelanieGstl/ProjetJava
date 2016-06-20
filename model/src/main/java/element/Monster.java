@@ -150,36 +150,57 @@ public class Monster{
 	 * @return map
 	 * 			the array with the map
 	 */
-	public char[][] move(char[][] map, String move)
+	public char[][] move(char[][] map, String move, int m)
 	{
+		char n = ' ';
+		
+		switch(m)
+		{
+			case 1:
+				n = '1';
+			break;
+			
+			case 2:
+				n = '2';
+			break;
+			
+			case 3:
+				n = '3';
+			break;
+			
+			case 4:
+				n = '4';
+			break;
+		}
+		
 		if(this.death == 0)
 		{
 			if(move == "LEFT")
 			{
 				map[this.y][this.x] = ' ';
 				this.moveLeft();
-				map[this.y][this.x] = '1';
+				map[this.y][this.x] = n;
 			}	
 			
 			else if(move == "UP")
 			{
 				map[this.y][this.x] = ' ';
 				this.moveUp();
-				map[this.y][this.x] = '1';
+				map[this.y][this.x] = n;
 			}	
 			
 			else if(move == "RIGHT")
 			{
 				map[this.y][this.x] = ' ';
 				this.moveRight();
-				map[this.y][this.x] = '1';
+				map[this.y][this.x] = n;
 			}	
 			
 			else if(move == "DOWN")
 			{
 				map[this.y][this.x] = ' ';
 				this.moveDown();
-				map[this.y][this.x] = '1';
+				map[this.y][this.x] = n;
 			}	
 		}
 		return map;
