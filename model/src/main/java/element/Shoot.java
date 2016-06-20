@@ -251,10 +251,10 @@ public class Shoot{
 	 * @param fireDirection
 	 * 			The direction of the shoot near the hero
 	 * 
-	 * * @param x
+	 * @param x
 	 * 			the horizontal place of the shoot
 	 * 
-	 * * @param y
+	 * @param y
 	 * 			the vertical place of the shoot
 	 * 
 	 * @return map

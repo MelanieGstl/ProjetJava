@@ -216,10 +216,6 @@ class ViewFrame extends JFrame implements KeyListener {
 	  	
 	/**
 	* Builds the window for the score.
-	* 
-	* <p>
-	* This method is used to print a window to enter the name of the player. With this name we can save the score.
-	* <p>
 	*/  	
 	public void FenetreScore() {
 		/*this.setTitle("Score");

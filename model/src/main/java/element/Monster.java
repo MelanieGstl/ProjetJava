@@ -147,6 +147,9 @@ public class Monster{
 	 * @param move
 	 * 			the movement the hero would like to use
 	 * 
+	 * @param m
+	 * 		to choose the correct method
+	 * 
 	 * @return map
 	 * 			the array with the map
 	 */

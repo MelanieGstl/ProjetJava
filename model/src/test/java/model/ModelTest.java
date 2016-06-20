@@ -13,8 +13,7 @@ import org.junit.Test;
 /**
  * The Class ModelTest.
  *
- * @author Jean-Aymeric Diet
- * @param <Monster>
+ * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
  */
 public class ModelTest {
 	private Model model;
@@ -76,13 +75,13 @@ public class ModelTest {
 		this.model.loadMessage("ONE");
 		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhb\nv 1                v\nv           e      v\nv                  v\nvhhhhhhb           v\nv      p           v\nv      v           v\nv      v           v\nvhhhhhhb           v\nv           l      v\nv                  v\nvhhhhhhhhhhhb      v\nv c                v\nv                  v\nbhhhhhhhhhhhhhhhhhhb", this.model.getMessage());
 		this.model.loadMessage("TWO");
-		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhb\nvl                 v\nv  bhhhhb   bhhhb  v\nv  v            v  v\nv  v            v  v\nv  v  p         v  v\nv  v            v  v\nv  v        e   v 2v\nv  v            v  v\nv  v            v  v\nv  v            v  v\nv  v            v  v\nv  bhhhhhhhhhhhhb  v\nv  1               v\nbhhhhhhhhhhhhhhhhhhb", this.model.getMessage());
+		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhb\nvl                 v\nv  bhhhhb   bhhhb  v\nv  v            v  v\nv  v            v  v\nv  v  p         v  v\nv  v            v  v\nv  v        e   v 2v\nv  v            v  v\nv  v            v  v\nv  v            v  v\nv  v            v  v\nv  bhhhhhhhhhhhhb  v\nv  1              cv\nbhhhhhhhhhhhhhhhhhhb", this.model.getMessage());
 		this.model.loadMessage("THREE");
 		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhb\nv 1   p            v\nvhhhhhhhhhhhhb     v\nv e v              v\nv   v     v        v\nv 2       v        v\nvhhhhhhhhhhhhb     v\nv                  v\nv                3 v\nv   bhhhhhhhhhhhhhhv\nv                  v\nvhhhhhhhhhhhhb     v\nv                  v\nv clb              v\nbhhhhhhhhhhhhhhhhhhb", this.model.getMessage());
 		this.model.loadMessage("FOUR");
 		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhb\nv  1               v\nvbb    b b    hhhhhv\nv     b    b       v\nv     b p  b     2 v\nv     b   b        v\nv     b   b        v\nv 3    bbb       e v\nv           hhhhhhhv\nv   b              v\nv   v    b         v\nv   v    v         v\nv   v    v         v\nv   v l  v   4   c v\nbhhhhhhhhhhhhhhhhhhb", this.model.getMessage());
 		this.model.loadMessage("FIVE");
-		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhb\nv                 lv\nvhhhhb bhhhhhhhhhhhv\nv            4     v\nvhhhhhhhhhhhhhhhhb v\nv   3              v\nv bhhhhhhhhhhhhhhhhv\nv                  v\nvhhhhhhhhhhhhb bhhhv\nv            2     v\nvhb bhhhhhhhhhhhhhhv\nv                  v\nvhhhhhhhhb bhhhhhhhv\nvc p         1   e v\nbhhhhhhhhhhhhhhhhhhb", this.model.getMessage());
+		Assert.assertEquals("bhhhhhhhhhhhhhhhhhhb\nv                 lv\nvhhhhb bhhhhhhhhhhhv\nv           4      v\nvhhhhhhhhhhhhhhhhb v\nv   3              v\nv bhhhhhhhhhhhhhhhhv\nv                  v\nvhhhhhhhhhhhhb bhhhv\nv            2     v\nvhb bhhhhhhhhhhhhhhv\nv                  v\nvhhhhhhhhb bhhhhhhhv\nvc p         1   e v\nbhhhhhhhhhhhhhhhhhhb", this.model.getMessage());
 	}
 	
 	
@@ -91,7 +90,7 @@ public class ModelTest {
 	 */
 	@Test
 	public void testIsMovePossible(){
-		Assert.assertEquals(true, this.model.isMovePossible(0, 0));
+		Assert.assertEquals(false, this.model.isMovePossible(0, 0));
 	}
 	
 	/**
@@ -100,6 +99,14 @@ public class ModelTest {
 	@Test
 	public void testIsMovePossible2(){
 		Assert.assertEquals(true, this.model.isMovePossible2(0, 0));
+	}
+	
+	/**
+	 * Test isMoveIsPossible3
+	 */
+	@Test
+	public void testIsMovePossible3(){
+		Assert.assertEquals(false, this.model.isMovePossible3(0, 0));
 	}
 	
 	/**

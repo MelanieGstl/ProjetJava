@@ -138,8 +138,8 @@ public class ElementLevel {
 	/** 
      * Set the horizontal place of the energy ball
      *   
-     *   @param energyX
-     *   			Horizontal place of the energy ball
+     *   @param x
+     *   		Horizontal place of the energy ball
      */
 	public void setEnergyX(int x)
 	{
@@ -149,8 +149,8 @@ public class ElementLevel {
 	/** 
      * Set the vertical place of the energy ball
      *   
-     *   @param energyY
-     *   			Vertical place of the energy ball
+     *   @param y
+     *   		Vertical place of the energy ball
      */
 	public void setEnergyY(int y)
 	{
@@ -160,8 +160,8 @@ public class ElementLevel {
 	/** 
      * Set the horizontal place of the gate
      *   
-     *   @param gateX
-     *   			Horizontal place of the gate
+     *   @param x
+     *   		Horizontal place of the gate
      */
 	public void setGateX(int x)
 	{
@@ -171,8 +171,8 @@ public class ElementLevel {
 	/** 
      * Set the vertical place of the gate
      *   
-     *   @param gateY
-     *   			Vertical place of the gate
+     *   @param y
+     *   		Vertical place of the gate
      */
 	public void setGateY(int y)
 	{
@@ -193,8 +193,8 @@ public class ElementLevel {
 	/** 
      * Set if the hero can shoot a fireball
      *   
-     *   @param you_can_fire
-     *   			Indicator if the the hero can shoot his fireball
+     *   @param fire
+     *   		Indicator if the the hero can shoot his fireball
      */
 	public void setFire(int fire)
 	{

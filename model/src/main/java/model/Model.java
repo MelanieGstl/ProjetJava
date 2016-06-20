@@ -78,7 +78,7 @@ public class Model extends Observable implements IModel<Hero> {
 	/** The shoot. */
 	public Shoot shoot;
 	
-	/** The . */
+	/** The element in a level. */
 	public ElementLevel elementLevel;
 	
 	/** The table for the map. */
@@ -90,6 +90,7 @@ public class Model extends Observable implements IModel<Hero> {
 	/** The score of the player */
     private int[] playerScore = new int[6];
     
+    /** Movement of the monster */
     private int move_monster = 0;
 	
 /////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
@@ -98,6 +99,7 @@ public class Model extends Observable implements IModel<Hero> {
      * Gets the name of the player
      * 
      *   @param i
+     *   		Use to choose the correct name
      *   
      *   @return DBplayerName
      *   				the name of the player
@@ -110,6 +112,7 @@ public class Model extends Observable implements IModel<Hero> {
      * Gets the score of the player
      * 
      *   @param i
+     *   		Use to choose the correct score
      *   
      *   @return DBplayerScore
      *   				the score of the player at the end of the game
@@ -237,6 +240,12 @@ public class Model extends Observable implements IModel<Hero> {
 	/**  
 	 * Gets an element on the map
 	 * 
+	 * @param x
+	 * 		The horizontal place of an element
+	 * 
+	 * @param y
+	 * 		The vertical place of an element
+	 * 
 	 * @return tableau[x][y]
 	 * 				the place of an element in the array which correspond to the map
 	 * 
@@ -249,9 +258,9 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	////////////////////////////////////////////////////////////
 	 /**  
-	 * Gets 
+	 * Gets if a map is loaded
 	 * 
-	 * @return 
+	 * @return the new map
 	 * 
 	 */
 	public int getLoadMap()
@@ -508,7 +517,19 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	/**
-	 * Check if the movement is possible when the element's permeability is penetrable
+	 * Check if the movement is possible for the monster
+	 * 
+	 * @param x
+	 * 		The horizontal place of an element
+	 * 
+	 * @param y
+	 * 		The vertical place of an element
+	 * 
+	 * @return true
+	 * 		The movement is possible
+	 * 
+	 * @return false 
+	 * 		The movement is not possible
 	 * 
 	 */
 	public boolean isMovePossible(final int x, final int y) {
@@ -522,7 +543,19 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	
 	/**
-	 * Check if the movement is possible when the element's permeability is blocking
+	 * Check if the movement is possible for the hero
+	 * 
+	 * @param x
+	 * 		The horizontal place of an element
+	 * 
+	 * @param y
+	 * 		The vertical place of an element
+	 * 
+	 * @return true
+	 * 		The movement is possible
+	 * 
+	 * @return false 
+	 * 		The movement is not possible
 	 * 
 	 */
 	public boolean isMovePossible2(final int x, final int y) {
@@ -532,7 +565,20 @@ public class Model extends Observable implements IModel<Hero> {
 			return true;
 		}
 	}
-	
+	/**
+	 * Check if the movement is possible for the fireball
+	 * @param x
+	 * 		The horizontal place of an element
+	 * 
+	 * @param y
+	 * 		The vertical place of an element
+	 * 
+	 * @return true
+	 * 		The movement is possible
+	 * 
+	 * @return false 
+	 * 		The movement is not possible
+	 */
 	public boolean isMovePossible3(final int x, final int y) {
 		if(this.getElement(x, y) == ' ' || this.getElement(x, y) == 'l' || this.getElement(x, y) == '1' || this.getElement(x, y) == '2' || this.getElement(x, y) == '3' || this.getElement(x, y) == '4'){
 			return true;
@@ -1481,6 +1527,12 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	/**
 	 * Check the position of the monster compared to the hero
+	 * 
+	 * @return true
+	 * 			The hero is on an element
+	 * 
+	 * @return false
+	 * 			The hero is not on an element
 	 * 
 	 */
 	public boolean checkPosition()

@@ -6,7 +6,6 @@ import java.util.Observable;
  * The Interface IModel.
  *
  * @author Group 1 : Mélanie GSTALTER, Hugo HUILIER, Julie MEYER
- * @param <Hero>
  */
 public interface IModel<Hero> {
 
@@ -50,7 +49,14 @@ public interface IModel<Hero> {
 	/** 
 	 * Gets an element.
 	 *
-	 * @param x, y 
+	 * @param x
+	 * 		The horizontal place of an element
+	 * 
+	 * @param y
+	 * 		The vertical place of an element
+	 * 
+	 * @return tableau[x][y]
+	 * 				the place of an element in the array which correspond to the map
 	 */
 	char getElement(int x, int y);
 
@@ -81,6 +87,7 @@ public interface IModel<Hero> {
 	 * Gets the score of the player
 	 * 
 	 * @param i
+	 * 		Use to choose the correct score of the player
 	 * 			
 	 * @return DBplayerScore
 	 * 				the score
@@ -100,6 +107,7 @@ public interface IModel<Hero> {
 	 * Gets the name of the player
 	 * 
 	 * @param i
+	 * 		Use to choose the correct name of the player
 	 * 
 	 * @return DBplayerName
 	 * 				the name of the player
@@ -146,6 +154,9 @@ public interface IModel<Hero> {
 
 	/** 
 	 * Move Hero.
+	 * 
+	 * @param move
+	 * 		The movement of the hero
 	 *
 	 */
 	void moveHero(String move);
@@ -158,9 +169,12 @@ public interface IModel<Hero> {
 
 	/** 
 	 * Set the last movement (to know where place the fire ball)
+	 * 
+	 * @param lastKey
+	 * 		the movement of the hero
 	 *  
 	 */
-	void setLastMove(String string);
+	void setLastMove(String lastKey);
 
 	/** 
 	 * Place the fire ball 
@@ -176,14 +190,23 @@ public interface IModel<Hero> {
 
 	/** 
 	 *  Check if the hero in on an element
+	 *  
+	 *  @return true
+	 * 			The hero is on an element
 	 * 
+	 * @return false
+	 * 			The hero is not on an element
 	 */
 	boolean checkPosition();
 
 	/** 
 	 * Insert a score.
 	 *
-	 *@param name, score
+	 * @param name
+	 * 			The name of the player
+	 * 
+	 * @param score
+	 * 			The score of the player
 	 *
 	 */
 	void InsertScore(String name, int score);
