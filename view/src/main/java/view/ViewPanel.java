@@ -289,7 +289,7 @@ public class ViewPanel extends JPanel implements Observer {
 				else {
 					graphics.setColor(Color.CYAN);
 					for (int i = 0 ; i < 6;) {
-						graphics.drawString(this.viewFrame.getModel().getDBplayerName(i) + " :  " + this.viewFrame.getModel().getDBplayerScore(i), 256, (128+ (32 * i)));
+						graphics.drawString(this.viewFrame.getModel().getPlayerName(i) + " :  " + this.viewFrame.getModel().getPlayerScore(i), 256, (128+ (32 * i)));
 						i++;
 					}
 				}

@@ -85,10 +85,10 @@ public class Model extends Observable implements IModel<Hero> {
 	private char[][] tableau = new char[this.getWidth()+1][this.getHeight()+1];
 	
 	/** The name of the player */
-	private String[] DBplayerName = new String[6];
+	private String[] playerName = new String[6];
 	
 	/** The score of the player */
-    private int[] DBplayerScore = new int[6];
+    private int[] playerScore = new int[6];
 	
 	
 /////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
@@ -101,8 +101,8 @@ public class Model extends Observable implements IModel<Hero> {
      *   @return DBplayerName
      *   				the name of the player
      */
-    public String getDBplayerName(int i) {
-        return this.DBplayerName[i];
+    public String getPlayerName(int i) {
+        return this.playerName[i];
     }
     
     /** 
@@ -113,8 +113,8 @@ public class Model extends Observable implements IModel<Hero> {
      *   @return DBplayerScore
      *   				the score of the player at the end of the game
      */
-    public int getDBplayerScore(int i) {
-        return this.DBplayerScore[i];
+    public int getPlayerScore(int i) {
+        return this.playerScore[i];
     }
     
     /*
@@ -279,8 +279,8 @@ public class Model extends Observable implements IModel<Hero> {
      *   			The name of the player
      *   
      */
-    public void setDBplayerName(String DBplayerName[]) {
-        this.DBplayerName = DBplayerName;
+    public void setPlayerName(String DBplayerName[]) {
+        this.playerName = DBplayerName;
     }
 
     /** 
@@ -290,8 +290,8 @@ public class Model extends Observable implements IModel<Hero> {
      *   			The score of the player
      *   
      */
-    public void setDBplayerScore(int DBplayerScore[]) {
-        this.DBplayerScore = DBplayerScore;
+    public void setPlayerScore(int DBplayerScore[]) {
+        this.playerScore = DBplayerScore;
     }
 	
     /** 
@@ -303,9 +303,9 @@ public class Model extends Observable implements IModel<Hero> {
      *   		the score of the player
      *   
      */
-    private void setDBplayer(final String[] name, final int[] score) {
-        this.setDBplayerName(name);
-        this.setDBplayerScore(score);
+    private void setPlayer(final String[] name, final int[] score) {
+        this.setPlayerName(name);
+        this.setPlayerScore(score);
     }
     
     /**
@@ -372,7 +372,7 @@ public class Model extends Observable implements IModel<Hero> {
     public void loadHighscore() {
         try {
             final DAOScore daoScore = new DAOScore(DBConnection.getInstance().getConnection());
-            this.setDBplayer(daoScore.putHighscores().getName(),daoScore.putHighscores().getScore());
+            this.setPlayer(daoScore.putHighscores().getName(),daoScore.putHighscores().getScore());
         } catch (final SQLException e) {
             e.printStackTrace();
         }

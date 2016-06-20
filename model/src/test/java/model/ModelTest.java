@@ -159,12 +159,12 @@ public class ModelTest {
 	}
 	
 	 public void testGetDBplayerName(){
-			Assert.assertEquals(null, this.model.getDBplayerName(1));
+			Assert.assertEquals(null, this.model.getPlayerName(1));
 		}
 		
 		@Test
 		public void testGetDGplayerScore(){
-			Assert.assertEquals(0, this.model.getDBplayerScore(1));
+			Assert.assertEquals(0, this.model.getPlayerScore(1));
 		}
 		
 		@Test

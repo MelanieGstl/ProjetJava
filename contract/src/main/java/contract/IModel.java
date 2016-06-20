@@ -86,7 +86,7 @@ public interface IModel<Hero> {
 	 * 				the score
 	 * 
 	 */
-	int getDBplayerScore(int i);
+	int getPlayerScore(int i);
 
 	/**  
 	 * Gets the level of the player on the game
@@ -104,7 +104,7 @@ public interface IModel<Hero> {
 	 * @return DBplayerName
 	 * 				the name of the player
 	 */
-	String getDBplayerName(int i);
+	String getPlayerName(int i);
 	
 /////////////////////////////////////////////////////////SETTERS//////////////////////////////////////////////////////////////
 	
