@@ -600,7 +600,7 @@ public class Model extends Observable implements IModel<Hero> {
 	 * 
 	 */
 	public void moveMonster() 
-	{		
+	{	
 		for(Monster m :this.monsters)
 		{
 			if(this.getMonster(m).getDeath() == 0)
