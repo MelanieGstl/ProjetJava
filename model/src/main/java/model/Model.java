@@ -625,780 +625,817 @@ public class Model extends Observable implements IModel<Hero> {
 
 		for(Monster m : this.monsters)
 		{
-			if(index == 3)
+			if(this.getMonster(m).getDeath() == 0)
 			{
-				if(this.getMonster(m).getDeath() == 0)
+				if(index == 2)
 				{
-					if(this.getMonster(m).getY() < this.getHero().getY())
-					{
-						if(this.isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-						{
-							this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
-							
-						}
-						
-						else
-						{
-							int i = 1;
-							int y = 1;
-							int z = 0;
-							int stop_i = 0;
-							int stop_y = 0;
-							
-							while(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX() + i) == false && stop_i != 1)
-							{
-								
-								if(this.getMonster(m).getX() + i < 19)
-								{
-									i++;
-								}
-								
-								else
-								{
-									stop_i = 1;
-								}
-								
-							}
-							
-							while(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX() - y) == false && stop_y != 1)
-							{
-								if(this.getMonster(m).getX() - y > 0)
-								{
-									y++;
-								}	
-								
-								else
-								{
-									stop_y = 1;
-								}
-							}
-	
-							while(z < i && z < y)
-							{
-								if(i > y && stop_y == 0)
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								else if(i < y && stop_i == 0)
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-										
-									}
-								}
-								
-								else if(stop_y == 1)
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-										
-									}
-								}
-								
-								else if(stop_i == 1)
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								else
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								z++;
-							}						
-						}
-					}
+					int number_random = (int) (Math.random() * (5 - 1));
 					
-					else if(this.getMonster(m).getY() > this.getHero().getY())
-					{
-						if(this.isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-						{
-							this.tableau = this.getMonster(m).move(this.tableau, "UP", index);	
-							
-						}
-						
-						else
-						{
-							int i = 1;
-							int y = 1;
-							int z = 0;
-							int stop_i = 0;
-							int stop_y = 0;
-							
-							while(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX() + i) == false && stop_i != 1)
-							{
-								if(this.getMonster(m).getX() + i < 19)
-								{
-									i++;
-								}
-								
-								else
-								{
-									stop_i = 1;
-								}
-								
-							}
-							
-							while(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX() - y) == false && stop_y != 1)
-							{
-								if(this.getMonster(m).getX() - y > 0)
-								{
-									y++;
-								}	
-								
-								else 
-								{
-									stop_y = 1;
-								}
-							}
-	
-							while(z < i && z < y)
-							{
-								if(i > y && stop_y == 0)
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								else if(i < y && stop_i == 0)
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-										
-									}
-								}
-								
-								else if(stop_y == 1)
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-										
-									}
-								}
-								
-								else if(stop_i == 1)
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								else
-								{
-									if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								z++;
-							}						
-						}
-					}
-					
-					else if(this.getMonster(m).getX() < this.getHero().getX())
-					{
-						if(this.isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-						{
-							this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-							
-						}
-						
-						else
-						{
-							int i = 1;
-							int y = 1;
-							int z = 0;
-							int stop_i = 0;
-							int stop_y = 0;
-							
-							while(isMovePossible4(this.getMonster(m).getY() + i, this.getMonster(m).getX()+1) == false && stop_i != 1)
-							{
-								if(this.getMonster(m).getY() + i < 19)
-								{
-									i++;
-								}
-								
-								else
-								{
-									stop_i = 1;
-								}
-								
-							}
-							
-							while(isMovePossible4(this.getMonster(m).getY() - y, this.getMonster(m).getX()+1) == false && stop_y != 1)
-							{
-								if(this.getMonster(m).getY() - y > 0)
-								{
-									y++;
-								}	
-								
-								else
-								{
-									stop_y = 1;
-								}
-							}
-	
-							while(z < i && z < y)
-							{
-								if(i > y && stop_y == 0)
-								{
-									if(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-										
-									}
-								}
-								
-								else if(i < y && stop_i == 0)
-								{
-									if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
-										
-									}
-								}
-								
-								else if(stop_y == 1)
-								{
-									if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
-										
-									}
-								}
-								
-								else if(stop_i == 1)
-								{
-									if(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "UP", index);		
-										
-									}
-								}
-								
-								else
-								{
-									if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-										
-									}
-								}
-								
-								z++;
-							}						
-						}
-					}
-					
-					else if(this.getMonster(m).getX() > this.getHero().getX())
-					{
-						if(this.isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-						{
-							this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-							
-						}
-						
-						else
-						{
-							int i = 1;
-							int y = 1;
-							int z = 0;
-							int stop_i = 0;
-							int stop_y = 0;
-							
-							while(isMovePossible4(this.getMonster(m).getY() + i, this.getMonster(m).getX()-1) == false && stop_i != 1)
-							{
-								if(this.getMonster(m).getY() + i < 19)
-								{
-									i++;
-								}
-								
-								else
-								{
-									stop_i = 1;
-								}
-								
-							}
-							
-							while(isMovePossible4(this.getMonster(m).getY() - y, this.getMonster(m).getX()-1) == false && stop_y != 1)
-							{
-								if(this.getMonster(m).getY() - y > 0)
-								{
-									y++;
-								}	
-								
-								else
-								{
-									stop_y = 1;
-								}
-							}
-	
-							while(z < i && z < y)
-							{
-								if(i > y && stop_y == 0)
-								{
-									if(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-									{									
-										this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-										
-									}
-								}
-								
-								else if(i < y && stop_i == 0)
-								{
-									if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-										
-									}
-								}
-								
-								else if(stop_y == 1)
-								{
-									if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-										
-									}
-								}
-								
-								else if(stop_i == 1)
-								{
-									if(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-										
-									}
-								}
-								
-								else
-								{
-									if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-										
-									}
-								}
-	
-								z++;
-							}						
-						}
-					}
-				}
-			}
-			
-			else
-			{
-				if(this.getMonster(m).getDeath() == 0)
-				{
-					if(this.getMonster(m).getY() < this.getHero().getY())
+					if(number_random == 0)
 					{
 						if(this.isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 						{
-							this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
-							
-						}
-						
-						else
-						{
-							int i = 1;
-							int y = 1;
-							int z = 0;
-							int stop_i = 0;
-							int stop_y = 0;
-							
-							while(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX() + i) == false && stop_i != 1)
-							{
-								
-								if(this.getMonster(m).getX() + i < 19)
-								{
-									i++;
-								}
-								
-								else
-								{
-									stop_i = 1;
-								}
-								
-							}
-							
-							while(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX() - y) == false && stop_y != 1)
-							{
-								if(this.getMonster(m).getX() - y > 0)
-								{
-									y++;
-								}	
-								
-								else
-								{
-									stop_y = 1;
-								}
-							}
-	
-							while(z < i && z < y)
-							{
-								if(i > y && stop_y == 0)
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								else if(i < y && stop_i == 0)
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-										
-									}
-								}
-								
-								else if(stop_y == 1)
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-										
-									}
-								}
-								
-								else if(stop_i == 1)
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								else
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								z++;
-							}						
+							this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
 						}
 					}
 					
-					else if(this.getMonster(m).getY() > this.getHero().getY())
+					else if(number_random == 1)
 					{
 						if(this.isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 						{
-							this.tableau = this.getMonster(m).move(this.tableau, "UP", index);	
-							
-						}
-						
-						else
-						{
-							int i = 1;
-							int y = 1;
-							int z = 0;
-							int stop_i = 0;
-							int stop_y = 0;
-							
-							while(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX() + i) == false && stop_i != 1)
-							{
-								if(this.getMonster(m).getX() + i < 19)
-								{
-									i++;
-								}
-								
-								else
-								{
-									stop_i = 1;
-								}
-								
-							}
-							
-							while(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX() - y) == false && stop_y != 1)
-							{
-								if(this.getMonster(m).getX() - y > 0)
-								{
-									y++;
-								}	
-								
-								else 
-								{
-									stop_y = 1;
-								}
-							}
-	
-							while(z < i && z < y)
-							{
-								if(i > y && stop_y == 0)
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								else if(i < y && stop_i == 0)
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-										
-									}
-								}
-								
-								else if(stop_y == 1)
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-										
-									}
-								}
-								
-								else if(stop_i == 1)
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								else
-								{
-									if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-										
-									}
-								}
-								
-								z++;
-							}						
+							this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
 						}
 					}
 					
-					else if(this.getMonster(m).getX() < this.getHero().getX())
-					{
-						if(this.isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-						{
-							this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-							
-						}
-						
-						else
-						{
-							int i = 1;
-							int y = 1;
-							int z = 0;
-							int stop_i = 0;
-							int stop_y = 0;
-							
-							while(isMovePossible(this.getMonster(m).getY() + i, this.getMonster(m).getX()+1) == false && stop_i != 1)
-							{
-								if(this.getMonster(m).getY() + i < 19)
-								{
-									i++;
-								}
-								
-								else
-								{
-									stop_i = 1;
-								}
-								
-							}
-							
-							while(isMovePossible(this.getMonster(m).getY() - y, this.getMonster(m).getX()+1) == false && stop_y != 1)
-							{
-								if(this.getMonster(m).getY() - y > 0)
-								{
-									y++;
-								}	
-								
-								else
-								{
-									stop_y = 1;
-								}
-							}
-	
-							while(z < i && z < y)
-							{
-								if(i > y && stop_y == 0)
-								{
-									if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-										
-									}
-								}
-								
-								else if(i < y && stop_i == 0)
-								{
-									if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
-										
-									}
-								}
-								
-								else if(stop_y == 1)
-								{
-									if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
-										
-									}
-								}
-								
-								else if(stop_i == 1)
-								{
-									if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "UP", index);		
-										
-									}
-								}
-								
-								else
-								{
-									if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-										
-									}
-								}
-								
-								z++;
-							}						
-						}
-					}
-					
-					else if(this.getMonster(m).getX() > this.getHero().getX())
+					else if(number_random == 2)
 					{
 						if(this.isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
 						{
 							this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-							
 						}
-						
-						else
+					}
+					
+					else
+					{
+						if(this.isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
 						{
-							int i = 1;
-							int y = 1;
-							int z = 0;
-							int stop_i = 0;
-							int stop_y = 0;
-							
-							while(isMovePossible(this.getMonster(m).getY() + i, this.getMonster(m).getX()-1) == false && stop_i != 1)
-							{
-								if(this.getMonster(m).getY() + i < 19)
-								{
-									i++;
-								}
-								
-								else
-								{
-									stop_i = 1;
-								}
-								
-							}
-							
-							while(isMovePossible(this.getMonster(m).getY() - y, this.getMonster(m).getX()-1) == false && stop_y != 1)
-							{
-								if(this.getMonster(m).getY() - y > 0)
-								{
-									y++;
-								}	
-								
-								else
-								{
-									stop_y = 1;
-								}
-							}
-	
-							while(z < i && z < y)
-							{
-								if(i > y && stop_y == 0)
-								{
-									if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-									{									
-										this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-										
-									}
-								}
-								
-								else if(i < y && stop_i == 0)
-								{
-									if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-										
-									}
-								}
-								
-								else if(stop_y == 1)
-								{
-									if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-										
-									}
-								}
-								
-								else if(stop_i == 1)
-								{
-									if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-										
-									}
-								}
-								
-								else
-								{
-									if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-									{
-										this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-										
-									}
-								}
-	
-								z++;
-							}						
+							this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
 						}
 					}
 				}
-			}		
-			index++;			
+				
+				else if(index == 3)
+				{				
+						if(this.getMonster(m).getY() < this.getHero().getY())
+						{
+							if(this.isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+							{
+								this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
+								
+							}
+							
+							else
+							{
+								int i = 1;
+								int y = 1;
+								int z = 0;
+								int stop_i = 0;
+								int stop_y = 0;
+								
+								while(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX() + i) == false && stop_i != 1)
+								{
+									
+									if(this.getMonster(m).getX() + i < 19)
+									{
+										i++;
+									}
+									
+									else
+									{
+										stop_i = 1;
+									}
+									
+								}
+								
+								while(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX() - y) == false && stop_y != 1)
+								{
+									if(this.getMonster(m).getX() - y > 0)
+									{
+										y++;
+									}	
+									
+									else
+									{
+										stop_y = 1;
+									}
+								}
+		
+								while(z < i && z < y)
+								{
+									if(i > y && stop_y == 0)
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									else if(i < y && stop_i == 0)
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+											
+										}
+									}
+									
+									else if(stop_y == 1)
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+											
+										}
+									}
+									
+									else if(stop_i == 1)
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									else
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									z++;
+								}						
+							}
+						}
+						
+						else if(this.getMonster(m).getY() > this.getHero().getY())
+						{
+							if(this.isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+							{
+								this.tableau = this.getMonster(m).move(this.tableau, "UP", index);	
+								
+							}
+							
+							else
+							{
+								int i = 1;
+								int y = 1;
+								int z = 0;
+								int stop_i = 0;
+								int stop_y = 0;
+								
+								while(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX() + i) == false && stop_i != 1)
+								{
+									if(this.getMonster(m).getX() + i < 19)
+									{
+										i++;
+									}
+									
+									else
+									{
+										stop_i = 1;
+									}
+									
+								}
+								
+								while(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX() - y) == false && stop_y != 1)
+								{
+									if(this.getMonster(m).getX() - y > 0)
+									{
+										y++;
+									}	
+									
+									else 
+									{
+										stop_y = 1;
+									}
+								}
+		
+								while(z < i && z < y)
+								{
+									if(i > y && stop_y == 0)
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									else if(i < y && stop_i == 0)
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+											
+										}
+									}
+									
+									else if(stop_y == 1)
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+											
+										}
+									}
+									
+									else if(stop_i == 1)
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									else
+									{
+										if(isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									z++;
+								}						
+							}
+						}
+						
+						else if(this.getMonster(m).getX() < this.getHero().getX())
+						{
+							if(this.isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+							{
+								this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+								
+							}
+							
+							else
+							{
+								int i = 1;
+								int y = 1;
+								int z = 0;
+								int stop_i = 0;
+								int stop_y = 0;
+								
+								while(isMovePossible4(this.getMonster(m).getY() + i, this.getMonster(m).getX()+1) == false && stop_i != 1)
+								{
+									if(this.getMonster(m).getY() + i < 19)
+									{
+										i++;
+									}
+									
+									else
+									{
+										stop_i = 1;
+									}
+									
+								}
+								
+								while(isMovePossible4(this.getMonster(m).getY() - y, this.getMonster(m).getX()+1) == false && stop_y != 1)
+								{
+									if(this.getMonster(m).getY() - y > 0)
+									{
+										y++;
+									}	
+									
+									else
+									{
+										stop_y = 1;
+									}
+								}
+		
+								while(z < i && z < y)
+								{
+									if(i > y && stop_y == 0)
+									{
+										if(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
+											
+										}
+									}
+									
+									else if(i < y && stop_i == 0)
+									{
+										if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
+											
+										}
+									}
+									
+									else if(stop_y == 1)
+									{
+										if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
+											
+										}
+									}
+									
+									else if(stop_i == 1)
+									{
+										if(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "UP", index);		
+											
+										}
+									}
+									
+									else
+									{
+										if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
+											
+										}
+									}
+									
+									z++;
+								}						
+							}
+						}
+						
+						else if(this.getMonster(m).getX() > this.getHero().getX())
+						{
+							if(this.isMovePossible4(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+							{
+								this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+								
+							}
+							
+							else
+							{
+								int i = 1;
+								int y = 1;
+								int z = 0;
+								int stop_i = 0;
+								int stop_y = 0;
+								
+								while(isMovePossible4(this.getMonster(m).getY() + i, this.getMonster(m).getX()-1) == false && stop_i != 1)
+								{
+									if(this.getMonster(m).getY() + i < 19)
+									{
+										i++;
+									}
+									
+									else
+									{
+										stop_i = 1;
+									}
+									
+								}
+								
+								while(isMovePossible4(this.getMonster(m).getY() - y, this.getMonster(m).getX()-1) == false && stop_y != 1)
+								{
+									if(this.getMonster(m).getY() - y > 0)
+									{
+										y++;
+									}	
+									
+									else
+									{
+										stop_y = 1;
+									}
+								}
+		
+								while(z < i && z < y)
+								{
+									if(i > y && stop_y == 0)
+									{
+										if(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+										{									
+											this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
+											
+										}
+									}
+									
+									else if(i < y && stop_i == 0)
+									{
+										if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
+											
+										}
+									}
+									
+									else if(stop_y == 1)
+									{
+										if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
+											
+										}
+									}
+									
+									else if(stop_i == 1)
+									{
+										if(isMovePossible4(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
+											
+										}
+									}
+									
+									else
+									{
+										if(isMovePossible4(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
+											
+										}
+									}
+		
+									z++;
+								}						
+							}
+						}
+				}
+				
+				else
+				{
+					if(this.getMonster(m).getDeath() == 0)
+					{
+						if(this.getMonster(m).getY() < this.getHero().getY())
+						{
+							if(this.isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+							{
+								this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
+								
+							}
+							
+							else
+							{
+								int i = 1;
+								int y = 1;
+								int z = 0;
+								int stop_i = 0;
+								int stop_y = 0;
+								
+								while(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX() + i) == false && stop_i != 1)
+								{
+									
+									if(this.getMonster(m).getX() + i < 19)
+									{
+										i++;
+									}
+									
+									else
+									{
+										stop_i = 1;
+									}
+									
+								}
+								
+								while(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX() - y) == false && stop_y != 1)
+								{
+									if(this.getMonster(m).getX() - y > 0)
+									{
+										y++;
+									}	
+									
+									else
+									{
+										stop_y = 1;
+									}
+								}
+		
+								while(z < i && z < y)
+								{
+									if(i > y && stop_y == 0)
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									else if(i < y && stop_i == 0)
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+											
+										}
+									}
+									
+									else if(stop_y == 1)
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+											
+										}
+									}
+									
+									else if(stop_i == 1)
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									else
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									z++;
+								}						
+							}
+						}
+						
+						else if(this.getMonster(m).getY() > this.getHero().getY())
+						{
+							if(this.isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+							{
+								this.tableau = this.getMonster(m).move(this.tableau, "UP", index);	
+								
+							}
+							
+							else
+							{
+								int i = 1;
+								int y = 1;
+								int z = 0;
+								int stop_i = 0;
+								int stop_y = 0;
+								
+								while(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX() + i) == false && stop_i != 1)
+								{
+									if(this.getMonster(m).getX() + i < 19)
+									{
+										i++;
+									}
+									
+									else
+									{
+										stop_i = 1;
+									}
+									
+								}
+								
+								while(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX() - y) == false && stop_y != 1)
+								{
+									if(this.getMonster(m).getX() - y > 0)
+									{
+										y++;
+									}	
+									
+									else 
+									{
+										stop_y = 1;
+									}
+								}
+		
+								while(z < i && z < y)
+								{
+									if(i > y && stop_y == 0)
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									else if(i < y && stop_i == 0)
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+											
+										}
+									}
+									
+									else if(stop_y == 1)
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+											
+										}
+									}
+									
+									else if(stop_i == 1)
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									else
+									{
+										if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+											
+										}
+									}
+									
+									z++;
+								}						
+							}
+						}
+						
+						else if(this.getMonster(m).getX() < this.getHero().getX())
+						{
+							if(this.isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
+							{
+								this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
+								
+							}
+							
+							else
+							{
+								int i = 1;
+								int y = 1;
+								int z = 0;
+								int stop_i = 0;
+								int stop_y = 0;
+								
+								while(isMovePossible(this.getMonster(m).getY() + i, this.getMonster(m).getX()+1) == false && stop_i != 1)
+								{
+									if(this.getMonster(m).getY() + i < 19)
+									{
+										i++;
+									}
+									
+									else
+									{
+										stop_i = 1;
+									}
+									
+								}
+								
+								while(isMovePossible(this.getMonster(m).getY() - y, this.getMonster(m).getX()+1) == false && stop_y != 1)
+								{
+									if(this.getMonster(m).getY() - y > 0)
+									{
+										y++;
+									}	
+									
+									else
+									{
+										stop_y = 1;
+									}
+								}
+		
+								while(z < i && z < y)
+								{
+									if(i > y && stop_y == 0)
+									{
+										if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
+											
+										}
+									}
+									
+									else if(i < y && stop_i == 0)
+									{
+										if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
+											
+										}
+									}
+									
+									else if(stop_y == 1)
+									{
+										if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
+											
+										}
+									}
+									
+									else if(stop_i == 1)
+									{
+										if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "UP", index);		
+											
+										}
+									}
+									
+									else
+									{
+										if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
+											
+										}
+									}
+									
+									z++;
+								}						
+							}
+						}
+						
+						else if(this.getMonster(m).getX() > this.getHero().getX())
+						{
+							if(this.isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
+							{
+								this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
+								
+							}
+							
+							else
+							{
+								int i = 1;
+								int y = 1;
+								int z = 0;
+								int stop_i = 0;
+								int stop_y = 0;
+								
+								while(isMovePossible(this.getMonster(m).getY() + i, this.getMonster(m).getX()-1) == false && stop_i != 1)
+								{
+									if(this.getMonster(m).getY() + i < 19)
+									{
+										i++;
+									}
+									
+									else
+									{
+										stop_i = 1;
+									}
+									
+								}
+								
+								while(isMovePossible(this.getMonster(m).getY() - y, this.getMonster(m).getX()-1) == false && stop_y != 1)
+								{
+									if(this.getMonster(m).getY() - y > 0)
+									{
+										y++;
+									}	
+									
+									else
+									{
+										stop_y = 1;
+									}
+								}
+		
+								while(z < i && z < y)
+								{
+									if(i > y && stop_y == 0)
+									{
+										if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+										{									
+											this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
+											
+										}
+									}
+									
+									else if(i < y && stop_i == 0)
+									{
+										if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
+											
+										}
+									}
+									
+									else if(stop_y == 1)
+									{
+										if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
+											
+										}
+									}
+									
+									else if(stop_i == 1)
+									{
+										if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
+											
+										}
+									}
+									
+									else
+									{
+										if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
+										{
+											this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
+											
+										}
+									}
+		
+									z++;
+								}						
+							}
+						}
+					}
+				}					
+			}
+			index++;				
 		}
 	}
 	
