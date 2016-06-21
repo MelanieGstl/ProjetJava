@@ -18,7 +18,7 @@ public abstract class Main {
 	 *          the arguments
 	 */
 	public static void main(final String[] args) {
-		Thread playWave=new AePlayWave("C:/Users/gstal/Desktop/Musique.wav");
+		Thread playWave=new AePlayWave("C:/Users/Hugoo/Desktop/Musique.wav");
         playWave.start();
 		final Model model = new Model();
 		final View view = new View(model);
