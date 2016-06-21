@@ -78,7 +78,7 @@ public class Model extends Observable implements IModel<Hero> {
 	/** The shoot. */
 	public Shoot shoot;
 	
-	/** The element in a level. */
+	/** The . */
 	public ElementLevel elementLevel;
 	
 	/** The table for the map. */
@@ -90,16 +90,12 @@ public class Model extends Observable implements IModel<Hero> {
 	/** The score of the player */
     private int[] playerScore = new int[6];
     
-    /** Movement of the monster */
-    private int move_monster = 0;
-	
 /////////////////////////////////////////////////////////GETTERS//////////////////////////////////////////////////////////////
 
     /** 
      * Gets the name of the player
      * 
      *   @param i
-     *   		Use to choose the correct name
      *   
      *   @return DBplayerName
      *   				the name of the player
@@ -112,7 +108,6 @@ public class Model extends Observable implements IModel<Hero> {
      * Gets the score of the player
      * 
      *   @param i
-     *   		Use to choose the correct score
      *   
      *   @return DBplayerScore
      *   				the score of the player at the end of the game
@@ -240,12 +235,6 @@ public class Model extends Observable implements IModel<Hero> {
 	/**  
 	 * Gets an element on the map
 	 * 
-	 * @param x
-	 * 		The horizontal place of an element
-	 * 
-	 * @param y
-	 * 		The vertical place of an element
-	 * 
 	 * @return tableau[x][y]
 	 * 				the place of an element in the array which correspond to the map
 	 * 
@@ -258,9 +247,9 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	////////////////////////////////////////////////////////////
 	 /**  
-	 * Gets if a map is loaded
+	 * Gets 
 	 * 
-	 * @return the new map
+	 * @return 
 	 * 
 	 */
 	public int getLoadMap()
@@ -517,19 +506,7 @@ public class Model extends Observable implements IModel<Hero> {
 	}
 	
 	/**
-	 * Check if the movement is possible for the monster
-	 * 
-	 * @param x
-	 * 		The horizontal place of an element
-	 * 
-	 * @param y
-	 * 		The vertical place of an element
-	 * 
-	 * @return true
-	 * 		The movement is possible
-	 * 
-	 * @return false 
-	 * 		The movement is not possible
+	 * Check if the movement is possible when the element's permeability is penetrable
 	 * 
 	 */
 	public boolean isMovePossible(final int x, final int y) {
@@ -543,19 +520,7 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	
 	/**
-	 * Check if the movement is possible for the hero
-	 * 
-	 * @param x
-	 * 		The horizontal place of an element
-	 * 
-	 * @param y
-	 * 		The vertical place of an element
-	 * 
-	 * @return true
-	 * 		The movement is possible
-	 * 
-	 * @return false 
-	 * 		The movement is not possible
+	 * Check if the movement is possible when the element's permeability is blocking
 	 * 
 	 */
 	public boolean isMovePossible2(final int x, final int y) {
@@ -565,20 +530,7 @@ public class Model extends Observable implements IModel<Hero> {
 			return true;
 		}
 	}
-	/**
-	 * Check if the movement is possible for the fireball
-	 * @param x
-	 * 		The horizontal place of an element
-	 * 
-	 * @param y
-	 * 		The vertical place of an element
-	 * 
-	 * @return true
-	 * 		The movement is possible
-	 * 
-	 * @return false 
-	 * 		The movement is not possible
-	 */
+	
 	public boolean isMovePossible3(final int x, final int y) {
 		if(this.getElement(x, y) == ' ' || this.getElement(x, y) == 'l' || this.getElement(x, y) == '1' || this.getElement(x, y) == '2' || this.getElement(x, y) == '3' || this.getElement(x, y) == '4'){
 			return true;
@@ -669,40 +621,10 @@ public class Model extends Observable implements IModel<Hero> {
 			{
 				if(this.getMonster(m).getY() < this.getHero().getY())
 				{
-					if(this.isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()) && this.move_monster != 2)
+					if(this.isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 					{
 						this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
-						this.move_monster = 1;
-					}
-					
-					else if(this.move_monster == 2)
-					{
-						if(this.getMonster(m).getX() > this.getHero().getX())
-						{
-							if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-								this.move_monster = 4;
-							}
-						}
 						
-						else
-						{
-							if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-								this.move_monster = 3;
-							}
-							
-							else
-							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-								{
-									this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-									this.move_monster = 4;
-								}
-							}
-						}
 					}
 					
 					else
@@ -745,57 +667,47 @@ public class Model extends Observable implements IModel<Hero> {
 						{
 							if(i > y && stop_y == 0)
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1) && this.move_monster != 3)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-									this.move_monster = 4;
+									
 								}
 							}
 							
 							else if(i < y && stop_i == 0)
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1) && this.move_monster != 4)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-									this.move_monster = 3;
+									
 								}
 							}
 							
 							else if(stop_y == 1)
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1) && this.move_monster != 4)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-									this.move_monster = 3;
+									
 								}
 							}
 							
 							else if(stop_i == 1)
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1) && this.move_monster != 3)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-									this.move_monster = 4;
+									
 								}
 							}
 							
 							else
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1) && this.move_monster != 3)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-									this.move_monster = 4;
+									
 								}
-							}
-							
-							if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1) && this.move_monster == 3)
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-							}
-							
-							else if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1) && this.move_monster == 4)
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
 							}
 							
 							z++;
@@ -805,40 +717,10 @@ public class Model extends Observable implements IModel<Hero> {
 				
 				else if(this.getMonster(m).getY() > this.getHero().getY())
 				{
-					if(this.isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()) && this.move_monster != 1)
+					if(this.isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 					{
 						this.tableau = this.getMonster(m).move(this.tableau, "UP", index);	
-						this.move_monster = 2;
-					}
-					
-					else if(this.move_monster == 1)
-					{
-						if(this.getMonster(m).getX() > this.getHero().getX())
-						{
-							if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-								this.move_monster = 4;
-							}
-						}
 						
-						else
-						{
-							if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-								this.move_monster = 3;
-							}
-							
-							else
-							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
-								{
-									this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-									this.move_monster = 4;
-								}
-							}
-						}
 					}
 					
 					else
@@ -880,57 +762,47 @@ public class Model extends Observable implements IModel<Hero> {
 						{
 							if(i > y && stop_y == 0)
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1) && this.move_monster != 3)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-									this.move_monster = 4;
+									
 								}
 							}
 							
 							else if(i < y && stop_i == 0)
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1) && this.move_monster != 4)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-									this.move_monster = 3;
+									
 								}
 							}
 							
 							else if(stop_y == 1)
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1) && this.move_monster != 4)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-									this.move_monster = 3;
+									
 								}
 							}
 							
 							else if(stop_i == 1)
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1) && this.move_monster != 3)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-									this.move_monster = 4;
+									
 								}
 							}
 							
 							else
 							{
-								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1) && this.move_monster != 3)
+								if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-									this.move_monster = 4;
+									
 								}
-							}
-							
-							if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1) && this.move_monster == 3)
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-							}
-							
-							else if(isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1) && this.move_monster == 4)
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
 							}
 							
 							z++;
@@ -940,40 +812,10 @@ public class Model extends Observable implements IModel<Hero> {
 				
 				else if(this.getMonster(m).getX() < this.getHero().getX())
 				{
-					if(this.isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1) && this.move_monster != 4)
+					if(this.isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()+1))
 					{
 						this.tableau = this.getMonster(m).move(this.tableau, "RIGHT", index);
-						this.move_monster = 3;
-					}
-					
-					else if(this.move_monster == 4)
-					{
-						if(this.getMonster(m).getY() > this.getHero().getY())
-						{
-							if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-								this.move_monster = 2;
-							}
-						}
 						
-						else
-						{
-							if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-								this.move_monster = 1;
-							}
-							
-							else
-							{
-								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-								{
-									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-									this.move_monster = 2;
-								}
-							}
-						}
 					}
 					
 					else
@@ -1015,57 +857,47 @@ public class Model extends Observable implements IModel<Hero> {
 						{
 							if(i > y && stop_y == 0)
 							{
-								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()) && this.move_monster != 1)
+								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-									this.move_monster = 2;
+									
 								}
 							}
 							
 							else if(i < y && stop_i == 0)
 							{
-								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()) && this.move_monster != 2)
+								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
-									this.move_monster = 1;
+									
 								}
 							}
 							
 							else if(stop_y == 1)
 							{
-								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()) && this.move_monster != 2)
+								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);	
-									this.move_monster = 1;
+									
 								}
 							}
 							
 							else if(stop_i == 1)
 							{
-								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()) && this.move_monster != 1)
+								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);		
-									this.move_monster = 2;
+									
 								}
 							}
 							
 							else
 							{
-								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()) && this.move_monster != 2)
+								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-									this.move_monster = 1;
+									
 								}
-							}
-							
-							if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()) && this.move_monster == 1)
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-							}
-							
-							else if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()) && this.move_monster == 2)
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
 							}
 							
 							z++;
@@ -1075,40 +907,10 @@ public class Model extends Observable implements IModel<Hero> {
 				
 				else if(this.getMonster(m).getX() > this.getHero().getX())
 				{
-					if(this.isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1) && this.move_monster != 3)
+					if(this.isMovePossible(this.getMonster(m).getY(), this.getMonster(m).getX()-1))
 					{
 						this.tableau = this.getMonster(m).move(this.tableau, "LEFT", index);
-						this.move_monster = 4;
-					}
-					
-					else if(this.move_monster == 3)
-					{
-						if(this.getMonster(m).getY() > this.getHero().getY())
-						{
-							if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-								this.move_monster = 2;
-							}
-						}
 						
-						else
-						{
-							if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-								this.move_monster = 1;
-							}
-							
-							else
-							{
-								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
-								{
-									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-									this.move_monster = 2;
-								}
-							}
-						}
 					}
 					
 					else
@@ -1150,59 +952,49 @@ public class Model extends Observable implements IModel<Hero> {
 						{
 							if(i > y && stop_y == 0)
 							{
-								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()) && this.move_monster != 1)
+								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 								{									
 									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-									this.move_monster = 2;
+									
 								}
 							}
 							
 							else if(i < y && stop_i == 0)
 							{
-								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()) && this.move_monster != 2)
+								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-									this.move_monster = 1;
+									
 								}
 							}
 							
 							else if(stop_y == 1)
 							{
-								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()) && this.move_monster != 2)
+								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-									this.move_monster = 1;
+									
 								}
 							}
 							
 							else if(stop_i == 1)
 							{
-								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()) && this.move_monster != 1)
+								if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-									this.move_monster = 2;
+									
 								}
 							}
 							
 							else
 							{
-								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()) && this.move_monster != 2)
+								if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()))
 								{
 									this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-									this.move_monster = 1;
+									
 								}
 							}
-							
-							if(isMovePossible(this.getMonster(m).getY()+1, this.getMonster(m).getX()) && this.move_monster == 1)
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "DOWN", index);
-							}
-							
-							else if(isMovePossible(this.getMonster(m).getY()-1, this.getMonster(m).getX()) && this.move_monster == 2)
-							{
-								this.tableau = this.getMonster(m).move(this.tableau, "UP", index);
-							}
-							
+
 							z++;
 						}						
 					}
@@ -1527,12 +1319,6 @@ public class Model extends Observable implements IModel<Hero> {
 	
 	/**
 	 * Check the position of the monster compared to the hero
-	 * 
-	 * @return true
-	 * 			The hero is on an element
-	 * 
-	 * @return false
-	 * 			The hero is not on an element
 	 * 
 	 */
 	public boolean checkPosition()
